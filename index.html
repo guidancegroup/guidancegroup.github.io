@@ -14,8 +14,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.js"></script> -->
 <script src="https://apis.google.com/js/plusone.js"></script>
+<script src="https://apis.google.com/js/platform.js"></script>
 
 <script type="text/javascript" src="js/Application.js" ></script>
 <script type="text/javascript" src="js/CustomStyle.js" ></script>
@@ -120,9 +121,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4 text-center">
 	<h3>Subscribe us now</h3>
-		<iframe data-gapiattached="true" frameborder="0" scrolling="no" height="50px" width="300px" style="padding-left: 100px"
-			src="http://www.youtube.com/subscribe_embed?bsv&amp;usegapi=1&amp;channel=Youtube">
-		</iframe>
+		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full" data-count="hidden">
+		</div>
 	
 	</div>
 	<div class="col-lg-4"></div>
@@ -168,14 +168,14 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				 	<hr style="background-color:orange;">
 				  </div>
 				<div class="col-md-4">
-					<img class="img-fluid" alt="" src="img/GGlogo.png" width="300"
+					<img class="img-fluid" alt="logo" src="img/GGlogo.png" width="300"
 						height="300">
 				</div>
   </div>
   <div class="row">
 	  <div class="col-md-12">
 	  	<h4 class="text-center">Why Guidance Group?</h4>
-		  <ul style="list-style-type:disc">
+		  <ul class="text-center" style="list-style-type:disc">
  			<li>No. 1 institute in terms of core team of committed and experienced faculty.</li>
   			<li>Clear success Mantra with effective study practices.</li>
 			  <li>Quality & Timely coverage of Entire Syllabus.</li>
@@ -268,7 +268,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="row">
 		<div class="col-lg-3 col-md-6 col-sm-6 " ng-repeat="mentor in list" >
 			<div class="card h-100 d-flex flex-column justify-content-between" > 
-				<img class="card-img-top rounded-circle" src="img/mentors/{{mentor.image}}" alt="Card image cap">
+				<img class="card-img-top rounded-circle" src="img/mentors/{{mentor.image}}" alt="Profile Image">
 				<div class="card-body">
 					<h5 class="card-title">{{mentor.name}}</h5>
 					<p class="card-text">{{mentor.about}}</p>
@@ -353,12 +353,13 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	  <p>Connect with us on :</p>
 	  <div class="row">
 		<div>
-		<a href="{{facebook}}" class="fa fa-facebook Ifa"></a>&nbsp;&nbsp;
-		<a href="{{instagram}}" class="fa fa-instagram Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.facebook.com/guidancegroup1/" class="fa fa-facebook Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.instagram.com/guidancegroup1/" class="fa fa-instagram Ifa"></a>&nbsp;&nbsp;
 		<a href="{{linkedin}}" class="fa fa-linkedin Ifa"></a>&nbsp;&nbsp;
-		<a href="{{youtube}}" class="fa fa-youtube Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.youtube.com/channel/UCmmrT8dABxBE6D5VSmO-HIw" class="fa fa-youtube Ifa"></a>&nbsp;&nbsp;
 		</div>
 	  </div>
+	    <br>
     </div>
 	<!-- forms -->
     <div class="col-sm-7 ">
