@@ -16,8 +16,8 @@ $rootScope.courseData={
       "url":"partials/courses.html"
     },
     {
-      "name":"What is IBPS?",
-      "text":"About IBPS",
+      "name":"MLEP",
+      "text":"Multi-Linkage Examination Program",
       "url":"partials/courses.html"
     }
     ]
