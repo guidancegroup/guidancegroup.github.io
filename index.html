@@ -152,30 +152,28 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   </div>
 <!-- Container (ABOUT Section) -->
 <div id="about" class="container-fluid">
-  <div class="row">
-  <div class="col-md-8">
-  <h2>ABOUT US</h2>
+  <div class="row ">
+  
+  <div class="col-md-12">
+  <h2 class="text-center">ABOUT US</h2>
 	  <br>
-					<p>GUIDANCE GROUP is a committed team of faculty who have been involved in Civil Service 
+					<div  > 
+						&emsp;&emsp; GUIDANCE GROUP is a committed team of faculty who have been involved in Civil Service 
 						preparation for the past "5-6 YEARS" and have been instrumental for the success of 
-						many candidates in their Civil Service exam Preparation.<br><br>
-						We offer intensive and quality coaching to candidates appearing for Civil Service 
+						many candidates in their Civil Service exam Preparation.<br>
+						&emsp;&emsp; We offer intensive and quality coaching to candidates appearing for Civil Service 
 						Examination conducted by the Union Public Service Commission and the State 
 						Service Examination.
-	  				</p>
+	  				</div>
 	  	
-					 <button type="button" class="btn btn-primary btn-lg " data-toggle="modal" data-target=".bd-example-modal-lg">Register Now</button>
-				 	<hr style="background-color:orange;">
+				 	<hr >
 				  </div>
-				<div class="col-md-4">
-					<img class="img-fluid" alt="logo" src="img/GGlogo.png" width="300"
-						height="300">
-				</div>
+				
   </div>
   <div class="row">
-	  <div class="col-md-12">
-	  	<h4 class="text-center">Why Guidance Group?</h4>
-		  <ul class="text-center" style="list-style-type:disc">
+	  <div class="col-md-8" >
+	  	<h4 class="text-center" >Why Guidance Group?</h4>
+		  <ul  style="list-style-type:disc">
  			<li>No. 1 institute in terms of core team of committed and experienced faculty.</li>
   			<li>Clear success Mantra with effective study practices.</li>
 			  <li>Quality & Timely coverage of Entire Syllabus.</li>
@@ -184,8 +182,35 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			  <li>To provide effective guidance for Civil Service Aspirants.</li>
 			  <li>Air conditioned class rooms.</li>
 		  </ul>
+		 
+		  <div class="text-center">
+		  <button type="button" class="btn btn-primary btn-lg  " data-toggle="modal" data-target=".bd-example-modal-lg">Register Now</button>
+		  </div>
 	  </div>
+	  <div class="col-md-4">
+					<img class="img-fluid" alt="logo" src="img/GGlogo.png" width="300"
+						height="300">
+				</div>
 	</div>
+  </div>
+
+
+ <!-- Container (Courses Section) -->
+ <div id="course" class="container-fluid text-center" style="background-color: orange;">
+  <h2>COURSES</h2>
+  <h4>What we offer</h4>
+  <br>
+  <div class="row">
+    <div class="col-sm-4" ng-repeat="course in courseData.courses ">
+      <div class="container-overlay">
+		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay">
+		<div class="overlay">
+		<div class="text">{{course.text}}</div>
+		<a role="button" class="btn btn-outline-primary" href="{{course.url}}">Know more</a>
+		</div>
+	</div>
+    </div>
+    </div>
   </div>
 
  <!-- Container (Courses Section) -->
@@ -330,7 +355,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <p class="text-center">Our achievements and proud moments</p>
  <hr>
  <div class="row " >
- <div class="col-lg-2 col-md-2 " ng-repeat="photo in galleryData.gallery">
+ <div class="col-lg-2 col-md-2 " style="cursor: pointer;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo.name);" title="View Image" >
  <img class="img-thumbnail" src="img/gallery/{{photo.name}}">
  </div>
  </div>
@@ -393,7 +418,22 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
     </div>
   </div>
 </div>
-
+<!--gallery Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> {{viewImageName}} </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img class="img-fluid" alt="gallery image" src="img/gallery/{{viewImageName}}" width="300" height="300">
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
