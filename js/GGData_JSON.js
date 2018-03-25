@@ -28,51 +28,51 @@ $rootScope.mentorData={
   "mentors":[
     { 
       "name":"Samir Inpure",
-      "about":"say something",
-      "degree":"add degrees",
+      "about":"M.Com(Management), M.A(Economics), LLB Pursuing AND has appeared for (Territorial Army) Interview round.",
+      "degree":"",
 	  "image":"samir.jpg",
       "url":"#"
     },
     {
-      "name":"Akshay ",
-      "about":"say something",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Akshay Goud",
+      "about":"B.E (Computers), M.A (Public Administration), M.E(CNIS) Pursuing.",
+      "degree":"",
+	  "image":"AkshayGoud.jpg",
       "url":"#"
     },
     {
-      "name":"Amit",
-      "about":"say something dagwdga0dbad ahdagfawd awbuawfbauof awidoabfouauouafba afuafuavfiawvifuvafafi ab",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Hitesh Potdar",
+      "about":"B.Tech (Mechanical), M.Tech (Mechanical) has appeared for UPSC-CSE Interview.",
+      "degree":"",
+	  "image":"HiteshPotdar.jpg",
       "url":"#"
     },
     {
-      "name":"Rupesh",
-      "about":"say something",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Akshay Palande",
+      "about":"B.E (Mechanical), M.A(Public Administration) has appeared for UPSC-CSE Mains twice.",
+      "degree":"",
+	  "image":"AkshayPalande.jpg",
       "url":"#"
     },
 	{
-      "name":"Rupesh1",
-      "about":"say something",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Amit Sarwade",
+      "about":"BMS, he has cleared most of the Tier-1 examinations of IBPS/PO and Clerical. He specializes in Quantitative Aptitude.",
+      "degree":"",
+	  "image":"AmitSarwade.jpg",
       "url":"#"
     },
 	{
-      "name":"Rupesh2",
-      "about":"say something",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Dr. Vaibhav Napte",
+      "about":"Has appeared for UPSC-CAPF Interview, has achieved a feat of appearing for Mains examinations of MPSC,STI,PSI,UPSC etc in the same year.",
+      "degree":"",
+	  "image":"VaibhavNapte.jpg",
       "url":"#"
     },
 	{
-      "name":"Rupesh3",
-      "about":"say something",
-      "degree":"add degrees",
-	  "image":"profile.png",
+      "name":"Monika Sethia",
+      "about":"English Teacher M.COM , She is a NET/SET qualified faculty and currently teaches English.",
+      "degree":"",
+	  "image":"MonikaSethia.jpg",
       "url":"#"
     }
     
@@ -196,18 +196,7 @@ $rootScope.carouselTwoInterval="2000";
 //Add slides for main slideshow here
 $rootScope.carouselData={
 	"slides":[
-	{
-		"name":"slide1.jpg",
-		"slide":"1"
-	},
-	{
-		"name":"slide2.jpg",
-		"slide":"2"
-	},
-	{
-		"name":"slide3.jpg",
-		"slide":"3"
-	}
+	
 	]
 };
 
