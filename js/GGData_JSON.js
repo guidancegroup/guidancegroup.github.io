@@ -12,28 +12,13 @@ $rootScope.courseData={
     },
     {
       "name":"UPSC",
-      "text":"About UPSC",
+      "text":"The Union Public Service Commission (UPSC) is an independent central government agency responsible for recruitment, in order to select the best individuals to work in various wings of the government.",
       "url":"partials/view.html"
     },
     {
       "name":"IBPS",
       "text":"About IBPS",
       "url":"partials/view.html"
-    },
-    {
-      "name":"PSU",
-      "text":"About PSU",
-      "url":"#"
-    },
-    {
-      "name":"PSS",
-      "text":"About PSS",
-      "url":"#"
-    },
-    {
-      "name":"NET",
-      "text":"About NET",
-      "url":"#"
     }
     ]
 }
