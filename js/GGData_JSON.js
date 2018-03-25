@@ -7,18 +7,18 @@ $rootScope.courseData={
   "courses":[
     {
       "name":"MPSC",
-      "text":"About MPSC",
-      "url":"partials/view.html"
+      "text":"What is MPSC?",
+      "url":"partials/courses.html"
     },
     {
       "name":"UPSC",
-      "text":"The Union Public Service Commission (UPSC) is an independent central government agency responsible for recruitment, in order to select the best individuals to work in various wings of the government.",
-      "url":"partials/view.html"
+      "text":"What is UPSC?",
+      "url":"partials/courses.html"
     },
     {
-      "name":"IBPS",
+      "name":"What is IBPS?",
       "text":"About IBPS",
-      "url":"partials/view.html"
+      "url":"partials/courses.html"
     }
     ]
 }
