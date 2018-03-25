@@ -31,7 +31,13 @@ app.controller('appCtrl',function($rootScope,$scope){
 	if(id=='youtube'){
 	$rootScope.youtubeList=dataList;
 	};
-};
+	};
+	
+	$rootScope.viewImage=function(name){
+		$rootScope.viewImageName=name;
+		$('#exampleModalCenter').modal();
+		
+	};
 	
 });
 
