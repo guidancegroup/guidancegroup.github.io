@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
 <meta charset="UTF-8">
 <title>Page Title</title>
-<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<link rel="icon" type="image/gif/png" href="/img/GGlogo.png">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
-integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
- integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 
-<script type="text/javascript" src="js/Application.js" ></script>
-<script type="text/javascript" src="js/GGData_JSON.js" ></script>
+<script type="text/javascript" src="/js/Application.js"></script>
+<script type="text/javascript" src="/js/GGData_JSON.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
- integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
 <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -30,7 +27,18 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
     		user-select: none;
 	}
 	h2{ margin-left:35%;}
-	nav{font-family: Montserrat, sans-serif;}
+	nav{
+		font-family: Montserrat, sans-serif;
+		box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+	}
+	.nav-item{
+		margin-right:20px;
+	}
+	#contain{
+		background-color: #f2f2f2; 
+		border-radius: 10px; 
+		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	}
 </style>
 </head>
 <body ng-controller="">
@@ -40,26 +48,23 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <div class="row">
 	<div class="col-lg-2 col-sm-0"></div>
 	<div class="col-lg-8 col-sm-12" style="background-color: #;"> 
-		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;" >
+		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;">
 			<a class="navbar-brand" href="#">
 				<img src="http://guidancegroup.co.in/img/GGlogo.png" width="30" height="30" alt="">
 			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" 			aria-label="Toggle navigation">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+						<a class="nav-link" href="#">Courses <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Features</a>
+						<a class="nav-link" href="http://guidancegroup.co.in">Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#">Disabled</a>
+						<a class="nav-link" href="http://blog.guidancegroup.co.in">Blog</a>
 					</li>
 				</ul>
 			</div>
@@ -68,90 +73,226 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="col-lg-2 col-sm-0"></div>
   </div>
   <br>
-  <div class="row" >
+  <div class="row">
   <div class="col-lg-2 col-sm-0"></div>
-	<div class="col-lg-8 col-sm-12" style="background-color: #f2f2f2; border-radius: 10px;" >
+	<div id="contain" class="col-lg-8 col-sm-12">
 	
-		<h2>Heading</h2>
+		<h2>UPSC</h2>
 		<div id="UPSC" class="row">
 			<div class="col-lg-4">
 				<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
 			</div>
 			<div class="col-lg-8">
-				<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>Contain. . .</p>
+				<h5>About UPSC coaching center</h5>
 				<ul>
-					<li>1</li>
-					<li>2</li>
+					<li>What is UPSC?</li>
+					<li>What is UPSC exam?</li>
+					<li>How should I prepare for the exams?</li>
+					<li>How many types of exams are available?</li>
+					<li>What are the basic portions of such exams?</li>
+					<li>How to clear the exam?</li>
+					<li>Is there any best UPSC coaching centre in Mumbai?</li>
+					<li>Are those coaching centers reliable?</li>
+				</ul>
+				<p>The above are some of the common questions in the mind of any candidate who intends to appear for UPSC exams.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+			<h5>What is UPSC?</h5>
+				<p>The Union Public Service Commission (UPSC) is an independent central government agency responsible for recruitment, 
+				in order to select the best individuals to work in various wings of the government.
+				</p>
+				<h6>The list of examinations conducted include</h6>
+				<ul>
+					<li>Civil Services Examination.</li>
+					<li>Indian Forest Service Examination</li>
+					<li>Engineering Services Examination.</li>
+					<li>Combined Defence Services Examination.</li>
+					<li>National Defence Academy Examination.</li>
+					<li>Naval Academy Examination.</li>
+					<li>Combined Medical Services Examination</li>
+					<li>Indian Economic Service.</li>
+					<li>Indian Statistical Service Examination.</li>
+					<li>Combined Geo Scientist and Geologist Examination.</li>
+					<li>Central Armed Police Forces (Assistant Commandant) Examination.</li>
 				</ul>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-			<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>हे पान पूर्णपणे मराठी इतिहासा संदर्भात आहे. या पानावरती इतिहास संदर्भित विविध लिंक्स मिळतील.</p>
+			<h5>About Indian Administrative Service (IAS)</h5>
+				<p>The Indian Administrative Service (IAS) is amongst the premier 
+					administrative wings of the government and IAS officers play a 
+					crucial role in everyday functioning of the government.</p>
+				<h6>The exam consists of 3 parts</h6>
 				<ul>
-					<li>1</li>
-					<li>2</li>
+					<li>A preliminary exam</li>
+					<li>A main exam and finally</li>
+					<li>An interview</li>
 				</ul>
+				<p>
+					Competition is extremely tough and the selection parameters are rigorous.
+					However, the benefits and respect garnered by IAS officers is well worth the effort.
+				</p>
+				<br>
+				<h5 class="lead text-danger" align="center">Hope you have a million questions crossing your mind?</h5>
+				<h6 class="lead text-info" align="center">Walk into GUIDANCE GROUP, interact with our guides. 
+				Feel a world of change and the power of possibilities!</h6>
+				<br>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-			<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>Contain. . .</p>
+			<h5>ABOUT CIVIL SERVICES EXAMINATION (CSE)</h5>
+				<p>The Civil Service Examination is an all India Competitive Examination conducted by the 
+					Union Public Service Commission for recruiting IAS, IFS, IPS, IRS (Income Tax &amp; Customs) 
+					and other central service officers. The examination consists of three stages – 
+					Preliminary Examination, Mains Examination and Interview.
+				</p>
+				<p>
+					The Preliminary Examination is held in June and the Mains Examination in October. 
+					The interview is held in the month of April and 
+					Final results are published in the month of May every year.
+				</p>
+				<h6>Preliminary Examination</h6>
 				<ul>
-					<li>1</li>
-					<li>2</li>
+					<li>The examination comprise of two compulsory papers of 200 marks each. 
+					It is of objective type (multiple choice questions). 
+					This examination is meant to serve as a screening test only; 
+					the marks obtained in the Preliminary Examination by the candidates who are declared 
+					qualified for admission to the Main Examination 
+					will not be counted for determining their final order of merit.</li>
+					<li>The question papers will be set both in Hindi and English.</li>
+					<li>The General Studies Paper – II of the Civil Services (Preliminary) 
+					Examination will be a qualifying paper with minimum qualifying marks fixed at 33%.
+					</li>
+					<li>Each paper will be of two hours duration.</li>
+					<li>There will be negative marking for incorrect answers.</li>
 				</ul>
+				<h6>Main Examination</h6>
+				<ul>
+					<li>The written examination will consist of 9 Papers of conventional Essay Type</li>
+					<li>Out of 9 Papers, Two Papers are qualifying papers</li>
+				</ul>
+				<h6>Interview</h6>
+				<p>The number of Candidates to be summoned for interview will be about twice the number of vacancies to be filled. 
+					The interview will carry 275 marks. 
+					(with no minimum qualifying marks).
+				</p>
+				<h6>Final Result</h6>
+				<p>Marks obtained for all the compulsory papers (Paper – I to Paper – VII) in 
+					Civil Services Main Examination and marks obtained in Interview for Personality 
+					Test will be counted for ranking.</p>
 			</div>
 		</div>
 		<hr>
-		<h2>Heading</h2>
+		<h2>MPSC</h2>
 		<div id="MPSC" class="row">
+			<div class="col-lg-12">
+				<p>Even though there is some awareness about MPSC examination among the rural as well as urban 
+					population in Maharashtra, not many think of it as a strong career option. Especially in an industrially 
+					developed state like Maharashtra, there is availability of other attractive career opportunities such as 
+					Engineering (preferably software engineering), Medical, Management, Architecture so on and so forth.
+					Hence the parents as well as students seldom think of MPSC as their very first career option. In addition to this, various misunderstanding about the nature of these exams, suspicions about one’s own abilities,
+					lack of awareness about availability of quality guidance and standard reading material etc further distract the students from taking this career option seriously. However, like UPSC, MPSC is also a robust career
+					option, which not only can give name, fame as well as a secure, stable and enriching career path but also immense inner satisfaction of serving the society in true sense of the term. MPSC has an added 
+					advantage for girls as there is 33% reservation for them in these exams. Maharashtra Public Service Commission is an autonomous constitutional body which recruits personnel for civil services in 
+					Maharashtra. Civil Service is a crucial institution, which is responsible for implementing the laws made by the legislature as well as the policies formulated by the government. It also contributes to the process of 
+					law and policy making. MPSC has all the ingredients, which are essential to make it a sound career option, namely stability of tenure, attractive salary and social status. But more than that the powers which are 
+					bestowed upon the person occupying these posts and the opportunity to utilize these powers for the benefit of the ‘Public’ gives it an edge over the other career options. Because, here in MPSC, along with 
+					private gain’, ‘public purpose’ also be served through your career. This sense of fulfillment is the most important thing that makes it a coveted career. MPSC recruits for the following posts:
+				</p>
+			</div>
+		</div>
+		<div class="row">
 			<div class="col-sm-4">
 				<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
 			</div>
 			<div class="col-sm-8">
-			<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>Contain. . .</p>
 				<ul>
-					<li>1</li>
-					<li>2</li>
+					<li>Deputy Collector (DC)</li>
+					<li>Deputy Superintendent of Police (Dy. S. P.)</li>
+					<li>District Deputy Registrar (DDR)</li>
+					<li>Sales Tax Officer (STO)</li>
+					<li>Tahsildar</li>
+					<li>Deputy CEO</li>
+					<li>Nayab Tahsildar </li>
 				</ul>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-			<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>Contain. . .</p>
-				<ul>
-					<li>1</li>
-					<li>2</li>
-				</ul>
+			<h4>REVISED PATTERN OF MPSC EXAM</h4>
+			<p>MPSC has done some major changes in the pattern of exam as well as distribution of marks.
+			One of the major changes is that there won’t be any optional subjects any more even for the Mains. 
+			There shall be 4 papers of General Studies with different components.</p>
+				<h6>Distribution of marks for Mains:</h6>
+				
+				<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Compulsory Marathi</td>
+      <td>100</td>
+      
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Compulsory English</td>
+      <td>100</td>
+   
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>GS Paper 1 (History and Geography)</td>
+       <td>150</td>
+    </tr>
+	 <tr>
+      <th scope="row">4</th>
+      <td>GS Paper 2 (Indian Constitution and Politics)</td>
+       <td>150</td>
+    </tr>
+	 <tr>
+      <th scope="row">5</th>
+      <td>GS Paper 3 (Human Resource Development and Human Rights)</td>
+       <td>150</td>
+    </tr> <tr>
+      <th scope="row">6</th>
+      <td>GS Paper 4 (Economics and Science & Technology)</td>
+      <td>150</td>
+    </tr>
+	
+  </tbody>
+</table>
+<p>Only the language papers i.e. Marathi and English are descriptive in nature. All- other papers i.e. G. S. papers are objective in nature. Moreover, 
+the Commission has introduced negative marking system and individual cut-off for each G.S. paper, 
+which is 45% for the General category students and 40% for all the reserved categories. 
+Keeping in mind all these changes, the Academy has come up with rigorous batches for MPSC.</p>
 			</div>
 		</div>
 		<hr>
-		<h2>Heading</h2>
+		<h2>MLEP</h2>
 		<div id="MLEP" class="row">
 			<div class="col-lg-12">
 			<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
-			<h4>Sub-Heading</h4>
-				<h6>Point</h6>
-				<p>Contain. . .</p>
-				<ul>
-					<li>1</li>
-					<li>2</li>
-				</ul>
+			<h4>Multi Linkage Examination Program</h4>
+				<p>This is an indigenously designed educational program. This course program is designed in such a way 
+				that a middle path to all other competitive exams like Staff Selection commission (SSC), Institute of Banking Personal and 
+				Selection (IBPS) and alike examinations have been structured out. 
+				The candidate will be trained for all these examinations in a common minimum agenda and we guarantee that candidate will clear one of these examinations.</p>
 			</div>
 		</div>
 		<hr>
-		<h2>Heading</h2>
+		<h2>Downloads</h2>
 		<div id="Downloads" class="row">
 			<div class="col-lg-0"></div>
 			<div class="col-lg-12">
@@ -160,20 +301,26 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 					<caption>Downloads</caption>
 					<thead class="thead-light">
 						<tr>
-							<th >#</th>
-							<th >Examination</th>
-							<th >Syllabus</th>
-							<th >Book's List</th>
-							<th >Guidance Group's Notes</th>
+							<th>#</th>
+							<th>Examination</th>
+							<th>Syllabus</th>
+							<th>Book's List</th>
+							<th>Previous Question Papers</th>
+							<th>Guidance Group's Notes</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr ng-repeat="">
 							<th>{{downloads.index}}</th>
 							<th>{{downloads.examination}}</th>
-							<th> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="syllabus">Download</a> </th>
-							<th><a class="btn btn-outline-primary" ng-href="{{downloads.booksList}}" role="button" title="Books">Download</a></th>
-							<th><a class="btn btn-outline-danger" ng-href="{{downloads.notes}}" role="button" title="Registration require">Download</a></th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="syllabus">
+																<span class="fa fa-download"></span></a> </th>
+							<th class="text-center"><a class="btn btn-outline-primary" ng-href="{{downloads.booksList}}" role="button" title="Books">
+																<span class="fa fa-download"></span></a></th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="Questions">
+																<span class="fa fa-download"></span></a> </th>									
+							<th class="text-center"><a class="btn btn-outline-danger" ng-href="{{downloads.notes}}" role="button" title="Registration require">
+																<span class="fa fa-download"></span></a></th>
 						</tr>
 					</tbody>
 				</table>
@@ -185,11 +332,11 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<hr>
 		<div class="row text-justify">
 		<div class="col-lg-6">
-			&#169; 2018 Guidance Group | All Rights Reserved.
+			© 2018 Guidance Group | All Rights Reserved.
 		</div>
 		<div class="col-lg-6 ">
 			Developed and maintained By <a href="https://nikhildinpure.github.io" title="Developer">
-			<span >Guidance Group PVT.LTD.</span>
+			Guidance Group Pvt.Ltd.
 			</a>
 		</div>
 		</div>
@@ -199,5 +346,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   </div>
 </div>
 
+
 </body>
+
 </html>
