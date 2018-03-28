@@ -13,7 +13,7 @@ $rootScope.courseData={
     {
       "name":"UPSC",
       "text":"What is UPSC?",
-      "url":"partials/courses.html"
+      "url":"courses/UPSC/"
     },
     {
       "name":"MLEP",
