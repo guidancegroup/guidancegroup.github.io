@@ -1,6 +1,6 @@
 app.controller('dataCtrl',function($rootScope,$scope){
 
-$rootScope.slogan="Only Guidance Prevails . . .";
+$rootScope.slogan="";
 
 //courses entries
 $rootScope.courseData={
@@ -24,7 +24,7 @@ $rootScope.courseData={
 }
 	
 //download material entry
-$rootSope.downloadsData={
+$rootScope.downloadsData={
 	"downloads":[
 		{
 			"index":"1",
