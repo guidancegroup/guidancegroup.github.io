@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Page Title</title>
+<title>Courses-What we offer, Guidance Group</title>
 <link rel="icon" type="image/gif/png" href="/img/GGlogo.png">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -50,7 +50,7 @@
 	<div class="col-lg-8 col-sm-12" style="background-color: #;"> 
 		<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-radius: 10px;">
 			<a class="navbar-brand" href="#">
-				<img src="http://guidancegroup.co.in/img/GGlogo.png" width="30" height="30" alt="">
+				<img src="/img/GGlogo.png" width="30" height="30" alt="">
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -74,13 +74,13 @@
   </div>
   <br>
   <div class="row">
-  <div class="col-lg-2 col-sm-0"></div>
-	<div id="contain" class="col-lg-8 col-sm-12">
+  <div class="col-lg-2 col-sm-1"></div>
+	<div id="contain" class="col-lg-8 col-sm-10">
 	
 		<h2>UPSC</h2>
 		<div id="UPSC" class="row">
 			<div class="col-lg-4">
-				<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
+				<img class="img-fluid" alt="logo" src="/img/GGlogo.png">
 			</div>
 			<div class="col-lg-8">
 				<h5>About UPSC coaching center</h5>
@@ -137,7 +137,7 @@
 				</p>
 				<br>
 				<h5 class="lead text-danger" align="center">Hope you have a million questions crossing your mind?</h5>
-				<h6 class="lead text-info" align="center">Walk into GUIDANCE GROUP, interact with our guides. 
+				<h6 class="lead text-primary" align="center">Walk into GUIDANCE GROUP, interact with our guides. 
 				Feel a world of change and the power of possibilities!</h6>
 				<br>
 			</div>
@@ -201,15 +201,16 @@
 					Maharashtra. Civil Service is a crucial institution, which is responsible for implementing the laws made by the legislature as well as the policies formulated by the government. It also contributes to the process of 
 					law and policy making. MPSC has all the ingredients, which are essential to make it a sound career option, namely stability of tenure, attractive salary and social status. But more than that the powers which are 
 					bestowed upon the person occupying these posts and the opportunity to utilize these powers for the benefit of the ‘Public’ gives it an edge over the other career options. Because, here in MPSC, along with 
-					private gain’, ‘public purpose’ also be served through your career. This sense of fulfillment is the most important thing that makes it a coveted career. MPSC recruits for the following posts:
+					private gain’, ‘public purpose’ also be served through your career. This sense of fulfillment is the most important thing that makes it a coveted career.
 				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4">
-				<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
+				<img class="img-fluid" alt="logo" src="/img/MPSC.png">
 			</div>
 			<div class="col-sm-8">
+				<h6>MPSC recruits for the following posts:</h6>
 				<ul>
 					<li>Deputy Collector (DC)</li>
 					<li>Deputy Superintendent of Police (Dy. S. P.)</li>
@@ -233,8 +234,8 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Marks</th>
       
     </tr>
   </thead>
@@ -283,7 +284,7 @@ Keeping in mind all these changes, the Academy has come up with rigorous batches
 		<h2>MLEP</h2>
 		<div id="MLEP" class="row">
 			<div class="col-lg-12">
-			<img class="img-fluid" alt="logo" src="http://guidancegroup.co.in/img/GGlogo.png">
+			<img class="img-fluid" alt="logo" src="/img/MLEP.png">
 			<h4>Multi Linkage Examination Program</h4>
 				<p>This is an indigenously designed educational program. This course program is designed in such a way 
 				that a middle path to all other competitive exams like Staff Selection commission (SSC), Institute of Banking Personal and 
@@ -294,7 +295,6 @@ Keeping in mind all these changes, the Academy has come up with rigorous batches
 		<hr>
 		<h2>Downloads</h2>
 		<div id="Downloads" class="row">
-			<div class="col-lg-0"></div>
 			<div class="col-lg-12">
 			<div class="table-responsive">
 				<table class="table table-hover">
@@ -310,14 +310,14 @@ Keeping in mind all these changes, the Academy has come up with rigorous batches
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="">
+						<tr ng-repeat="downloads in downloadsData.downloads">
 							<th>{{downloads.index}}</th>
 							<th>{{downloads.examination}}</th>
 							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="syllabus">
 																<span class="fa fa-download"></span></a> </th>
 							<th class="text-center"><a class="btn btn-outline-primary" ng-href="{{downloads.booksList}}" role="button" title="Books">
 																<span class="fa fa-download"></span></a></th>
-							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="Questions">
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.previousQuestions}}" role="button" title="Questions">
 																<span class="fa fa-download"></span></a> </th>									
 							<th class="text-center"><a class="btn btn-outline-danger" ng-href="{{downloads.notes}}" role="button" title="Registration require">
 																<span class="fa fa-download"></span></a></th>
@@ -326,7 +326,6 @@ Keeping in mind all these changes, the Academy has come up with rigorous batches
 				</table>
 			</div>
 			</div>
-			<div class="col-lg-0"></div>
 			
 		</div>
 		<hr>
@@ -342,7 +341,7 @@ Keeping in mind all these changes, the Academy has come up with rigorous batches
 		</div>
 		<br>
 		</div>
-	<div class="col-sm-2 col-sm-0"></div>
+	<div class="col-lg-2 col-sm-1"></div>
   </div>
 </div>
 
