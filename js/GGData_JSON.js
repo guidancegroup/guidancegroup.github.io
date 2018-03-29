@@ -22,7 +22,37 @@ $rootScope.courseData={
     }
     ]
 }
-
+	
+//download material entry
+$rootSope.downloadsData={
+	"downloads":[
+		{
+			"index":"1",
+			"examination":"MPSC",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		},
+		{
+			"index":"2",
+			"examination":"UPSC",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		},
+		{
+			"index":"3",
+			"examination":"MLEP",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		}
+	]
+}
+	
 //mentors entry
 $rootScope.mentorData={
   "mentors":[
