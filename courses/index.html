@@ -26,24 +26,31 @@
     		user-select: none;
 	}
 	h2{ margin-left:35%;}
-	nav{
-		font-family: Montserrat, sans-serif;
-		box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
-	}
-	.nav-item{
-		margin-right:20px;
-	}
-	#contain{
-		background-color: #f2f2f2; 
-		border-radius: 10px; 
-		box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-	}
-	#banner{ 
-padding: 60px 50px;
-font-family: Montserrat, sans-serif;
-color: white;
-line-height: 1.5 !important;
-letter-spacing: 4px;
+	.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.5 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: orange !important;
+      background-color: #fff !important;
+  }
+  .navbar-expand-md .navbar-toggler {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  
+.nav-item{
+margin-right:20px;
 }
 a{color:white}
 .spacing{padding: 60px 50px;}
