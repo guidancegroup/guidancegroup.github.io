@@ -8,7 +8,7 @@ $rootScope.courseData={
     {
       "name":"MPSC",
       "text":"What is MPSC?",
-      "url":"courses/"
+      "url":"MPSC-02.png/"
     },
     {
       "name":"UPSC",
