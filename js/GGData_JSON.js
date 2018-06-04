@@ -260,7 +260,10 @@ $rootScope.carouselTwoInterval="2000";
 //Add slides for main slideshow here
 $rootScope.carouselData={
 	"slides":[
-	
+		{
+			slide:1,
+			name:"mpscBatch.jpg"
+		}
 	]
 };
 
