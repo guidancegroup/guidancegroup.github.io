@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
           <a class="dropdown-item" href="#course">UPSC</a>
           <a class="dropdown-item" href="#course">MPSC</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="courses/">More</a>
+          <a class="dropdown-item" href="#course" >More</a>
         </div>
       </li>
 	  <li class="nav-item dropdown" id="navDown2">
@@ -135,6 +136,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="row" >
 		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="id in list" >
 			<div id="{{id.player}}"></div>
+			<p class="new text-center text-white">{{ id.isNew }}</p>
 		</div>
     </div>
 	 </div>
@@ -213,12 +215,453 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay">
 		<div class="overlay">
 			<div class="text"><h6>{{course.text}}</h6></div><br>
-		<a role="button" class="btn btn-outline-primary" href="{{course.url}}">Know more</a>
+		<a role="button" class="btn btn-outline-primary"  data-toggle="collapse" href="#courseKnowMore"  aria-expanded="false" aria-controls="courseKnowMore" >Know more</a>
 		</div>
 	</div>
     </div>
     </div>
+	
+</div>
+
+<!-- Courses Expasnsion -->
+ <div id="courseKnowMore" class="collapse container-fluid" style="background-color: #e6e6e6;">
+	<div class="row courseBackground">
+  <div class="col-md-2 col-sm-0"></div>
+	<div id="contain" class="col-md-8 col-sm-12">
+	
+		<h2>UPSC</h2>
+		<div id="UPSC" class="row">
+			<div class="col-md-4">
+				<img class="img-fluid" alt="logo" src="/img/courses/UPSC.png">
+			</div>
+			<div class="col-md-8">
+				<h5>UNION PUBLIC SERVICE COMMISSION</h5>
+				<p>UPSC is an examination conducting body which comes under Department of Personal and Training.</p>
+				<p>It is a body which has been granted its charter in Part XIV of the Indian Constitution.
+					This body is responsible for appointments to and examinations for All India Services and Grade A and Grade B of Central Services.</p>
+				<p>The Commission directly reports to the President of India and can advise the government through him. 
+					The commission has a Constitutional Status and hence operates with utmost autonomy and freedom.</p>
+				<p>The commission has its Headquarter at Dholpur House, Delhi.</p>
+				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			<h6>There are different Examinations that UPSC conducts every year which are listed down as follows:</h6>
+				<ul>
+					<li>Indian Forest Service Examination</li>
+					<li>Engineering Services Examination.</li>
+					<li>Combined Defence Services Examination.</li>
+					<li>National Defence Academy Examination.</li>
+					<li>Naval Academy Examination.</li>
+					<li>Combined Medical Services Examination</li>
+					<li>Indian Economic Service.</li>
+					<li>Indian Statistical Service Examination.</li>
+					<li>Combined Geo Scientist and Geologist Examination.</li>
+					<li>Central Armed Police Forces (Assistant Commandant) Examination.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			<h5>Civil Services Examination</h5>
+				<p>This examination is conducted nationwide by UPSC for various Civil Services of the Government of India. 
+					Which include services like Indian Administrative Services(IAS), Indian Police Services(IPS), Indian Foreign Services(IFS), 
+					Indian Revenue Services(IRS) among others..</p>
+				<h6>This Examination is conducted in three phases.</h6>
+				<ol type="A">
+					<li>Preliminary Examination- 400 Marks</li>
+					<li>Mains Examination- 1750 Marks</li>
+					<li>Personality Test(Interview)- 275 Marks </li>
+				</ol>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+			<h6>A) Preliminary Examination- 400 Marks</h6>
+				<p>This is the entry level examination conducted every year in the month of June advertised in the month of Feb-March.
+					The examination pattern is of Multiple Choice Question(MCQ) based.
+				</p>
+				<p>
+					It is a one day examination divided into 2 papers each of 200 Marks.
+				</p>
+				<ul>
+					<li>Paper-1 (General Studies).</li>
+					<li>Paper-2 (Civil Services Aptitude Test(CSAT)).</li>
+				</ul>
+				<p>Paper -2 is only qualifying in nature whose qualifying is 33% of 200. Once, a candidate secures the cut-off their paper-1 i.e General Studies will be checked. 
+				The cut-off to qualify for the Mains examination is determined by the score one secures in Paper-1 i.e General Studies. </p>
+				
+				<h6>B) Mains Examination- 1750 Marks</h6>
+				<p>This examination is Subjective in nature conducted in October every year. The candidate has to appear for 9 papers as follow:</p>
+				<table class="table table-striped">
+					  <thead>
+						<tr>
+						  <th scope="col">#</th>
+						  <th scope="col">Subject</th>
+						  <th scope="col">Marks</th>
+						  
+						</tr>
+					  </thead>
+					 <tbody>
+						<tr>
+						  <th scope="row">1</th>
+						  <td>English Language (Qualifying) </td>
+						  <td>300</td>
+						  
+						</tr>
+						<tr>
+						  <th scope="row">2</th>
+						  <td>One of the languages listed in 8th schedule of Indian Constitution (Qualifying) 	</td>
+						  <td>300</td>
+					   
+						</tr>
+						<tr>
+						  <th scope="row">3</th>
+						  <td>Essay	</td>
+						   <td>250</td>
+						</tr>
+						 <tr>
+						  <th scope="row">4</th>
+						  <td>GS-I (Indian heritage and culture, history and geography of the world and society)</td>
+						   <td>250</td>
+						</tr>
+						 <tr>
+						  <th scope="row">5</th>
+						  <td>GGS-II (Governance, constitution, Polity, Social Justice and International Relations) </td>
+						   <td>250</td>
+						</tr> <tr>
+						  <th scope="row">6</th>
+						  <td>GS-III (Technology, Economic development, bio-diversity, environment, security and disaster management)</td>
+						  <td>250</td>
+						</tr>
+						<tr>
+						  <th scope="row">7</th>
+						  <td>GS-IV (Ethics, Integrity and Aptitude)</td>
+						   <td>250</td>
+						</tr>
+						<tr>
+						  <th scope="row">8</th>
+						  <td>2 PAPERS on subjects to be selected by the candidate from the list of optional subjects </td>
+						   <td>250 each</td>
+						</tr>
+						<thead>
+						<tr>
+						  <th scope="col"></th>
+						  <th class="text-center" scope="col">Sub-Total</th>
+						  <th scope="col">1750</th>
+						</tr>
+					  </thead>
+					 </tbody>
+				</table>
+				
+				<h6>C) Personality Test(Interview)- 275 Marks</h6>
+				<p>The objective of Personality test is to asses the stability of a candidate for a 
+					career in public services by a board of competent and unbiased observers.</p>
+				<p>Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank.</p>
+				<p>The syllabus of the Civil Services Examination is provided in the <span><a class="text-primary" href="#Downloads"> link here.</a> </span><p>
+				<h5 class="text-center"><span>
+					<a class="text-primary" data-toggle="collapse" href="#UPSCSERVICESLIST"  aria-expanded="false" aria-controls="UPSCSERVICESLIST" href="#UPSCSERVICESLIST">
+						Show List of all different Services</a> 
+					</span> </h5>
+				<div class="collapse" id="UPSCSERVICESLIST">
+					<div class="subCourse">
+						<h6>All India Services (Group A)</h6>
+							<ol type="1">
+								<li>Indian Administrative Service (IAS) </li>
+								<li>Indian Police Service (IPS) </li>
+								<li>Indian Forest Service (IFoS)</li>
+							</ol>
+						<h6>Central Services (Group A)</h6>
+							<ol type="1">
+								<li>Indian Audit and Accounts Service (IA&AS)</li>
+								<li>Indian Civil Accounts Service (ICAS)</li>
+								<li>Indian Corporate Law Service (ICLS)</li>
+								<li>Indian Defence Accounts Service (IDAS)</li>
+								<li>Indian Defence Estates Service (IDES)</li>
+								<li>Indian Foreign Service (IFS)</li>
+								<li>Indian Information Service (IIS)</li>
+								<li>Indian Ordnance Factories Service (IOFS) </li>
+								<li>Indian Post & Telecommunication Accounts and Finance Service (IP&TAFS) </li>
+								<li>Indian Postal Service (IPoS)</li>
+								<li>Indian Railway Accounts Service (IRAS) </li>
+								<li>Indian Railway Personnel Service (IRPS) </li>
+								<li>Indian Railway Traffic Service (IRTS) </li>
+								<li>Indian Revenue Service (IRS-IT)</li>
+								<li>Indian Revenue Service (IRS-C&CE) </li>
+								<li>Indian Trade Service (ITrS) </li>
+								<li>Railway Protection Force (RPF)</li>
+							</ol>
+					</div>
+				</div>
+				
+				<h6>FAQ :</h6>
+				<ol type="1">
+					<li>How should I know whether I am suitable for this kind of career?</li>
+					<li>How and when should I begin my preparation for this exam?</li>
+					<li>What is the time span for this exam?</li>
+					<li>What is the Eligibility criteria.</li>
+					<li>Number of attempts for this examination?</li>
+				</ol>
+			</div>
+		</div>
+	
+		<hr>
+			<br>
+				<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
+				<h6 class="lead text-primary" align="center">To put them to rest visit us at our office and we are happy to help you.</h6>
+			<br>
+		<hr>
+		
+		<h2>MPSC</h2>
+		<div id="MPSC" class="row">
+			<div class="col-sm-4">
+				<img class="img-fluid" alt="logo" src="/img/courses/MPSC.png">
+			</div>
+			<div class="col-sm-8">
+				<h6>Maharashtra Public Service Commission</h6>
+				<p>This is a body created by the Constitution of India under Article 315 to select officers for Civil Services jobs in the Indian state of Maharashtra.
+					The head office is located in Mumbai. </p>
+				
+				<h6>The following examinations are conducted by MPSC every year:</h6>
+				<ol type="1">
+					<li>State Services Exam</li>
+					<li>Maharashtra Engineering Services Exam</li>
+					<li>Forest Services Exam</li>
+					<li>Agricultural Services Exam</li>
+				</ul>
+			</div>
+		</div>
+		<div  class="row">
+			<div class="col-md-12">
+				<p>The state services examination is conducted every year for Grade ‘A’ Gazetted Posts and Grade ‘B’ Non Gazetted Posts.</p>
+				
+				<h6>This Examination is conducted statewide in three phases.</h6>
+				<ol type="A">
+					<li>Preliminary Examination- 400 Marks</li>
+					<li>Mains Examination- 800 Marks</li>
+					<li>Personality Test(Interview)- 100 Marks </li>
+				</ol>
+				
+				<h6>A) Preliminary Examination- 400 Marks</h6>
+				<p>This examination is conducted every year in the month of April.
+					It is a 1 day examination divided into 2 papers each of 200 Marks.
+				</p>
+				<p>
+					It is a one day examination divided into 2 papers each of 200 Marks.
+				</p>
+				<ul>
+					<li>Paper-1 (General Studies).</li>
+					<li>Paper-2 (Civil Services Aptitude Test(CSAT)).</li>
+				</ul>
+				<p>This examination is qualifying in nature.
+					The candidate has to secure minimum cut-off( declared by MPSC) in-order to qualify for the Mains examination. </p>
+				
+				<h6>B) Mains Examination - 800 Marks</h6>
+				<p>This examination is conducted every year in the month of August or September.
+					The commission has brought in certain changes to the examination pattern which is mentioned below:</p>
+				<table class="table table-striped">
+					  <thead>
+						<tr>
+						  <th scope="col">#</th>
+						  <th scope="col">Subject</th>
+						  <th scope="col">Marks</th>
+						  
+						</tr>
+					  </thead>
+					 <tbody>
+						<tr>
+						  <th scope="row">1</th>
+						  <td>English Language (Compulsory) (MCQ) </td>
+						  <td>50</td>
+						  
+						</tr>
+						<tr>
+						  <th scope="row">2</th>
+						  <td>Marathi Language (Compulsory) (MCQ)</td>
+						  <td>50</td>
+					   
+						</tr>
+						<tr>
+						  <th scope="row">3</th>
+						  <td>English Language (Compulsory) (Subjective)</td>
+						   <td>50</td>
+						</tr>
+						 <tr>
+						  <th scope="row">4</th>
+						  <td>Marathi Language (Compulsory) (Subjective)</td>
+						   <td>50</td>
+						</tr>
+						 <tr>
+						  <th scope="row">5</th>
+						  <td>GS-I (History, Geography and Agriculture) </td>
+						   <td>150</td>
+						</tr> <tr>
+						  <th scope="row">6</th>
+						  <td>GS-II (Indian Constitution,Polity and ( with special reference to Maharashtra))</td>
+						  <td>150</td>
+						</tr>
+						<tr>
+						  <th scope="row">7</th>
+						  <td>GS-III (Human Resources and Human Rights)</td>
+						   <td>150</td>
+						</tr>
+						<tr>
+						  <th scope="row">8</th>
+						  <td>GS-IV	 (Economy and Planning,Economics of Development and Agriculture, S&T)</td>
+						   <td>150</td>
+						</tr>
+						<thead>
+						<tr>
+						  <th scope="col"></th>
+						  <th class="text-center" scope="col">Sub-Total</th>
+						  <th scope="col">800</th>
+						</tr>
+					  </thead>
+					 </tbody>
+				</table>
+				
+				<h6>C) Personality Test(Interview)- 100 Marks</h6>
+				<p>
+					The objective of Personality test is to asses the stability of a candidate for a career in public services by a board of competent and unbiased observers.
+					Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank.
+				</p>
+				<p>The syllabus of the State Civil Services Examination is provided in the <span><a class="text-primary" href="#Downloads"> link here.</a> </span><p>
+				
+				<h5 class="text-center"><span>
+					<a class="text-primary" data-toggle="collapse" href="#MPSCSERVICESLIST"  aria-expanded="false" aria-controls="MPSCSERVICESLIST" href="#MPSCSERVICESLIST">
+						Show List of all posts offered by MPSC-State Services Examination:</a> 
+					</span> </h5>
+				<div class="collapse" id="MPSCSERVICESLIST">
+					<div class="subCourse">
+						<h6>Group 'A' Gazetted Posts :</h6>
+							<ol type="1">
+								<li>Deputy Collector </li>
+								<li>Deputy Superintendent of Police  </li>
+								<li>Deputy District of Registrar, Cooperatives </li>
+								<li>Deputy Engineer </li>
+								<li>Deputy CEO</li>
+								<li>Assistant Executive Engineer </li>
+								<li>Assistant Engineer </li>
+								<li>Asst Commissioner of Sales Tax</li>
+								<li>Chief Officer, Municipality</li>
+								<li>Block Development Officer </li>
+								<li>Finance & Account Officer </li>
+								<li>Assistant Electrical Inspector </li>
+								<li>Electrical Inspector </li>
+								<li>Lecturer  </li>
+								<li>Deputy Superitendant of Land records </li>
+								<li>Asst Conservator of Forest  </li>
+							</ol>
+						<h6>Group 'B' Gazetted Posts :</h6>
+							<ol type="1">
+								<li>District Education Officer2</li>
+								<li>Naib Tahsildar </li>
+								<li>Block Development Officer </li>
+								<li>Chief Officer </li>
+								<li>Assistant Engineer </li>
+								<li>RFO</li>
+							</ol>
+						<p>MPSC also conducts different examinations for different position of Group ‘B’ and Group ‘C’ positions as well.</p>
+							
+						<h6>Group ‘B’ Positions:</h6>
+							<ol type="1">
+								<li>Police Sub-Inspector   </li>
+								<li>Sales Tax Inspector  </li>
+								<li>Assistant Desk officer</li>
+							</ol>
+							
+						<h6>Group ‘C’ Positions:</h6>
+							<ol type="1">
+								<li>Tax Assistant </li>
+								<li>Assistant Motor Vehicle   </li>
+								<li>Clerk Typist</li>
+							</ol>
+					</div>
+				</div>
+				
+				<h6>FAQ :</h6>
+				<ol type="1">
+					<li>How should I know whether I am suitable for this kind of career?</li>
+					<li>How and when should I begin my preparation for this exam?</li>
+					<li>What is the time span for this exam?</li>
+					<li>What is the Eligibility criteria.</li>
+					<li>Number of attempts for this examination?</li>
+				</ol>
+				
+			</div>
+		</div>
+		
+		<hr>
+			<br>
+				<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
+				<h6 class="lead text-primary" align="center">To put them to rest visit us at our office and we are happy to help you.</h6>
+			<br>
+		<hr>
+		
+		<h2>MLEP</h2>
+		<div id="MPSC" class="row">
+			<div class="col-sm-4">
+				<img class="img-fluid" alt="logo" src="/img/courses/MLEP.png">
+			</div>
+			<div class="col-sm-8">
+				<h6>Multi Linkage Examination Program</h6>
+				<p>This is an indigenously designed educational program. This course program is designed in such a way 
+				that a middle path to all other competitive exams like Staff Selection commission (SSC), Institute of Banking Personal and 
+				Selection (IBPS) and alike examinations have been structured out. 
+				The candidate will be trained for all these examinations in a common minimum agenda and we guarantee that candidate will clear one of these examinations.</p>
+			</div>
+		</div>
+		
+		
+		<hr>
+		<h2>Downloads</h2>
+		<div id="Downloads" class="row">
+			<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<caption>Downloads</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Examination</th>
+							<th>Syllabus</th>
+							<th>Book's List</th>
+							<th>Previous Question Papers</th>
+							<th>Guidance Group's Notes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="downloads in downloadsData.downloads">
+							<th>{{downloads.index}}</th>
+							<th>{{downloads.examination}}</th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" role="button" title="syllabus">
+																<span class="fa fa-download"></span></a> </th>
+							<th class="text-center"><a class="btn btn-outline-primary" ng-href="{{downloads.booksList}}" role="button" title="Books">
+																<span class="fa fa-download"></span></a></th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.previousQuestions}}" role="button" title="Questions">
+																<span class="fa fa-download"></span></a> </th>									
+							<th class="text-center"><a class="btn btn-outline-danger" ng-href="{{downloads.notes}}" role="button" title="Registration require">
+																<span class="fa fa-download"></span></a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+			
+		</div>
+		<br>
+		</div>
+	<div class="col-md-2 col-sm-0"></div>
   </div>
+  </div>
+  </div>
+  </div>
+  </div>
+
+  <!-- Courses Expasnsion -->
+
 
  
 
