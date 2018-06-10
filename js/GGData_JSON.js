@@ -8,17 +8,20 @@ $rootScope.courseData={
     {
       "name":"MPSC",
       "text":"What is MPSC?",
-      "url":"courses/"
+      "url":"courses/",
+	  "id":"upscKnowMore"
     },
     {
       "name":"UPSC",
       "text":"What is UPSC?",
-      "url":"courses/"
+      "url":"courses/",
+	  "id":"mpscKnowMore"
     },
     {
       "name":"MLEP",
       "text":"Multi-Linkage Examination Program",
-      "url":"courses/"
+      "url":"courses/",
+	  "id":"mlepKnowMore"
     }
     ]
 }
