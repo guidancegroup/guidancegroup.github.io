@@ -237,16 +237,48 @@ $rootScope.youtubePlayerData={
 	},
 	{ 
 		"name":"player21" ,
-		"player":"player21"
+		"player":"player21",
+		"isNew":"New"
 	},
 	{ 
 		"name":"player22" ,
-		"player":"player22"
+		"player":"player22",
+		"isNew":"New"
 	}
 	]
 }
 
 $rootScope.youtubePlayerData.players=$rootScope.youtubePlayerData.players.reverse();
+	
+//download material entry
+$rootScope.downloadsData={
+	"downloads":[
+		{
+			"index":"1",
+			"examination":"MPSC",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		},
+		{
+			"index":"2",
+			"examination":"UPSC",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		},
+		{
+			"index":"3",
+			"examination":"MLEP",
+			"syllabus":"#",
+			"booksList":"#",
+			"previousQuestions":"#",
+			"notes":"#"
+		}
+	]
+}
 //------------------------------------------------------------------------------------------
 
 //add social media links 
