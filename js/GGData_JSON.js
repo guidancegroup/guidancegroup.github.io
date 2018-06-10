@@ -246,6 +246,7 @@ $rootScope.youtubePlayerData={
 	]
 }
 
+$rootScope.youtubePlayerData.players=$rootScope.youtubePlayerData.players.reverse();
 //------------------------------------------------------------------------------------------
 
 //add social media links 
