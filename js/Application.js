@@ -39,9 +39,10 @@ app.controller('appCtrl',function($rootScope,$scope){
 		
 	};
 	
+	$rootScope.courseFlag=false;
 	$rootScope.setCourse=function(){
-		$rootScope.courseFlag=true;
-	}
+		$rootScope.courseFlag=!$rootScope.courseFlag;
+	};
 	
 });
 
