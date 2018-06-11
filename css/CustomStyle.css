@@ -141,4 +141,14 @@ background-color: #404040 !important;
 	background-color: #FF0000;
 	border-radius:5px;
 }
+
+.cross{
+	margin-left:80%;
+	cursor:pointer;
+	color:black;
+}
+.cross:hover {
+	color:red;
+	font-size:48px;
+}
 }
