@@ -45,7 +45,10 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
       <li class="nav-item ">
         <a class="nav-link" href="#about">ABOUT US <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item dropdown" id="navDown">
+	  <li class="nav-item ">
+        <a class="nav-link" href="#course">COURSES</a>
+      </li>
+     <!-- <li class="nav-item dropdown" id="navDown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           COURSES
         </a>
@@ -53,9 +56,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
           <a class="dropdown-item" href="#course">UPSC</a>
           <a class="dropdown-item" href="#course">MPSC</a>
           <div class="dropdown-divider"></div>
-          <a  class="dropdown-item"  href="#course"    >More</a>
+          <a  class="dropdown-item"  href="#course" >More</a>
         </div>
-      </li>
+      </li> -->
 	  <li class="nav-item dropdown" id="navDown2">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MENTORS
@@ -207,7 +210,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <!-- Container (Courses Section) -->
  
  <div id="course"  >
- <div  class="container-fluid text-center" style="background-color: orange;">
+ <div ng-hide="courseFlag"  class="container-fluid text-center" style="background-color: orange;">
   <h2>COURSES</h2>
   <h4>What we offer</h4>
   <br>
@@ -227,11 +230,11 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <!-- accordian  -->
 <div  ng-show="courseFlag"  id="courseKnowMore" class="container-fluid" style="background-color: #e6e6e6;">
 	<div class="row courseBackground">
-		<div class="col-md-2 col-sm-0"></div>
-		<div id="contain" class="col-md-8 col-sm-12">
-			<div id="UPSC" class="row collapse"  aria-labelledby="upscKnowMore" data-parent="#course">
+		<div class="col-md-2 "></div>
+		<div id="contain" class="col-md-8 ">
+			<div  id="UPSC" class="row collapse"  aria-labelledby="upscKnowMore" data-parent="#course">
 			
-				<h2>UPSC</h2>
+				<h2>UPSC <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
 				<div class="row">
 					<div class="col-md-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/UPSC.png">
@@ -406,14 +409,14 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 					<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
 					<h6 class="lead text-primary" align="center">To put them to rest visit us at our office and we are happy to help you.</h6>
 				<br>
-					
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
 				</div>
 				</div>
 				
 			</div>
 			<!-- id upsc ends here -->
 			<div id="MPSC" class="row collapse" aria-labelledby="mpscKnowMore" data-parent="#course">
-			<h2>MPSC</h2>
+			<h2>MPSC <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/MPSC.png">
@@ -595,13 +598,13 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 							<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
 							<h6 class="lead text-primary" align="center">To put them to rest visit us at our office and we are happy to help you.</h6>
 						<br>
-							
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
 					</div>
 				</div>
 			</div>
 			<!-- id mpsc ends -->
 			<div id="MLEP" class="row collapse"  aria-labelledby="mlepKnowMore" data-parent="#course">
-				<h2>MLEP</h2>
+				<h2>MLEP <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/MLEP.png">
@@ -621,11 +624,12 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 						<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
 						<h6 class="lead text-primary" align="center">To put them to rest visit us at our office and we are happy to help you.</h6>
 					<br>
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2 col-sm-0"></div>
+		<div class="col-md-2"></div>
 	</div>
 	
 </div>
