@@ -117,38 +117,47 @@ $rootScope.wellWisherData={
 $rootScope.galleryData={
   "gallery":[
     { 
+		"index":"1",
       "name":"img1.jpg",
       "url":"#"
     },
     {
+		"index":"2",
       "name":"img2.jpg",
       "url":"#"
     },
     {
+		"index":"3",
       "name":"img3.jpg",
       "url":"#"
     },
     {
+		"index":"4",
       "name":"img4.jpg",
       "url":"#"
     },
     {
+		"index":"5",
       "name":"img5.jpg",
       "url":"#"
     },
     {
+		"index":"6",
       "name":"img6.jpg",
       "url":"#"
     },
     {
+		"index":"7",
       "name":"img7.jpg",
       "url":"#"
     },
     {
+		"index":"8",
       "name":"img8.jpg",
       "url":"#"
     },
     {
+		"index":"9",
       "name":"img9.jpg",
       "url":"#"
     }
