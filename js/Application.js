@@ -33,15 +33,30 @@ app.controller('appCtrl',function($rootScope,$scope){
 	};
 	};
 	
-	$rootScope.viewImage=function(name){
-		$rootScope.viewImageName=name;
+	$rootScope.viewImageObj={};
+	$rootScope.viewImage=function(imgObj){
+		$rootScope.viewImageObj=imgObj;
 		$('#exampleModalCenter').modal();
 		
 	};
 	
+	$rootScope.preNextImage=function(index,id){
+		var imgObj={};
+		var idx=parseInt(index);
+		if(id==='NEXT'){
+			$rootScope.viewImageObj=$rootScope.galleryData.gallery[idx];
+		}else{
+			$rootScope.viewImageObj=$rootScope.galleryData.gallery[idx-2];
+		}
+	};
+	
 	$rootScope.courseFlag=false;
-	$rootScope.setCourse=function(){
+	$rootScope.dataID=null;
+	$rootScope.dataTarget=null;
+	$rootScope.setCourse=function(id,target){
 		$rootScope.courseFlag=!$rootScope.courseFlag;
+		$rootScope.dataID=id;
+		$rootScope.dataTarget=target;
 	};
 	
 });
