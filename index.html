@@ -220,7 +220,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay">
 		<div class="overlay">
 			<div class="text"><h6>{{course.text}}</h6></div><br>
-		<a id="{{course.id}}" role="button" class="btn btn-outline-primary"  data-toggle="collapse" data-target="#{{course.name}}"  aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse();"   >Know more</a>
+		<a id="{{course.id}}" role="button" class="btn btn-outline-primary"  data-toggle="collapse" data-target="#{{course.name}}"  aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse(course.id,course.name);"   >Know more</a>
 		</div>
 	</div>
    </div>
@@ -230,11 +230,14 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <!-- accordian  -->
 <div  ng-show="courseFlag"  id="courseKnowMore" class="container-fluid" style="background-color: #e6e6e6;">
 	<div class="row courseBackground">
-		<div class="col-md-2 "></div>
-		<div id="contain" class="col-md-8 ">
+		<div class="col-md-2 col-sm-0 col-xs-0"></div>
+		<div id="contain" class="col-md-8 col-sm-12 col-xs-12 ">
 			<div  id="UPSC" class="row collapse"  aria-labelledby="upscKnowMore" data-parent="#course">
 			
-				<h2>UPSC <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
+				<h2>UPSC <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
+				
 				<div class="row">
 					<div class="col-md-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/UPSC.png">
@@ -416,7 +419,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			</div>
 			<!-- id upsc ends here -->
 			<div id="MPSC" class="row collapse" aria-labelledby="mpscKnowMore" data-parent="#course">
-			<h2>MPSC <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
+			<h2>MPSC <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/MPSC.png">
@@ -604,7 +609,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			</div>
 			<!-- id mpsc ends -->
 			<div id="MLEP" class="row collapse"  aria-labelledby="mlepKnowMore" data-parent="#course">
-				<h2>MLEP <span class="fa fa-close cross " ng-click="setCourse();"></span></h2>
+				<h2>MLEP <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
 				<div class="row">
 					<div class="col-sm-4">
 						<img class="img-fluid" alt="logo" src="/img/courses/MLEP.png">
@@ -629,7 +636,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				</div>
 			</div>
 		</div>
-		<div class="col-md-2"></div>
+		<div class="col-md-2 col-sm-0 col-xs-0"></div>
 	</div>
 	
 </div>
@@ -759,7 +766,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <p class="text-center">Our achievements and proud moments</p>
  <hr>
  <div class="row " >
- <div class="col-lg-2 col-md-2 " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo.name);" title="View Image" >
+ <div class="col-lg-2 col-md-2 " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo);" title="View Image" >
  <img class="img-thumbnail" src="img/gallery/{{photo.name}}">
  </div>
  </div>
@@ -804,7 +811,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		</div>
 		<div class="col-sm-6 text-right">
 			Developed and maintained By <a href="https://nikhildinpure.github.io" title="Developer">
-			<span style="color:white; font-size: 20px;" >Guidance Group PVT.LTD.</span>
+			<span style="color:white; font-size: 10px;" >Guidance Group PVT.LTD.</span>
 			</a>
 		</div>
 	</div>
@@ -828,13 +835,20 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"> {{viewImageName}} </h5>
+        <h5 class="modal-title" id="exampleModalLongTitle"> Gallery </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body text-center">
-        <img class="img-fluid" alt="gallery image" src="img/gallery/{{viewImageName}}" width="600" height="600">
+        <img class="img-fluid" alt="gallery image" src="img/gallery/{{viewImageObj.name}}" width="600" height="600">
+		<br><br>
+		<div>
+			<span ng-if=" viewImageObj.index != '1'"  class="fa fa-angle-double-left galleryArrow " 
+				title="Previous" ng-click="preNextImage(viewImageObj.index,'PREV');"  ></span>&nbsp;&nbsp;
+			<span ng-if=" viewImageObj.index != galleryData.gallery.length" class="fa fa-angle-double-right galleryArrow" 
+				title="Next" ng-click="preNextImage(viewImageObj.index,'NEXT');"></span>
+		</div>
       </div>
     </div>
   </div>
