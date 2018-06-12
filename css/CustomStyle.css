@@ -148,7 +148,17 @@ background-color: #404040 !important;
 	color:black;
 }
 .cross:hover {
-	color:red;
+	color:red !important;
 	font-size:48px;
+}
+
+.galleryArrow{
+	cursor:pointer;
+	font-size:24px;
+	color:black;
+}
+.galleryArrow:hover {
+	color:red !important;
+	font-size:36px;
 }
 }
