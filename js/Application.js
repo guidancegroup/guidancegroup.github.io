@@ -59,6 +59,10 @@ app.controller('appCtrl',function($rootScope,$scope){
 		$rootScope.dataTarget=target;
 	};
 	
+	$rootScope.viewDownloads=function(){
+		$('#downloadModal').modal();
+	};
+	
 });
 
 
