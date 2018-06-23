@@ -48,18 +48,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	  <li class="nav-item ">
         <a class="nav-link" href="#course">COURSES</a>
       </li>
-     <!-- <li class="nav-item dropdown" id="navDown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          COURSES
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#course">UPSC</a>
-          <a class="dropdown-item" href="#course">MPSC</a>
-          <div class="dropdown-divider"></div>
-          <a  class="dropdown-item"  href="#course" >More</a>
-        </div>
-      </li> -->
-	  <li class="nav-item dropdown" id="navDown2">
+	  <li class="nav-item dropdown navDown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           MENTORS
         </a>
@@ -69,11 +58,17 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
           	<a class="dropdown-item" href="#mentor3">Mentors</a>
           	<div class="dropdown-divider"></div>
           	<a class="dropdown-item" href="#scholarship">Scholarship</a>
-		<a class="dropdown-item" href="#gallery">Gallery</a>
         </div>
       </li>
-	  <li class="nav-item">
-        <a class="nav-link" href="http://blog.guidancegroup.co.in">BLOG</a>
+	   <li class="nav-item dropdown navDown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          MORE
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          	<a class="dropdown-item"  href="http://blog.guidancegroup.co.in">BLOG</a>
+			<a class="dropdown-item" ng-click="viewDownloads();" href="">Downloads</a>
+          	<a class="dropdown-item" href="#gallery">Gallery</a>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#contact">CONTACT US</a>
@@ -224,11 +219,12 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		</div>
 	</div>
    </div>
+  
  </div>
 	
 </div>
-<!-- accordian  -->
-<div  ng-show="courseFlag"  id="courseKnowMore" class="container-fluid" style="background-color: #e6e6e6;">
+<!-- accordian   -->
+<div  ng-show="courseFlag"  id="courseKnowMore" class="container-fluid" style="background-color: orange;">
 	<div class="row courseBackground">
 		<div class="col-md-2 col-sm-0 col-xs-0"></div>
 		<div id="contain" class="col-md-8 col-sm-12 col-xs-12 ">
@@ -362,7 +358,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				<p>The objective of Personality test is to asses the stability of a candidate for a 
 					career in public services by a board of competent and unbiased observers.</p>
 				<p> Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank. </p>
-				<p>The syllabus of the Civil Services Examination is provided in the <span><a class="text-primary" href="#Downloads"> link here.</a> </span></p>
+				<p>The syllabus of the Civil Services Examination is provided in the <span><a class="text-primary" href=""  ng-click="viewDownloads();"> link here.</a> </span></p>
 				<h5 class="text-center"><span>
 					<a class="text-primary" data-toggle="collapse" href="#UPSCSERVICESLIST"  aria-expanded="false" aria-controls="UPSCSERVICESLIST" href="#UPSCSERVICESLIST">
 						Show List of all different Services</a> 
@@ -535,7 +531,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 							The objective of Personality test is to asses the stability of a candidate for a career in public services by a board of competent and unbiased observers.
 							Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank.
 						</p>
-						<p>The syllabus of the State Civil Services Examination is provided in the <span><a class="text-primary" href="#Downloads"> link here.</a> </span></p>
+						<p>The syllabus of the State Civil Services Examination is provided in the <span><a class="text-primary" href="" ng-click="viewDownloads();"> link here.</a> </span></p>
 						
 						<h5 class="text-center"><span>
 							<a class="text-primary" data-toggle="collapse" href="#MPSCSERVICESLIST"  aria-expanded="false" aria-controls="MPSCSERVICESLIST" href="#MPSCSERVICESLIST">
@@ -779,11 +775,11 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <p class="text-center">Contact us and we'll get back to you within 24 hours.</p>
   <div class="row">
     <div class="col-sm-5">
-      <p><span class="fa fa-map-marker" style="font-size:24px; color:#00ff00;" ></span>
+      <p><span class="fa fa-map-marker" style="font-size:24px; color:yellow;" ></span>
 	  <a href="https://www.google.co.in/maps/place/GUIDANCE+GROUP+-+Best+UPSC+-+IAS,+MPSC,+Bank+PO+IBPS+%26+SSC+Classes+in+Mumbai,+Dadar/@19.0198827,72.8414611,17.22z/data=!4m5!3m4!1s0x0:0x5c1ca02cda1788a!8m2!3d19.020313!4d72.8413599" style="color:white;">
 	  14, 1st Floor, Plot No. 6, Mukund Mansion, Opp Nakshatra Mall,
 	  Ranade Road, Dadar(W), Mumbai - 400 028</a></p>
-      <p><span class="fa fa-phone" style="font-size:24px;color:#33ccff;"></span> +91 77387 38982</p>
+      <p><span class="fa fa-phone" style="font-size:24px;color:#00ff00;"></span> +91 77387 38982</p>
       <p><span class="fa fa-envelope" style="font-size:24px;color:red;"></span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=guidanceeducon@gmail.com&su=About+Enrollment&body=Respected+Sir," style="color:white;"> guidanceeducon@gmail.com </a></p>
 	  <p>Connect with us on :</p>
 	  <div class="row">
@@ -796,7 +792,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	  </div>
 	    <br>
     </div>
-	<!-- forms -->
+	<!--Contact form -->
     <div class="col-sm-7 ">
 		<style>.mb-5{padding:0!important;margin:0px!important;color:#FFF!important;font-weight:600!important; margin-bottom:5px!important;}</style>
 					<script src="https://doadmission.com/bundles/capture.js?key=GuidanceGroup&format=1&css=0" class="online-capture" id="captureguidance"></script>
@@ -845,9 +841,56 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<br><br>
 		<div>
 			<span ng-if=" viewImageObj.index != '1'"  class="fa fa-angle-double-left galleryArrow " 
-				title="Previous" ng-click="preNextImage(viewImageObj.index,'PREV');"  ></span>&nbsp;&nbsp;
+				title="Previous" ng-click="preNextImage(viewImageObj.index,'PREV');"  ></span>&nbsp;&nbsp;&nbsp;&nbsp;
 			<span ng-if=" viewImageObj.index != galleryData.gallery.length" class="fa fa-angle-double-right galleryArrow" 
 				title="Next" ng-click="preNextImage(viewImageObj.index,'NEXT');"></span>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Downloads modal -->
+
+<div id="downloadModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-dialog-centered modal-lg ">
+    <div class="modal-content">
+  
+	  <div class="modal-body">
+			<div id="Downloads" class="row">
+			<div class="col-lg-12">
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<caption>Downloads</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>#</th>
+							<th>Examination</th>
+							<th>Syllabus</th>
+							<th>Book's List</th>
+							<th>Previous Question Papers</th>
+							<th>Guidance Group's Notes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="downloads in downloadsData.downloads">
+							<th>{{downloads.index}}</th>
+							<th>{{downloads.examination}}</th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" download role="button" title="syllabus">
+																<span class="fa fa-download"></span></a> </th>
+							<th class="text-center"><a class="btn btn-outline-primary" ng-href="img/{{downloads.booksList}}" download role="button" title="Books">
+																<span class="fa fa-download"></span></a></th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="downloads/{{downloads.previousQuestions}}" download role="button" title="Questions">
+																<span class="fa fa-download"></span></a> </th>									
+							<th class="text-center"><a class="btn btn-outline-danger" ng-href="{{downloads.notes}}" role="button" title="Registration require">
+																<span class="fa fa-download"></span></a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+			
 		</div>
       </div>
     </div>
