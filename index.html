@@ -877,9 +877,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 						<tr ng-repeat="downloads in downloadsData.downloads">
 							<th>{{downloads.index}}</th>
 							<th>{{downloads.examination}}</th>
-							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.syllabus}}" download role="button" title="syllabus">
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="downloads/{{downloads.syllabus}}" download role="button" title="syllabus">
 																<span class="fa fa-download"></span></a> </th>
-							<th class="text-center"><a class="btn btn-outline-primary" ng-href="img/{{downloads.booksList}}" download role="button" title="Books">
+							<th class="text-center"><a class="btn btn-outline-primary" ng-href="downloads/{{downloads.booksList}}" download role="button" title="Books">
 																<span class="fa fa-download"></span></a></th>
 							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="downloads/{{downloads.previousQuestions}}" download role="button" title="Questions">
 																<span class="fa fa-download"></span></a> </th>									
