@@ -278,15 +278,15 @@ $rootScope.downloadsData={
 		{
 			"index":"2",
 			"examination":"UPSC",
-			"syllabus":"#",
-			"booksList":"#",
+			"syllabus":"UPSC Syllabus New.pdf",
+			"booksList":"UPSC Book List.pdf",
 			"previousQuestions":"#",
 			"notes":"#"
 		},
 		{
 			"index":"3",
 			"examination":"MLEP",
-			"syllabus":"#",
+			"syllabus":"Bank Examination Syllabus.pdf",
 			"booksList":"#",
 			"previousQuestions":"#",
 			"notes":"#"
