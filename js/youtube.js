@@ -105,7 +105,7 @@ var tag = document.createElement('script');
 	
     function onYouTubeIframeAPIReady() {
 		for(var i=0; i<youtube.videos.length;i++){
-			youtube.videos[i].player=new YT.Player(youtube.videos[i].player,{height: '200',width: '300',videoId: youtube.videos[i].id});
+			youtube.videos[i].player=new YT.Player(youtube.videos[i].player,{height: '140',width: '220',videoId: youtube.videos[i].id});
 		}
         
     }
