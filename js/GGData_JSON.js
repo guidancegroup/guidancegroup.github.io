@@ -254,9 +254,19 @@ $rootScope.youtubePlayerData={
 		"player":"player22",
 		"isNew":"New"
 	},
-		{ 
+	{ 
 		"name":"player23" ,
 		"player":"player23",
+		"isNew":"New"
+	},
+	{ 
+		"name":"player24" ,
+		"player":"player24",
+		"isNew":"New"
+	},
+	{ 
+		"name":"player25" ,
+		"player":"player25",
 		"isNew":"New"
 	}
 	]
