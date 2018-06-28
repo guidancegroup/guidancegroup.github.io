@@ -1,6 +1,6 @@
 var app= angular.module("myApp",[]);
 
-app.controller('appCtrl',function($rootScope,$scope){
+app.controller('appCtrl',function($rootScope,$scope,$http){
 	$rootScope.getListFromDataForSlides=function(dataToSlice,id){
 	var quotient=Math.floor(dataToSlice.length/4);
 	var remainder=dataToSlice.length%4;
@@ -62,6 +62,11 @@ app.controller('appCtrl',function($rootScope,$scope){
 	$rootScope.viewDownloads=function(){
 		$('#downloadModal').modal();
 	};
+	
+	$http.get('downlaod/testJSON.json').success(function(data) {
+   
+   		var obj = data;
+	}); 
 	
 });
 
