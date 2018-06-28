@@ -275,7 +275,7 @@ $rootScope.downloadsData={
 		{
 			"index":"1",
 			"examination":"MPSC",
-			"syllabus":"#",
+			"syllabus":"State Service Main Examination Syllabus [In Marathi].pdf",
 			"booksList":"#",
 			"previousQuestions":"#",
 			"notes":"#"
