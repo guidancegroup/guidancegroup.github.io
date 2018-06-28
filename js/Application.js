@@ -63,7 +63,7 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 		$('#downloadModal').modal();
 	};
 	
-	$http.get('downlaod/testJSON.json').success(function(data) {
+	$http.get('downlaods/testJSON.json').success(function(data) {
    
    		var obj = data;
 	}); 
