@@ -41,7 +41,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto ">
+    <ul class="navbar-nav ml-auto text-center">
       <li class="nav-item ">
         <a class="nav-link" href="#about">ABOUT US <span class="sr-only">(current)</span></a>
       </li>
@@ -106,53 +106,15 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<div class="col-md text-center" style="background-color: orange;">
 			<br>
 			<div class="slogan" >Only Guidance Prevails . . .</div>
-			<br>
+			<marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+				<p  >
+					<span ng-repeat="news in newsList">
+						<a  style="color:white; font-size: 20px; "  href="news.newsLink">{{news.news}}</a>  &nbsp;&nbsp;&nbsp;&nbsp;
+					</span>
+				</p>
+			</marquee>
 		</div>
 </div>
-
-  <!-- Container (youtube Section) -->
-  <div id="youtube" class="" ng-init="getListFromDataForSlides(youtubePlayerData.players,'youtube');" style="background-color: #e6e6e6;"  >
-  <br>
-  <h2 class="text-center">VIDEO LECTURES</h2>
-  <p class="text-center">explore our lecture series</p>
-  <div id="carouselExampleControls3" class="carousel slide" data-slide="next" data-ride="carousel" data-interval="false">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-	<div class="container-fluid" >
-	<div class="row" >
-	<div class="col-lg-4"></div>
-	<div class="col-lg-4 text-center">
-	<h3>Subscribe us now</h3>
-		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full" data-count="hidden">
-		</div>
-	
-	</div>
-	<div class="col-lg-4"></div>
-	 </div>
-	  </div>
-	   </div>
-    <div class="carousel-item" ng-repeat="list in youtubeList" >
-	<div class="container-fluid" >
-	<div class="row text-center " >
-		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="video in list" >
-			<div id="{{video.player}}"></div>
-			<p class="new  text-white">{{ video.isNew }}</p>
-		</div>
-    </div>
-	 </div>
-	
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev" style="width:50px;" title="Previous">
-    <span class="carousel-control-prev-icon arrow " aria-hidden="true"   ></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next" style="width:50px;" title="Next" >
-    <span class="carousel-control-next-icon arrow" aria-hidden="true"  ></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
-  </div>
 <!-- Container (ABOUT Section) -->
 <div id="about" class="container-fluid">
   <div class="row ">
@@ -208,7 +170,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	</div>
   </div>
 
-
+  
  <!-- Container (Courses Section) -->
  
  <div id="course"  >
@@ -645,24 +607,66 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 </div>
 </div>
 
- 
+   <!-- Container (youtube Section) -->
+  <div id="youtube" class="container-fluid" ng-init="getListFromDataForSlides(youtubePlayerData.players,'youtube');" style="background-color: #f3f3f3;"  >
+  <br>
+  <h2 class="text-center">VIDEO LECTURES</h2>
+  <p class="text-center">explore our lecture series</p>
+  <div id="carouselExampleControls3" class="carousel slide" data-slide="next" data-ride="carousel" data-interval="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+	<div class="container-fluid" >
+	<div class="row" >
+	<div class="col-lg-4"></div>
+	<div class="col-lg-4 text-center">
+	<h3>Subscribe us now</h3>
+		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full" data-count="hidden">
+		</div>
+	
+	</div>
+	<div class="col-lg-4"></div>
+	 </div>
+	  </div>
+	   </div>
+    <div class="carousel-item" ng-repeat="list in youtubeList" >
+	<div class="container-fluid" >
+	<div class="row text-center " >
+		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="video in list" >
+			<div id="{{video.player}}"></div>
+		</div>
+    </div>
+	 </div>
+	
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev" style="width:50px;" title="Previous">
+    <span class="carousel-control-prev-icon arrow " aria-hidden="true"   ></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next" style="width:50px;" title="Next" >
+    <span class="carousel-control-next-icon arrow" aria-hidden="true"  ></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  </div>
 
   <!-- Container (Mentor Section) -->
-  <div id="mentor" class="container-fluid" >
+  <div id="mentor" class="container-fluid" style="background-color: white;" >
   <h2 class="text-center" >MENTORS</h2>
   <h4 class="text-center">Mentorship Program</h4>
-  <div class="row">
-  <div class="col-md-4">
-  <img class="img-fluid" alt="" src="img/mentorship.png" width="300" height="300">
-  </div>
-  <div class="col-md-8">
-  <p>This program is effectively created for aspirants who are repeaters as well as
-	those who cannot attend classroom programs for any particular reason. </p>
-	  <p>Every aspirant will be allotted a mentor who will be a constant guide to them. 
-		  This guide will make a clear cut study plan and will be instrumental in making your success path clearer to you. 
-		  The mentors allotted are people who have already cleared different examinations like UPSC, MPSC, EPFO ,SSC etc.</p>
-  </div>
-  </div>
+	<div class="row">
+		  <div class="col-md-4">
+		  <img class="img-fluid" alt="" src="img/mentorship.png" width="300" height="300">
+		  </div>
+		  <div class="col-md-8">
+		  <p>This program is effectively created for aspirants who are repeaters as well as
+			those who cannot attend classroom programs for any particular reason. </p>
+			  <p>Every aspirant will be allotted a mentor who will be a constant guide to them. 
+				  This guide will make a clear cut study plan and will be instrumental in making your success path clearer to you. 
+				  The mentors allotted are people who have already cleared different examinations like UPSC, MPSC, EPFO ,SSC etc.</p>
+		  </div>
+		</div>
+
   </div>
    <div id="mentor2" class="container-fluid" style="background-color: orange;">
   <h4 class="text-center">Honorable Mentions</h4>
@@ -694,7 +698,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
     </div>
   </div>
  </div>
- <div id="mentor3" class="container-fluid" style="background-color: #e6e6e6;" ng-init="getListFromDataForSlides(mentorData.mentors,'mentor2');">
+ <div id="mentor3" class="container-fluid" style="background-color: #f1f1f1;" ng-init="getListFromDataForSlides(mentorData.mentors,'mentor2');">
  <h4 class="text-center">We can shape your Future</h4>
  <hr>
   <div id="carouselExampleControls4" class="carousel slide" data-ride="carousel" data-slide="next" data-interval="false">
@@ -748,6 +752,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 						the scholarship program will have to fill up a simple form mentioned here online and submit a printout of it at our office. 
 						The aspirant will have to appear for a simple test whose results will be declared within a day. 
 						After satisfactory result the candidate will be offered special scholarships in the fees of a particular course of their choice.</p>
+
 					<hr>
 					<h4>Special Scholarship</h4>
 					<p>Special Scholarship for students from economically backward
@@ -813,8 +818,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			&#169; 2018 Guidance Group | All Rights Reserved.
 		</div>
 		<div class="col-sm-6 text-right">
-			Developed and maintained By <a href="https://nikhildinpure.github.io" title="Developer">
-			<span style="color:white; font-size: 10px;" >Guidance Group PVT.LTD.</span>
+			Developed and maintained By <a href="#" title="Developer">
+			<span style="color:white; font-size: 15px;" >Guidance Group Pvt.Ltd.</span>
 			</a>
 		</div>
 	</div>
