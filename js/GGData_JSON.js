@@ -179,90 +179,6 @@ $rootScope.youtubePlayerData={
 	{ 
 		"name":"player4" ,
 		"player":"player4"
-	},
-	{ 
-		"name":"player5" ,
-		"player":"player5"
-	},
-	{ 
-		"name":"player6" ,
-		"player":"player6" 
-	},
-	{ 
-		"name":"player7" ,
-		"player":"player7"
-	},
-	{ 
-		"name":"player8" ,
-		"player":"player8"
-	},
-	{ 
-		"name":"player9" ,
-		"player":"player9"
-	},
-	{ 
-		"name":"player10" ,
-		"player":"player10"
-	},
-	{ 
-		"name":"player11" ,
-		"player":"player11" 
-	},
-	{ 
-		"name":"player12" ,
-		"player":"player12"
-	},
-	{ 
-		"name":"player13" ,
-		"player":"player13"
-	},
-	{ 
-		"name":"player14" ,
-		"player":"player14"
-	},
-	{ 
-		"name":"player15" ,
-		"player":"player15"
-	},
-	{ 
-		"name":"player16" ,
-		"player":"player16" 
-	},
-	{ 
-		"name":"player17" ,
-		"player":"player17"
-	},
-	{ 
-		"name":"player18" ,
-		"player":"player18"
-	},
-	{ 
-		"name":"player19" ,
-		"player":"player19"
-	},
-	{ 
-		"name":"player20" ,
-		"player":"player20"
-	},
-	{ 
-		"name":"player21" ,
-		"player":"player21",
-		"isNew":""
-	},
-	{ 
-		"name":"player22" ,
-		"player":"player22",
-		"isNew":"New"
-	},
-	{ 
-		"name":"player23" ,
-		"player":"player23",
-		"isNew":"New"
-	},
-	{ 
-		"name":"player24" ,
-		"player":"player24",
-		"isNew":"New"
 	}
 	]
 }
@@ -298,6 +214,32 @@ $rootScope.downloadsData={
 		}
 	]
 }
+
+
+//Add slides for main slideshow here
+$rootScope.carouselData={
+	"slides":[
+		{
+			slide:1,
+			name:"default.jpg"
+		}
+	]
+};
+
+//scrolling News and alerts
+$rootScope.newsList=[
+	{
+		"news":"Soon we are launching an android app.",
+		"newsLink":"#"
+	},
+	{
+		"news":"Online test series is available,Contact Us Now!!",
+		"newsLink":"#"
+	}
+]
+	
+
+
 //------------------------------------------------------------------------------------------
 
 //add social media links 
@@ -312,20 +254,6 @@ $rootScope.contactMe="";
 $rootScope.carouselOneInterval="5000";
 //Enter slide interval for Well-wishers slideshow
 $rootScope.carouselTwoInterval="2000";
-
-//Add slides for main slideshow here
-$rootScope.carouselData={
-	"slides":[
-		{
-			slide:1,
-			name:"mpscBatch.jpg"
-		}
-	]
-};
-
-
-
-
 
 
 });
