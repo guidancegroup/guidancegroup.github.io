@@ -229,12 +229,8 @@ $rootScope.carouselData={
 //scrolling News and alerts
 $rootScope.newsList=[
 	{
-		"news":"Soon we are launching an android app.",
-		"newsLink":"#"
-	},
-	{
 		"news":"Online test series is available,Contact Us Now!!",
-		"newsLink":"#"
+		"newsLink":"#contact"
 	}
 ]
 	
