@@ -34,8 +34,17 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 
 </head>
 <body id="guidanceGroup" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app="myApp" ng-controller="dataCtrl">
+<!--FB plugin -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <nav class="navbar fixed-top navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
-  <a class="navbar-brand" href="#"><img src="img/GGlogo.png" width="30" height="30" class="d-inline-block align-top" alt="logo">Guidance Group</a>
+  <a class="navbar-brand" href="#"><img src="img/GGlogo.png" width="25" height="25" class="d-inline-block align-top" alt="logo">Guidance Group</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -43,37 +52,37 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto text-center">
       <li class="nav-item ">
-        <a class="nav-link" href="#about">ABOUT US <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#about">About Us <span class="sr-only">(current)</span></a>
       </li>
 	  <li class="nav-item ">
-        <a class="nav-link" href="#course">COURSES</a>
+        <a class="nav-link" href="#course">Courses</a>
       </li>
+	  
 	  <li class="nav-item dropdown navDown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          MENTORS
+          Mentorship Program
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           	<a class="dropdown-item" href="#mentor">Mentorship Program</a>
-		<a class="dropdown-item" href="#mentor2">Honorable Mentions</a>
+			<a class="dropdown-item" href="#mentor2">Honorable Mentions</a>
           	<a class="dropdown-item" href="#mentor3">Mentors</a>
-          	<div class="dropdown-divider"></div>
-          	<a class="dropdown-item" href="#scholarship">Scholarship</a>
         </div>
       </li>
 	   <li class="nav-item dropdown navDown" >
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          MORE
+          Scholarship & More
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		<a class="dropdown-item" ng-click="viewDownloads();" href="">Downloads</a>
-		<a class="dropdown-item" href="#youtube">Lectures</a>
+			<a class="dropdown-item" ng-click="viewDownloads();" href="">Downloads</a>
+			<a class="dropdown-item" href="#youtube">E-Lectures</a>
           	<a class="dropdown-item" href="#gallery">Gallery</a>
+			<a class="dropdown-item"  href="http://blog.guidancegroup.co.in">BLOG</a>
 		<div class="dropdown-divider"></div>
-		<a class="dropdown-item"  href="http://blog.guidancegroup.co.in">BLOG</a>
+			<a class="dropdown-item" href="#scholarship">Scholarship</a>
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#contact">CONTACT US</a>
+        <a class="nav-link" href="#contact">Contact Us</a>
       </li>
     </ul>
   </div>
@@ -109,7 +118,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			<marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
 				<p  >
 					<span ng-repeat="news in newsList">
-						 &#9670;<a  style="color:white; font-size: 20px; "  href="{{news.newsLink}}">{{news.news}}</a>  &nbsp;&nbsp;
+					 &#9670;	<a  style="color:white; font-size: 20px; "  href="{{news.newsLink}}">{{news.news}}</a>  &nbsp;&nbsp;
 					</span>
 				</p>
 			</marquee>
@@ -122,51 +131,60 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <div class="col-md-12">
   <h2 class="text-center">ABOUT US</h2>
 	  <br>
-					<div  > 
-						&emsp;&emsp; GUIDANCE GROUP is a committed team of faculties who has been involved in preparing candidates for their CIVIL SERVICES Examination preparation for last 5-6 years. 
-						We have been instrumental in successfully guiding aspiring candidates in their quest to become a tough, honest and diligent bureaucrat.  
-						<br>
-						This team comprises of faculties and trainers experienced form various field and have experienced success themselves but their own thirst is to GUIDE more and more aspirants
-						to achieve their GOAL is bigger than their individual. Thus led to the birth of  GUIDANCE GROUP.
-						<br>
-						Our aim is to GUIDE every aspirant whether in State Services or Central Services to achieve their GOAL in their 1st attempt itself in which we have been fairly successful.
-						<br>
-						If you think you have Honesty, Patience, Perseverance and will to work hard.
-						<p class="lead text-center text-danger">“COME JOIN THE MOVEMENT”</p>
-						Our core areas of expertise are in :
-						<ul>
-							<li>Civil Services Examination (UPSC/MPSC)</li>
-							<li>Banking Examination(IBPS) </li>
-							<li>Staff Selection Commission(SSC)</li>
-							<li>CAREER COUNSELING</li>
-						</ul>
-	  				</div>
-	  	
-				 	<hr >
-				  </div>
+		<div class="row ">
+			<div class="col-md-8 text-left">
+				&emsp;&emsp;<strong> GUIDANCE GROUP </strong> is a committed team of faculties who has been involved in preparing candidates for their CIVIL SERVICES Examination preparation for last 5-6 years. 
+				We have been instrumental in successfully guiding aspiring candidates in their quest to become a tough, honest and diligent bureaucrat.  
+				<br>
+				This team comprises of faculties and trainers experienced form various field and have experienced success themselves but their own thirst is to GUIDE more and more aspirants
+				to achieve their GOAL is bigger than their individual. Thus led to the birth of  GUIDANCE GROUP.
+				<br>
+				Our aim is to GUIDE every aspirant whether in State Services or Central Services to achieve their GOAL in their 1st attempt itself in which we have been fairly successful.
+				<br>
+				If you think you have Honesty, Patience, Perseverance and will to work hard.
+				<!--	<p class="lead text-center text-danger">“COME JOIN THE MOVEMENT”</p> -->
+				<br>
+				Our core areas of expertise are in :
+				<ul>
+					<li>Civil Services Examination (UPSC/MPSC)</li>
+					<li>Banking Examination(IBPS) </li>
+					<li>Staff Selection Commission(SSC)</li>
+					<li>CAREER COUNSELING</li>
+				</ul>
+			</div>
+			<div class="col-md-4 slideanim">
+				<img class="img-fluid" alt="logo" src="img/GGlogo.png" width="300" height="300">
+			</div>
+		</div>
+	  	<div class="text-center slideanim">
+		  <button type="button" class="btn btn-primary btn-lg  " data-toggle="modal" data-target=".bd-example-modal-lg">Register Now</button>
+		  <p class="lead text-primary">You will never be disappointed that is for sure.</p>
+		</div>
+		<hr>
+	</div>
 				
   </div>
   <div class="row">
-	  <div class="col-md-8" >
-	  	<h4 class="text-center" >Why Guidance Group?</h4>
-		  <ul  style="list-style-type:disc">
- 			<li>In order achieve a career goal one needs a PLAN. We have it and it WORKS!!!</li>
-  			<li>A Team which is committed to the cause to help you achieve your Career Goal.</li>
-			  <li>A clear success mantra.</li>
-			  <li>Quality assessment programs on monthly basis.</li>
-			  <li>Regular Test Series on Monthly basis.</li>
-			  <li>Effective Answer writing and personality enrichment program.</li>
-			  <li>Air conditioned class rooms.</li>
-		  </ul>
-		  <p class="lead text-primary">You will never be disappointed that is for sure.</p>
-		  <div class="text-center">
-		  <button type="button" class="btn btn-primary btn-lg  " data-toggle="modal" data-target=".bd-example-modal-lg">Register Now</button>
-		  </div>
+	  <div class="col-md-6 text-center" >
+	  	<h4 class="" >Why Guidance Group?</h4>
+ 			<p>In order achieve a career goal one needs a PLAN. We have it and it WORKS!!!<br>
+  			A Team which is committed to the cause to help you achieve your Career Goal.<br>
+			  A clear success mantra.<br>
+			  Quality assessment programs on monthly basis.<br>
+			  Regular Test Series on Monthly basis.<br>
+			  Effective Answer writing and personality enrichment program.<br>
+			  Air conditioned class rooms.</p>
+		  
+		  
 	  </div>
-	  <div class="col-md-4">
-					<img class="img-fluid" alt="logo" src="img/GGlogo.png" width="300"
-						height="300">
-				</div>
+	  <div  class="col-md-6 text-center slideanim">
+			<div class="fb-page" data-href="https://www.facebook.com/guidancegroup1/" data-tabs="Show Friend&#039;s Faces" 
+				data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+				<blockquote cite="https://www.facebook.com/guidancegroup1/" class="fb-xfbml-parse-ignore">
+					<a href="https://www.facebook.com/guidancegroup1/">Guidance Group</a>
+				</blockquote>
+			</div>
+	  </div>
 	</div>
   </div>
 
@@ -179,7 +197,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <h4>What we offer</h4>
   <br>
   <div class="row">
-    <div class="col-sm-4" ng-repeat="course in courseData.courses ">
+    <div class="col-sm-4 slideanim" ng-repeat="course in courseData.courses ">
       <div class="container-overlay">
 		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay">
 		<div class="overlay">
@@ -652,14 +670,13 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 
   <!-- Container (Mentor Section) -->
   <div id="mentor" class="container-fluid" style="background-color: white;" >
-  <h2 class="text-center" >MENTORS</h2>
-  <h4 class="text-center">Mentorship Program</h4>
+  <h2 class="text-center" >MENTORSHIP PROGRAM</h2>
 	<div class="row">
-		  <div class="col-md-4">
+		  <div class="col-md-4 slideanim">
 		  <img class="img-fluid" alt="" src="img/mentorship.png" width="300" height="300">
 		  </div>
 		  <div class="col-md-8">
-		  <p>This program is effectively created for aspirants who are repeaters as well as
+		  <p>Our program is effectively created for aspirants who are repeaters as well as
 			those who cannot attend classroom programs for any particular reason. </p>
 			  <p>Every aspirant will be allotted a mentor who will be a constant guide to them. 
 				  This guide will make a clear cut study plan and will be instrumental in making your success path clearer to you. 
@@ -741,7 +758,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <!-- Container scholarship-->
  <div id="scholarship" class="container-fluid" style="background-color: orange;">
  <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4 slideanim">
 					<img class="img-fluid" alt="" src="img/scholarship.png" width="300"
 						height="300">
 				</div>
@@ -771,8 +788,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <h2 class="text-center" >GALLERY</h2>
  <p class="text-center">Our achievements and proud moments</p>
  <hr>
- <div class="row " >
- <div class="col-lg-2 col-md-2 " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo);" title="View Image" >
+ <div class="row slideanim" >
+ <div class="col-lg-2 col-md-2  " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo);" title="View Image" >
  <img class="img-thumbnail" src="img/gallery/{{photo.name}}">
  </div>
  </div>
@@ -792,8 +809,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
       <p><span class="fa fa-phone" style="font-size:24px;color:#00ff00;"></span> +91 77387 38982</p>
       <p><span class="fa fa-envelope" style="font-size:24px;color:red;"></span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=guidanceeducon@gmail.com&su=About+Enrollment&body=Respected+Sir," style="color:white;"> guidanceeducon@gmail.com </a></p>
 	  <p>Connect with us on :</p>
-	  <div class="row">
-		<div>
+	  <div class="row slideanim">
+		<div >
 		<a href="https://www.facebook.com/guidancegroup1/" class="fa fa-facebook Ifa"></a>&nbsp;&nbsp;
 		<a href="https://www.instagram.com/guidancegroup1/" class="fa fa-instagram Ifa"></a>&nbsp;&nbsp;
 		<a href="{{linkedin}}" class="fa fa-linkedin Ifa"></a>&nbsp;&nbsp;
@@ -908,6 +925,17 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
     </div>
   </div>
 </div>
-
+<!--Pop up Add -->
+<div class="modal fade" id="popUpAdd" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<a class="tooltip-test" title="Contact Us Now" href="#contact">
+		<img class="img-fluid" alt="" src="img/slide/OnlineMockTestAd.jpg" width="1000" height="800"  ng-click="closeAdAndNavigate();">
+		</a>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
