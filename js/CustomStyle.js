@@ -21,7 +21,7 @@ $(document).ready(function(){
     } // End if
   });
   
-  $(window).scroll(function() {
+   $(window).scroll(function() {
     $(".slideanim").each(function(){
       var pos = $(this).offset().top;
 
@@ -32,12 +32,12 @@ $(document).ready(function(){
     });
   });
   
-   $('.navDown').hover(function() {
-  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-}, function() {
-  $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-});
-
+	$('.navDown').hover(function() {
+		$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+	}, function() {
+		$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+	});
+	
 
 
 })
