@@ -63,12 +63,9 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 		$('#downloadModal').modal();
 	};
 	
-	$http.get('downlaods/testJSON.json').success(function(data) {
-   
-   		var obj = data;
-	}); 
-	
+	//loads add
+	$('#popUpAdd').modal();
+	$rootScope.closeAdAndNavigate=function(){
+		$('#popUpAdd').modal('hide');
+	}
 });
-
-
-
