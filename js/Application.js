@@ -63,8 +63,11 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 		$('#downloadModal').modal();
 	};
 	
-	//loads add
-	$('#popUpAdd').modal();
+	//loads popup
+	setTimeout(function(){
+	  $('#popUpAdd').modal();
+	}, 5000);
+	
 	$rootScope.closeAdAndNavigate=function(){
 		$('#popUpAdd').modal('hide');
 	}
