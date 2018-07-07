@@ -255,4 +255,13 @@ a:-webkit-any-link {
     }
   }
   
+.auto-complete{
+	width:200px;
+	height:auto;
+    background-color: white;
+    position: absolute;
+    z-index:100;
+	cursor:pointer;
+}
+
 }
