@@ -89,6 +89,9 @@ font-size: 12px !important;
   background: orange;
   color: white;
 }
+.fa-search {
+    font-size: 25px;
+}
 .container-overlay {
   position: relative;
   width: 50%;
