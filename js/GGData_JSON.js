@@ -189,32 +189,38 @@ $rootScope.youtubePlayerData.players=$rootScope.youtubePlayerData.players.revers
 $rootScope.downloadsData={
 	"downloads":[
 		{
-			"index":"1",
+			"fileName":"State Service Main Examination Syllabus [In Marathi].pdf",
 			"examination":"MPSC",
-			"syllabus":"State Service Main Examination Syllabus [In Marathi].pdf",
-			"booksList":"#",
-			"previousQuestions":"#",
-			"notes":"#"
+			"category":"syllabus"
 		},
 		{
-			"index":"2",
+			
+			"fileName":"UPSC Syllabus New.pdf",
 			"examination":"UPSC",
-			"syllabus":"UPSC Syllabus New.pdf",
-			"booksList":"UPSC Book List.pdf",
-			"previousQuestions":"#",
-			"notes":"#"
+			"category":"syllabus"
 		},
 		{
-			"index":"3",
-			"examination":"MLEP",
-			"syllabus":"Bank Examination Syllabus.pdf",
-			"booksList":"#",
-			"previousQuestions":"#",
-			"notes":"#"
+			"fileName":"Bank Examination Syllabus.pdf",
+			"examination":"Bank",
+			"category":"syllabus"
+		},
+		{
+			"fileName":"State Service Main Examination-[In English].pdf",
+			"examination":"MPSC",
+			"category":"syllabus"
+		},
+		{
+			"fileName":"State Services Preliminary Examination.pdf",
+			"examination":"MPSC",
+			"category":"syllabus"
+		},
+		{
+			"fileName":"UPSC Book List.pdf",
+			"examination":"UPSC",
+			"category":"book"
 		}
 	]
 }
-
 
 //Add slides for main slideshow here
 $rootScope.carouselData={
@@ -251,6 +257,75 @@ $rootScope.carouselOneInterval="5000";
 //Enter slide interval for Well-wishers slideshow
 $rootScope.carouselTwoInterval="2000";
 
-
+//--------------------Downloads-------------------------------------------------------------------
+//Creates required Lists
+	$scope.keywordList=[];
+	for(var i=0;i<$scope.downloadsData.downloads.length;i++){
+		var key1="";
+		var key2="";
+		var key3="";
+		$scope.downloadsData.downloads[i].index=i+1;
+		key1=$scope.downloadsData.downloads[i].fileName.split('.')[0];
+		key2=$scope.downloadsData.downloads[i].examination;
+		key3=$scope.downloadsData.downloads[i].category;
+		$scope.keywordList.push(key1);
+		if($scope.keywordList.indexOf(key2) === -1 ){
+			$scope.keywordList.push(key2);
+		}
+		if($scope.keywordList.indexOf(key3) === -1){
+			$scope.keywordList.push(key3);
+		}
+	}
+//autoComplete code developed by GuidanceGroup using angularJS
+	$scope.searchKeyword="";
+	$scope.filterKeyword="";
+	$scope.downloadKeyword="";
+	$scope.noResults="";
+	$scope.errFlag=false;
+	$scope.autoCompleteFlag=true;
+	
+	$scope.autoComplete=function(keyword){
+		$scope.autoCompleteFlag=false;
+		$scope.filterKeyword=keyword;
+	}
+	$scope.selectSuggestion=function(keyword){
+		$scope.noResults="";
+		$scope.searchKeyword=keyword;
+		$scope.autoCompleteFlag=true;
+		$scope.errFlag=true;
+		$scope.applySearch();
+	}
+	
+	$scope.applySearch=function(){
+		$scope.autoCompleteFlag=true;
+		if(!$scope.errFlag){
+			for(var i=0;i<$scope.keywordList.length;i++){
+				if($scope.keywordList[i].includes($scope.searchKeyword)){
+					$scope.noResults="";
+					$scope.downloadKeyword=$scope.searchKeyword;
+					$scope.errFlag=true;
+				}
+				if($scope.errFlag){
+					break;
+				}
+				if(!$scope.errFlag){
+					$scope.downloadKeyword="";
+					$scope.noResults="No results for your search, Use Suggestions";
+				}
+			}
+		}else{
+			$scope.noResults="";
+			$scope.downloadKeyword=$scope.searchKeyword;
+		}
+		
+	}
+	$scope.resetSearch=function(){
+		$scope.noResults="";
+		$scope.searchKeyword="";
+		$scope.filterKeyword="";
+		$scope.downloadKeyword="";
+		$scope.autoCompleteFlag=true;
+		$scope.errFlag=false;
+	}
 });
 
