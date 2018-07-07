@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="description" content="guidanceGroup.co.in">
+<meta name="keywords" content="MPSC,UPSC,GUIDANCE,GROUP,MENTOR,CONTACT,Youtube,IAS Coaching, IAS Coaching Centers in India, 
+IAS Guidance, UPSC Coaching India, Civil Services Exams, Current Affairs for UPSC, Free workshop for UPSC, 
+FREE Guidance For IAS aspirants,Best Institute for UPSC, IAS, Civil Services Coaching India,Best IAS Institute in India | Civil Service Online Coaching India,
+Mpsc,upsc,bank po, ias syllabus,ibps clerk 2016,mpsc online,ias exam,ibps clerk,upsc syllabus, upsc exam,ibpspo,ibpsexam,bank exam, ias books, ias preparation, 
+mpsc exam, upsc books, upsc result, ias preparation books, mpsc syllabus, sbirecruitement, ias exam pattern, upsc exam pattern, 
+ias exam syllabus, ibps mock test, ibps bank, upscias, ibps bank exam, ibps online test, mahaonlinempsc,
+ ibpsrrb, online test series for bank examination, upsc notification, sbipo mock test, bank coaching,ssc online,ssccgl, sscchsl">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Guidance Group</title>
+<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.js"></script> -->
+<script src="https://apis.google.com/js/plusone.js"></script>
+<script src="https://apis.google.com/js/platform.js"></script>
+
+<script type="text/javascript" src="../js/Application.js" ></script>
+<script type="text/javascript" src="../js/CustomStyle.js" ></script>
+<script type="text/javascript" src="../js/GGData_JSON.js" ></script>
+<script type="text/javascript" src="../js/youtube.js"></script>
+ 
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../css/CustomStyle.css">
+
+</head>
+<body id="guidanceGroup" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app="myApp" ng-controller="dataCtrl">
+
+<nav class="navbar fixed-top navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
+  <a class="navbar-brand" href="#"><img src="../img/GGlogo.png" width="25" height="25" class="d-inline-block align-top" alt="logo">Guidance Group</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto  text-center">
+      <li class="nav-item ">
+        <a class="nav-link" href="http://guidancegroup.co.in/">Home</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="#downloads">Downloads<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id="downloads" class="container-fluid" >
+	<div class="row">
+		<div class="col-md-2" style="width:350px;height:0px;">
+		</div>
+		<div class="col-md-8">
+			 <form class="form-inline my-2 my-lg-0" ng-submit="applySearch();">
+				<input class="form-control mb-2" type="text" placeholder="Search" ng-model="searchKeyword" ng-change="autoComplete(searchKeyword);" aria-label="Search">
+				<button class="btn btn-outline-success mb-2 mr-sm-2 fa fa-search" type="submit"></button>
+				<button class="btn btn-outline-danger mb-2 mr-sm-2" ng-click="resetSearch();" type="reset">reset</button>
+			</form>
+			<div class="list-group auto-complete" ng-hide="autoCompleteFlag" ng-if="searchKeyword.length!=0" >
+				  <button type="button" ng-repeat="keyword in keywordList|filter:filterKeyword" ng-click="selectSuggestion(keyword);" 
+					class="list-group-item list-group-item-action">
+					{{keyword}}
+				  </button>
+			</div>
+			<div ng-if="noResults.length!=0" class="alert alert-danger" role="alert">
+				{{noResults}}
+			</div>
+			<div class="table-responsive">
+				<table class="table table-hover">
+					<caption>Downloads</caption>
+					<thead class="thead-light">
+						<tr>
+							<th>Sr.No.</th>
+							<th>Name</th>
+							<th>Download</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="downloads in downloadsData.downloads|filter:downloadKeyword">
+							<th>{{downloads.index}}</th>
+							<th>{{downloads.fileName.split('.')[0]}}</th>
+							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.fileName}}" download role="button" title="{{downloads.examination}}">
+																<span class="fa fa-download"></span></a> </th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="col-md-2">
+		</div>
+	</div>
+</div>
+			
+
+
+
+ <!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid" style="background-color: navy; color: white;">
+  <h2 class="text-center">CONTACT</h2>
+  <p class="text-center">Contact us and we'll get back to you within 24 hours.</p>
+  <div class="row">
+    <div class="col-sm-5">
+      <p><span class="fa fa-map-marker" style="font-size:24px; color:yellow;" ></span>
+	  <a href="https://www.google.co.in/maps/place/GUIDANCE+GROUP+-+Best+UPSC+-+IAS,+MPSC,+Bank+PO+IBPS+%26+SSC+Classes+in+Mumbai,+Dadar/@19.0198827,72.8414611,17.22z/data=!4m5!3m4!1s0x0:0x5c1ca02cda1788a!8m2!3d19.020313!4d72.8413599" style="color:white;">
+	  14, 1st Floor, Plot No. 6, Mukund Mansion, Opp Nakshatra Mall,
+	  Ranade Road, Dadar(W), Mumbai - 400 028</a></p>
+      <p><span class="fa fa-phone" style="font-size:24px;color:#00ff00;"></span> +91 77387 38982</p>
+      <p><span class="fa fa-envelope" style="font-size:24px;color:red;"></span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=guidanceeducon@gmail.com&su=About+Enrollment&body=Respected+Sir," style="color:white;"> guidanceeducon@gmail.com </a></p>
+	  <p>Connect with us on :</p>
+	  <div class="row slideanim">
+		<div >
+		<a href="https://www.facebook.com/guidancegroup1/" class="fa fa-facebook Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.instagram.com/guidancegroup1/" class="fa fa-instagram Ifa"></a>&nbsp;&nbsp;
+		<a href="{{linkedin}}" class="fa fa-linkedin Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.youtube.com/channel/UCmmrT8dABxBE6D5VSmO-HIw" class="fa fa-youtube Ifa"></a>&nbsp;&nbsp;
+		</div>
+	  </div>
+	    <br>
+    </div>
+	<!--Contact form -->
+    <div class="col-sm-7 ">
+		<div class="typeform-widget" data-url="https://guidancegroup.typeform.com/to/E9OU7B" data-transparency="0" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 250px;"></div> 
+		<script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; 
+		if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() 
+		</script> 
+					
+    </div>
+  </div>
+  <br>
+  <hr style="background-color:white;" >
+	<div class="row">
+		<div class="col-sm-6 text-left">
+			&#169; 2018 Guidance Group | All Rights Reserved.
+		</div>
+		<div class="col-sm-6 text-right">
+			Developed and maintained By <a href="#" title="Developer">
+			<span style="color:white; font-size: 15px;" >Guidance Group Pvt.Ltd.</span>
+			</a>
+		</div>
+	</div>
+	
+</div>
