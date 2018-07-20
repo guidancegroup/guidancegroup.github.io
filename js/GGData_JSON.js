@@ -236,7 +236,7 @@ $rootScope.carouselData={
 $rootScope.newsList=[
 	{
 		"news":"Online test series is available,Contact Us Now!!",
-		"newsLink":"#contact"
+		"newsLink":"RBI recruitment 2018-19 notification 30 Various Vacancies apply online at www.rbi.org.in"
 	}
 ]
 	
