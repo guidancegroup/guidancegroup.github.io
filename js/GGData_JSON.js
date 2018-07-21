@@ -235,8 +235,8 @@ $rootScope.carouselData={
 //scrolling News and alerts
 $rootScope.newsList=[
 	{
-		"news":"Online test series is available,Contact Us Now!!",
-		"newsLink":"RBI recruitment 2018-19 notification 30 Various Vacancies apply online at www.rbi.org.in"
+		"news":"Online test series is available,Contact Us Now!! ",
+		"newsLink":"http://ibps.sifyitest.com/niaasntjul18/"
 	}
 ]
 	
