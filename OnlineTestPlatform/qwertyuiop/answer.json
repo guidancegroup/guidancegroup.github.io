@@ -1,0 +1,36 @@
+[
+	{
+		"id": 1,
+		"answer": [
+			"India"
+		]
+	},
+	{
+		"id": 2,
+		"answer": [
+			"second"
+		]
+	},
+	{
+		"id": 3,
+		"answer": [
+			"Green",
+			"Red"
+		]
+	},
+	{
+		"id": 4,
+		"answer": [
+			"5 Million"
+		]
+	},
+	{
+		"id": 5,
+		"answer": [
+			"Afghanistan",
+			"Maldives",
+			"India",
+			"Pakistan"
+		]
+	}
+]
