@@ -1,0 +1,44 @@
+body, html {
+   background-image: url("../img/exam2.jpg");
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.container-fluid {
+      padding: 50px 50px;   
+  }
+ 
+
+ .form-bg{
+ 	background-color:#2d2d2d;
+ 	border-radius:25px;
+ 	 padding: 30px 20px;
+ 	 box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
+ 	 opacity: 0.9;
+ }
+ 
+ .form-bg-2{
+ 	background-color:lightgrey;
+ 	border-radius:25px;
+ 	 padding: 30px 20px;
+ 	 opacity: 0.9;
+ }
+ .btn-custom{
+ 	width:100px;
+ 	height:auto;
+ 	border-radius: 25px;
+ 	/* box-shadow: 0 0px 10px 5px rgba(0, 0, 0, 0.2); */
+ }
+ 
+ .copy-box{
+ 	width:1px !important;
+ 	height:1px;
+ 	
+ }
