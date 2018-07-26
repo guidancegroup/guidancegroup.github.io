@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Admin -Online Test Platform</title>
+<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script> 
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-cookies.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/onlinetestplatform.js"></script>
+<script type="text/javascript" src="js/adminplatform.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/customstyle.css">
+</head>
+<body ng-app="OnlineTestPlatform" ng-controller="adminCtrl" class="">
+	<div class="container-fluid  ">
+		<div class="row form-bg">
+			<div class="col-md-0"></div>
+			<div class="col-md-5  ">
+				<form autocomplete="off">
+					<div class="form-row" ng-init="status='off';statusColor='default';">
+						<div class="col-2">
+							<button type="button" class="btn btn-light btn-custom"
+							data-toggle="tooltip" data-placement="top" title="Exam ID">
+							 {{questionSetCode}}</button>
+						</div>
+						<div class="col-4"></div>
+						<div class="col-3">
+							<label class="sr-only" for="time">Time Limit</label> <input
+								type="number" class="form-control" id="time"
+								placeholder="Time in Minutes" ng-model="timeLimit" min="0"
+								max="240">
+						</div>
+						<div class="col-3">
+							<button type="button" id="negative"
+								class="btn btn-{{statusColor}} btn-block" 
+								data-toggle="tooltip" data-placement="top" title="1/4th Negative Marking"
+								ng-click="isNegative=!isNegative; isNegative ? status='on':status='off';
+								isNegative ? statusColor='danger':statusColor='default'" >
+								
+								{{status}}</button>
+						</div>
+						
+					</div>
+					<hr style="background-color : white;">
+					
+					<div class="form-group">
+						<label class="sr-only" for="question">Question</label>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<button class="btn btn-danger">Q.{{questionNumber}}</button>
+							</div>
+							<input type="text" class="form-control" id="question"
+								placeholder="Enter Question" ng-model="question">
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="col-6">
+							<label class="sr-only" for="typeOfQuestion">Question Type</label>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<button class="btn btn-warning"
+									data-toggle="tooltip" data-placement="top" title="Type of Question"
+									>T</button>
+								</div>
+								<select id="typeOfQuestion" class="form-control"
+									ng-model="questionType" ng-change="resetAnsType();">
+									<option ng-repeat="qt in questionTypeList" value="{{qt.value}}">{{qt.type}}</option>
+								</select>
+							</div>
+							<small ng-if="questionType==='R' || questionType==='M'"
+								for="typeOfQuestion" class="form-text text-muted"> Enter
+								options and select expected answer by clicking on option label </small>
+							<small ng-if="questionType==='U'" for="typeOfQuestion"
+								class="form-text text-muted"> Enter Expected Answer </small>
+						</div>
+						<div class="col-6">
+							<label class="sr-only" for="mrk">Mark for question</label>
+							<div class="input-group mb-2">
+								<div class="input-group-prepend">
+									<button class="btn btn-info"
+									data-toggle="tooltip" data-placement="top" title="Marks per Question"
+									>M</button>
+								</div>
+								<select id="mrk" class="form-control" ng-model="marks">
+									<option ng-repeat="num in marksOption" value="{{num.code}}">{{num.description}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div id="options" ng-if="questionType==='R' || questionType==='M'">
+						<div class="form-row">
+							<div class="col">
+								<label class="sr-only" for="optionAid">Option A</label>
+								<div class="input-group mb-2">
+									<div class="input-group-prepend">
+										<button class="btn btn-default" id="btnA"
+										data-toggle="tooltip" data-placement="top" title="Click to Answer."
+											ng-click="addAnswers('A');">A </button>
+									</div>
+									<input type="text" class="form-control" id="optionAid"
+										placeholder="Enter option A"
+										ng-change="setOptions(optionFirstA,'A');"
+										ng-model="optionFirstA">
+								</div>
+							</div>
+							<div class="col">
+								<label class="sr-only" for="optionBid">Option B</label>
+								<div class="input-group mb-2">
+									<div class="input-group-prepend">
+										<button class="btn btn-default" id="btnB"
+										data-toggle="tooltip" data-placement="top" title="Click to Answer."
+											ng-click="addAnswers('B');">B</button>
+									</div>
+									<input type="text" class="form-control" id="optionBid"
+										placeholder="Enter option B"
+										ng-change="setOptions(optionSecondB,'B');"
+										ng-model="optionSecondB">
+								</div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col">
+								<label class="sr-only" for="optionCid">Option C</label>
+								<div class="input-group mb-2">
+									<div class="input-group-prepend">
+										<button class="btn btn-default" id="btnC"
+										data-toggle="tooltip" data-placement="top" title="Click to Answer."
+											ng-click="addAnswers('C');">C </button>
+									</div>
+									<input type="text" class="form-control" id="optionCid"
+										placeholder="Enter option C"
+										ng-change="setOptions(optionThirdC,'C');"
+										ng-model="optionThirdC">
+								</div>
+							</div>
+							<div class="col">
+								<label class="sr-only" for="optionDid">Option D</label>
+								<div class="input-group mb-2">
+									<div class="input-group-prepend">
+										<button class="btn btn-default" id="btnD"
+										data-toggle="tooltip" data-placement="top" title="Click to Answer."
+											ng-click="addAnswers('D');">D</button>
+									</div>
+									<input type="text" class="form-control" id="optionDid"
+										placeholder="Enter option D"
+										ng-change="setOptions(optionFourD,'D');"
+										ng-model="optionFourD">
+								</div>
+							</div>
+						</div>
+						<small ng-if="questionType==='R'" for="options"
+							class="form-text text-muted"> Select <strong>only
+								one</strong> option
+						</small> <small ng-if="questionType==='M'" for="options"
+							class="form-text text-muted"> Select <strong>more
+								than one</strong> options
+						</small>
+					</div>
+
+					<div ng-if="questionType==='U'" class="form-group">
+						<label class="sr-only" for="userInput">User Input from
+							keyboard</label>
+						<div class="input-group mb-2">
+							<div class="input-group-prepend">
+								<button class="btn btn-success">A</button>
+							</div>
+							<input type="text" class="form-control" id="userInput"
+								placeholder="Enter Expected Answer"
+								ng-change="setOptions(userInputAnswer,'U');"
+								ng-model="userInputAnswer">
+						</div>
+						<small for="userInput" class="form-text text-muted">Expected
+							answer is mostly one word or a number.Sentence can not be a
+							expected answer </small>
+					</div>
+					<div ng-if="qTypeErrmsg.length!=0" class="alert alert-danger"
+						role="alert">{{qTypeErrmsg}}</div>
+					<br>
+					<div class="form-row text-center">
+						<div class="col-sm-4 col-xs-4">
+							<button type="reset" ng-click="resetQuestion();"
+								class="btn btn-outline-danger btn-custom">reset</button>
+
+						</div>
+						<br> <br>
+						<div class="col-sm-4 col-xs-4">
+							<button class="btn btn-outline-primary btn-custom" type="submit"
+								ng-click="saveQuestion();">Save</button>
+
+						</div>
+						<br> <br>
+						<div class="col-sm-4 col-xs-4">
+							<button class="btn btn-outline-success btn-custom" type="reset"
+								ng-click="addToPaper();">Add</button>
+
+						</div>
+						<br> <br>
+					</div>
+					<div ng-if="successMsg.length!=0" class="alert alert-success" 
+						role="alert">{{successMsg}}</div>
+				</form>
+
+			</div>
+
+			<div class="col-md-7">
+				<h1 class="text-white text-center">Create Your Own Online Tests.</h1>
+				<div class="row ">
+					<div class="col-md-4"></div>
+					<div class="col-md-6 form-bg-2">
+						<ul class="lead text-primary">
+							<li>Enter Questions</li>
+							<li>Save</li>
+							<li>ADD</li>
+							<li>Copy Q and A and paste in file</li>
+						</ul>
+
+						<form>
+							<div class="form-group">
+								<input type="text" class="form-control" id="QP"
+									value="{{questionSet}}" readonly>
+								<button class="btn btn-primary btn-block"
+									ng-click="copyToClipBoard('QP');">Copy Question Paper</button>
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="AS"
+									value="{{answerList}}" readonly>
+								<button class="btn btn-primary btn-block"
+									ng-click="copyToClipBoard('AS');">Copy Answer Set</button>
+							</div>
+						
+						</form>
+						{{optionFirstA}}
+					</div>
+					<div class="col-md-2"></div>
+				</div>
+				
+
+			</div>
+			
+		</div>
+
+	</div>
+
+</body>
+</html>
