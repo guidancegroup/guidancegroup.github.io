@@ -1,0 +1,111 @@
+{
+	"questionSetCode": "Lhk4",
+	"timeLimit": 30,
+	"isNegative": true,
+	"questions": [
+		{
+			"questionNumber": 1,
+			"question": "Which country will host the 19th edition of the International Union of Food Science and Technology (IUFoST)?",
+			"questionType": "R",
+			"marks":"1",
+			"options": [
+				{
+					"option": "Singapore",
+					"value": "Singapore"
+				},
+				{
+					"option": "Italy",
+					"value": "Italy"
+				},
+				{
+					"option": "India",
+					"value": "India"
+				},
+				{
+					"option": "UK",
+					"value": "UK"
+				}
+			]
+			
+		},
+		{
+			"questionNumber": 2,
+			"question": "India ranks __________ in the ICC T20I team rankings.",
+			"questionType": "U",
+			"marks":"1",
+			"options": []
+		},
+		{
+			"questionNumber": 3,
+			"question": "choose Colors from following.",
+			"questionType": "M",
+			"marks":"2",
+			"options": [
+				{
+					"option": "Red",
+					"value": "Red"
+				},
+				{
+					"option": "Leaf",
+					"value": "Leaf"
+				},
+				{
+					"option": "Dog",
+					"value": "Dog"
+				},
+				{
+					"option": "Green",
+					"value": "Green"
+				}
+			]
+		},
+		{
+			"questionNumber": 4,
+			"question": "India Pledges __________ Million for UN Palestinian aid agency.",
+			"questionType": "R",
+			"marks":"1",
+			"options": [
+				{
+					"option": "4 Million",
+					"value": "4 Million"
+				},
+				{
+					"option": "6 Million",
+					"value": "6 Million"
+				},
+				{
+					"option": "3 Million",
+					"value": "3 Million"
+				},
+				{
+					"option": "5 Million",
+					"value": "5 Million"
+				}
+			]
+		},
+		{
+			"questionNumber": 5,
+			"question": "List  SAARC member countries.",
+			"questionType": "M",
+			"marks":"2",
+			"options": [
+				{
+					"option": "Afghanistan",
+					"value": "Afghanistan"
+				},
+				{
+					"option": "Maldives",
+					"value": "Maldives"
+				},
+				{
+					"option": "Pakistan",
+					"value": "Pakistan"
+				},
+				{
+					"option": "India",
+					"value": "India"
+				}
+			]
+		}
+	]
+}
