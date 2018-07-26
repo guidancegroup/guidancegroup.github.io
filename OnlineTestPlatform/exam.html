@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Candidate -Online Test Platform</title>
+<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-cookies.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/onlinetestplatform.js"></script>
+<script type="text/javascript" src="js/candidateplatform.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/customstyle-exam.css">
+</head>
+<body  ng-app="OnlineTestPlatform" ng-controller="candidateCtrl">
+	<div ng-hide="expire" class="container-fluid " ng-init="initializeData();">
+		<div class="row">
+			<div class="col-md-0"></div>
+			<div class="col-md-8 form-bg-2" style="height:{{scrollHeight}}px;"  >
+				<div class="" data-spy="scroll" data-target="#summary-bar">
+					<div ng-repeat="Qobj in exam">
+					<form>
+					<div class="card side-bar" id="{{Qobj.questionNumber}}" >
+					  <div class="card-body">
+					  <div class="corner badge badge-danger" ng-click="resetAnswer(Qobj.questionNumber);" >reset</div>
+					  		<div class="row card-title">
+					  		<div class="col-md-1"><h6> {{Qobj.questionNumber}}.</h6></div>
+					  		<div class="col-md-11"><h6>{{Qobj.question}}</h6></div>
+					  		</div>
+						  	<div class="row">
+					  		<div class="col-md-1"></div>
+					  		<div class="col-md-11">
+					    	<div class="form-row" ng-if="Qobj.questionType==='R'">
+							<div class="col-6" ng-repeat="choice in Qobj.options">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										name="{{Qobj.questionNumber}}" id="{{choice.option}}"
+										value="{{choice.value}}" 
+										ng-click="addAnswer(Qobj,choice.value);"> 
+										<label class="form-check-label" for="{{choice.option}}">{{choice.option}}</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-row" ng-if="Qobj.questionType==='M'">
+							<div class="col-6" ng-repeat="choice in Qobj.options">
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" name="{{Qobj.questionNumber}}"
+										id="{{choice.option}}" value="{{choice.value}}" ng-click="addAnswer(Qobj,choice.value);">
+										<label class="form-check-label" for="{{choice.option}}">{{choice.option}}</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-row" ng-if="Qobj.questionType==='U'">
+							<div class="col" >
+								<div class="form-inline">
+									<input  class="form-control mb-2 mr-sm-2" type="text" name="{{Qobj.questionNumber}}"  placeholder="Enter Your Answer">
+									<button id="{{Qobj.questionNumber}}" ng-click="addAnswer(Qobj,'userInput');" type="button" class="btn btn-primary mb-2">Save</button>
+								</div>
+							</div>
+						</div>
+					    <p class="text-muted text-right">	Marks <span class="badge badge-info">{{Qobj.marks}}</span></p>
+					    </div>
+					  	</div>
+					  </div>
+					  
+					</div>
+					</form>
+					<br>
+					</div>
+					
+				</div>
+			</div>
+			
+			<div class="col-md-4 summary text-white" >
+				<div id="summary-bar" class="stick">
+					<h1 class="text-center">DASHBOARD</h1>
+					<hr style="background-color : white;">
+					
+					<div id="timer" class="text-center" ></div>
+					
+						<br>
+					<small  class="text-left">{{ansQ}}/{{totalQ}}</small>
+					<div class="progress"  style="height: 5px;">
+					  <div class="progress-bar bg-success progress-bar-striped " role="progressbar" style="width: {{proAns}}%;" 
+					  		aria-valuenow="{{proAns}}" aria-valuemin="0" aria-valuemax="100"></div>
+					  <div class="progress-bar bg-primary" role="progressbar" style="width: {{proNotAns}}% ;" 
+					  		aria-valuenow=" {{proNotAns}}" aria-valuemin="0" aria-valuemax="100"></div>
+					  
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-2 col-sm-3 col-xs-4 " ng-repeat="q in exam">
+							<a id="btn-{{q.questionNumber}}" class="btn btn-primary" href="#{{q.questionNumber}}" role="button">
+								{{q.questionNumber}}
+							</a>
+							<br><br>
+						</div>
+					</div>
+					<br><br>
+					<small class=""><span class="badge badge-primary">&nbsp;</span>&nbsp;Not Answered &nbsp;
+						<span class="badge badge-success">&nbsp;</span>&nbsp;Answered
+					</small>
+						
+					<hr style="background-color : white;">
+				
+					<div class="row text-center" ng-if="!(sureResetFlag || sureSubmitFlag)">
+						<div class="col-md-6">
+							<button ng-click="sureResetFlag=true; " type="button" class="btn btn-primary btn-block ">RESET ALL{{sureResetFlag}}</button>
+						</div>
+						<div class="col-md-6">
+							<button  ng-click="sureSubmitFlag=true;submit();" type="button" class="btn btn-warning btn-block" >SUBMIT{{sureSubmitFlag}}</button>
+						</div>
+					</div>
+					<div class="row text-center">
+						<div class="col-md-12" ng-if="sureResetFlag">
+							<button ng-click="resetAll();" type="button" class="btn btn-danger btn-block ">Confirm
+							</button>
+						</div>
+						<div class="col-md-12" ng-if="sureSubmitFlag">
+							<button ng-click="submit();" type="button" class="btn btn-danger btn-block ">Confirm
+							</button>
+						</div>
+						<br>
+						<div class="col-md-12" ng-if="(sureResetFlag || sureSubmitFlag)">
+							<button ng-click="" type="button" class="btn btn-ligh btn-block ">Cancel
+							</button>
+						</div>
+					</div>
+			
+				
+				{{candidateAnswers}} <br>
+				{{correct}}<br>
+				{{wrong}}<br>
+				{{points}}
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div ng-show="expire" class="container-fluid ">
+	{{candidateAnswers}} <br>
+				{{correct}}<br>
+				{{wrong}}<br>
+				{{points}}
+	</div>
+	<!--Expire Submit -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" data-backdrop="false" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content ">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Time Over</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="expire=true;">Click To See Results</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- confirmation dialog -->
+<div class="modal" id="confirm" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are You Sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer text-center">
+      	 <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="expire=true;generateResult();">reset</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" ng-click="expire=true;">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
