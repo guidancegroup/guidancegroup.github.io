@@ -258,6 +258,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 		    		if(ideal.id==given.id){
 						console.log("ID matched "+given.id);
 						correctTimes=0;
+		            	if( ideal.answer.length==given.answer.length){
 		            	for(var k=0;k< given.answer.length;k++){
 		                	if(ideal.answer.indexOf(given.answer[k])!=-1){
 							
@@ -278,6 +279,11 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 								break;
 							}
 		                }
+						}	else{
+									var negative=-((parseInt(given.marks)/4).toFixed(2));
+									$scope.points.push(negative);
+									$scope.wrong.push($scope.candidateAnswers[j]);
+								}
 						
 						console.log("Calculated hence remove "+given.id+"for next");
 						$scope.candidateAnswers.splice(j,1);
