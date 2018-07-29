@@ -17,22 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="css/customstyle.css">
 </head>
-<style>
-.header{
-	
-    font-size: 60px;
-    font-family: cursive;
-}
-.logo{
-	position: absolute;
-    top: -65px;
-	right:0;
-	width:75px;
-    background-color: #ffffff;
-    border-radius: 40px;
-    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
-}
-</style>
+
 <body ng-app="OnlineTestPlatform" ng-controller="adminCtrl" class="">
 	<div class="container-fluid  ">
 		
@@ -55,14 +40,12 @@
 									class="btn btn-{{statusColor}} btn-block" 
 									data-toggle="tooltip" data-placement="top" title="Negative Marking"
 									ng-click="isNegative=!isNegative; isNegative ? status='ON':status='OFF';
-									isNegative ? statusColor='danger':statusColor='default'" >
+									isNegative ? statusColor='danger':statusColor='default'; negativeMarks=''; " >
 									{{status}}</button>
 								</div>
-								<select ng-if="status=='OFF'" id="ngtv" class="form-control" ng-model="negative" disabled>
-									<option ng-repeat="neg in ['1/4','1/3','1/2']" value="{{neg}}">{{neg}}th</option>
-								</select>
-								<select ng-if="status=='ON'" id="ngtv" class="form-control" ng-model="negative" >
-									<option ng-repeat="neg in ['1/4','1/3','1/2']" value="{{neg}}">{{neg}}th</option>
+								
+								<select  id="ngtv" class="form-control"  ng-model="negativeMarks"  >
+									<option ng-repeat="neg in negativeList" value="{{neg.code}}">{{neg.description}}th</option>
 								</select>
 							</div>
 							
@@ -77,11 +60,11 @@
 								placeholder="Time in Minutes" ng-model="timeLimit" min="0"
 								max="240">
 						</div>
-						<div class="col-4">
-							<input type="date" data-toggle="tooltip"  class="form-control" min="2018-07-27">
+						<div class="col-4"><!-- min="{{today}}" -->
+							<input type="date" data-toggle="tooltip" data-placement="top" title="Schedule Date" ng-model="scheduledDate"  class="form-control " >
 						</div>
 						<div class="col-4">
-							<input type="time" data-toggle="tooltip" class="form-control" >
+							<input type="time" data-toggle="tooltip" data-placement="top" title="Schedule Time" ng-model="scheduledTime" class="form-control" >
 						</div>
 					</div>
 					<hr style="background-color : white;">
@@ -261,7 +244,7 @@
 					<li>ENTER</li>
 					<li>SAVE</li>
 					<li>ADD</li>
-					<li>Generate</li>
+					<li>GENERATE</li>
 				</ul>
 				<br><br>
 						<form name="copyForm" >
