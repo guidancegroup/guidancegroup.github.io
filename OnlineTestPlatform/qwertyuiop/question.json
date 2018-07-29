@@ -1,13 +1,15 @@
 {
 	"questionSetCode": "Lhk4",
-	"timeLimit": 30,
+	"timeLimit":1,
+	"scheduledDate": "2018-07-29T09:00:00.000Z",
 	"isNegative": true,
+	"negativeMarks": "1/4",
 	"questions": [
 		{
 			"questionNumber": 1,
 			"question": "Which country will host the 19th edition of the International Union of Food Science and Technology (IUFoST)?",
 			"questionType": "R",
-			"marks":"1",
+			"marks": "1",
 			"options": [
 				{
 					"option": "Singapore",
@@ -26,20 +28,19 @@
 					"value": "UK"
 				}
 			]
-			
 		},
 		{
 			"questionNumber": 2,
 			"question": "India ranks __________ in the ICC T20I team rankings.",
 			"questionType": "U",
-			"marks":"1",
+			"marks": "1",
 			"options": []
 		},
 		{
 			"questionNumber": 3,
 			"question": "choose Colors from following.",
 			"questionType": "M",
-			"marks":"2",
+			"marks": "2",
 			"options": [
 				{
 					"option": "Red",
@@ -63,7 +64,7 @@
 			"questionNumber": 4,
 			"question": "India Pledges __________ Million for UN Palestinian aid agency.",
 			"questionType": "R",
-			"marks":"1",
+			"marks": "1",
 			"options": [
 				{
 					"option": "4 Million",
@@ -87,7 +88,7 @@
 			"questionNumber": 5,
 			"question": "List  SAARC member countries.",
 			"questionType": "M",
-			"marks":"2",
+			"marks": "2",
 			"options": [
 				{
 					"option": "Afghanistan",
