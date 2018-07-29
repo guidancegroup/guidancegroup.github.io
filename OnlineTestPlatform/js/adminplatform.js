@@ -3,7 +3,9 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http){
 	$scope.questionSet={
 			"questionSetCode":"",
 			"timeLimit":0,
+			"scheduledDate":"",
 			"isNegative":false,
+			"negativeMarks":"",
 			"questions":[]
 	}
 	$scope.question="";
@@ -14,8 +16,12 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http){
 	$scope.optionFourD="";
 	$scope.userInputAnswer="";
 	$scope.timeLimit=null;
+	$scope.scheduledDate="";
+	$scope.scheduledTime="";
+	$scope.today=new Date();
 	$scope.marks="";
 	$scope.isNegative=false;
+	$scope.negativeMarks="";
 	$scope.questionSetCode="";
 	$scope.answerList=[];
 	$scope.answerObj={
@@ -39,6 +45,25 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http){
 		{
 			"description":"4",
 			"code":"4"
+		}
+		
+	];
+	$scope.negativeList=[
+		{
+			"description":"1/4",
+			"code":"1/4"
+		},
+		{
+			"description":"1/3",
+			"code":"1/3"
+		},
+		{
+			"description":"1/2",
+			"code":"1/2"
+		},
+		{
+			"description":"1",
+			"code":"1"
 		}
 		
 	];
@@ -214,7 +239,21 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http){
 		if($scope.timeLimit==undefined ||$scope.timeLimit==null){
 			$scope.qTypeErrmsg="Please Enter Time Limit 0 to 240 minutes,0 means No time Limit";
 			return $scope.qTypeErrmsg;
-		}if($scope.question==""||$scope.question==undefined){
+		}if($scope.scheduledDate==undefined ||$scope.scheduledDate==""){
+			$scope.qTypeErrmsg="Please Enter Date when Test will be Active";
+			return $scope.qTypeErrmsg;
+		}if($scope.scheduledTime==undefined ||$scope.scheduledTime==""){
+			$scope.qTypeErrmsg="Please Enter Time When Test will be Active";
+			return $scope.qTypeErrmsg;
+		}if($scope.isNegative){
+			if($scope.negativeMarks==undefined ||$scope.negativeMarks==""){
+				$scope.qTypeErrmsg="Please Select Negative Marks";
+				return $scope.qTypeErrmsg;
+			}
+		}else{
+			$scope.negativeMarks="";
+		}
+		if($scope.question==""||$scope.question==undefined){
 			$scope.qTypeErrmsg="Please enter Question";
 			return $scope.qTypeErrmsg;
 		}if($scope.questionType==""||$scope.questionType==undefined){
@@ -280,6 +319,15 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http){
 		$scope.questionSet.questionSetCode=$scope.questionSetCode;
 		$scope.questionSet.isNegative=$scope.isNegative;
 		$scope.questionSet.timeLimit=$scope.timeLimit;
+		$scope.questionSet.negativeMarks=$scope.negativeMarks;
+		var finalDate=new Date($scope.scheduledDate);
+		var timeDate=new Date($scope.scheduledTime);
+		var hr=timeDate.getHours();
+		var min=timeDate.getMinutes();
+		finalDate.setHours(hr);
+		finalDate.setMinutes(min);
+		finalDate.setSeconds(00);
+		$scope.questionSet.scheduledDate=finalDate;
 		$scope.questionSet.questions=$scope.questionList;
 		$scope.resetQuestion();
 		var num=$scope.questionNumber;
