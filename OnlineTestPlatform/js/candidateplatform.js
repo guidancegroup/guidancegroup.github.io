@@ -4,26 +4,52 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 	$scope.expire=false;
 	$scope.sureResetFlag=false;
 	$scope.sureSubmitFlag=false;
-	
+	$scope.icon="error";
 	$scope.initializeData=function(){
 		$http({
 	        method : "GET",
 	        url : "qwertyuiop/question.json"
 	    }).then(function mySuccess(response) {
 	        $scope.res = response.data;
-	        $scope.exam= $scope.res.questions;
 	        $scope.timeLimit=$scope.res.timeLimit;
+	        var serverDate=new Date($scope.res.scheduledDate);
 	        
+	        var todayDate=new Date();
+	        todayDate=todayDate.getTime();
+	        var serverTime=serverDate.getTime();
+	        if(todayDate>=serverTime){
+	        	serverDate.setMinutes(serverDate.getMinutes() + parseInt(480));
+	        	serverTime=serverDate.getTime();
+	        	if(todayDate>serverTime){
+	        		$scope.expire=true;
+	        		return;
+	        	}else{
+	        		//on Schedule
+	        		$scope.expire=false;
+	        	}
+	        }else{
+	        	$scope.expire=true;
+	        	return;
+	        }
+	        
+	     
+	        
+	        $scope.exam= $scope.res.questions;
+	        $scope.negativeMark=$scope.res.negativeMarks;
+	        $scope.negativeMark= parseFloat(eval($scope.negativeMark));
+	        $scope.total=0;
+	        for(var t=0;t<$scope.exam.length;t++){
+	        	 $scope.total+=parseInt($scope.exam[t].marks);
+	        }
 	        if(parseInt($scope.timeLimit)==0){
 	        	 document.getElementById("timer").innerHTML ="No Time Restriction";
 	        }else{
 	     // Set the date we're counting down to
 			var countDownDate = new Date();
 			countDownDate.setMinutes(countDownDate.getMinutes() + parseInt($scope.timeLimit));
+			
 			// Update the count down every 1 second
-			var x = $interval(function () {
-
-
+			$scope.x = $interval(function () {
 			    // Get todays date and time
 			    var now = new Date().getTime();
 			    
@@ -45,12 +71,12 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 			    // If the count down is over, write some text 
 			    
 			    if (distance < 0) {
-			        clearInterval(x);
-			        document.getElementById("timer").innerHTML ="Time Over"
+			    	document.getElementById("timer").innerHTML ="Time Over";
+			    	$scope.generateResult();
 			        $scope.expire=true;
-			        $('#exampleModalCenter').modal();
 			    	}
 			}, 1000);
+				
 	        }
 			$scope.scrollHeight= $scope.exam.length*300;
 			$scope.totalQ=$scope.exam.length;
@@ -221,7 +247,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 		$scope.updateProgress();
 	};
 	
-	$scope.submit=function(){
+	$scope.confirm=function(){
 		$('#confirm').modal('toggle');
 	};
 	
@@ -237,6 +263,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 		
 	};
 	
+	$scope.result=0;
 	$scope.generateResult=function(){
 		$http({
 	        method : "GET",
@@ -271,7 +298,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 									$scope.points.push(parseInt(given.marks));
 									 $scope.correct.push($scope.candidateAnswers[j]);
 								}else{
-									var negative=-((parseInt(given.marks)/4).toFixed(2));
+									var negative=-((parseInt(given.marks)*$scope.negativeMark).toFixed(2));
 									$scope.points.push(negative);
 									$scope.wrong.push($scope.candidateAnswers[j]);
 								}
@@ -280,12 +307,13 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 							}
 		                }
 						}	else{
-									var negative=-((parseInt(given.marks)/4).toFixed(2));
+									var negative=-((parseInt(given.marks)*$scope.negativeMark).toFixed(2));
 									$scope.points.push(negative);
 									$scope.wrong.push($scope.candidateAnswers[j]);
 								}
 						
 						console.log("Calculated hence remove "+given.id+"for next");
+						
 						$scope.candidateAnswers.splice(j,1);
 						break;
 								
@@ -293,10 +321,33 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
 					
 		    	}
 		    }
+		    for(var p=0;p< $scope.points.length;p++){
+		    	$scope.result+=$scope.points[p];
+		    };
+		    $scope.resultPercentage=eval(($scope.result/$scope.total)*100).toFixed(2);
+		    
+		    $scope.correctPercent=($scope.correct.length/$scope.totalQ).toFixed(2)*100;
+		    $scope.wrongPercent=($scope.wrong.length/$scope.totalQ).toFixed(2)*100;
+		    $scope.unattempt=100-($scope.correctPercent+ $scope.wrongPercent);
+		    if( $scope.resultPercentage<35){
+		    	$scope.icon="fail";
+		    }else if($scope.resultPercentage>=35){
+		    	$scope.icon="success";
+		    }else{
+		    	$scope.icon="error";
+		    }
+		    $interval.cancel($scope.x);
+		    $scope.expire=true;
+		    
 	    }, function myError(response) {
 	        $scope.answerSet = response.statusText;
 	    });
 		
-	    //
+	    
+	};
+	
+	$scope.printThis=function(){
+		window.print();
 	}
+	
 });
