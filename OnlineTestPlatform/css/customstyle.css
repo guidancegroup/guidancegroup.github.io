@@ -1,21 +1,16 @@
-body, html {
-   background-image: url("../img/exam2.jpg");
 
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.bg-body{
+	background-image: url(../img/exam2.jpg);
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-size: cover;
 }
-
 
 .container-fluid {
       padding: 50px 50px;   
   }
  
-
  .form-bg{
  	background-color:#2d2d2d;
  	border-radius:25px;
