@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Index -Online Test Platform</title>
+<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/popper.min.js"></script> 
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/angular.min.js"></script>
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/angular-cookies.min.js"></script>
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/onlinetestplatform.js"></script>
+<link rel="stylesheet" type="text/css" href="http://guidancegroup.co.in/OnlineTestPlatform/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://guidancegroup.co.in/OnlineTestPlatform/css/font-awesome.min.css">
+</head>
+<style>
+.bg-1{
+	position: fixed;
+    top: 0;
+
+    width: 100%;
+    height: 50%;
+    background-color: orange; 
+}
+.bg-2{
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	background-color: navy;
+	border-radius: 10px;
+	box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
+	padding:50px
+}
+.bg-3{
+	color:white;
+}
+.logo{
+	position: absolute;
+	top: -10% ;
+    left: 42%;
+	width:75px;
+	background-color: #ffffff;
+    border-radius: 75px;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
+}
+.col-no-padding{
+	padding-left: 0px;
+    padding-right: 0px;
+}
+</style>
+<body ng-app="OnlineTestPlatform" ng-controller="loginCtrl" class="">
+	<div class="container-fluid  ">
+		
+		<div class="row bg-1 ">
+			<div class="col-md-4 col-no-padding"></div>
+			<div class="col-md-4 col-no-padding" >
+			<br>
+			<h2 class="text-center">YOUR TITLE</h2><br><br><br><br>
+			<div class="bg-2 ">
+				<img class="img-fluid  logo" src="http://guidancegroup.co.in/img/GGlogo.png" ><br>
+				<form class="bg-3 " ng-submit="login();">
+				  <div class="form-group">
+					<label for="exampleInputEmail1">User ID</label>
+					<input type="text" class="form-control" id="exampleInputEmail1" ng-model="useId"  placeholder="Enter email">
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Password</label>
+					<input type="password" class="form-control" id="exampleInputPassword1" aria-describedby="emailHelp" ng-model="passKey" placeholder="Password">
+					<small ng-if="errMsg.length!=0" id="emailHelp" class="form-text text-muted">{{errMsg}}</small>
+				  </div>
+				  <div class="text-center">
+					<button type="submit" class="btn btn-light ">Log in</button>
+				</div>
+				</form>
+			</div>
+			</div>
+			<div class="col-md-4 col-no-padding"></div>
+		</div>
+
+	</div>
+<script>
+platform.factory('storageService', ['$rootScope', function($rootScope) {
+
+    return {
+        get: function(key) {
+            return localStorage.getItem(key);
+        },
+        set: function(key, data) {
+            localStorage.setItem(key, data);
+        }
+    };
+}]);
+
+
+platform.controller('loginCtrl',function($rootScope,$scope,$http,storageService){
+$scope.useId="";
+$scope.passKey="";
+$scope.errMsg="";
+$scope.authorize=false;
+var configData=[
+  {
+    "UId": "nik",
+    "pwd": "test@1",
+    "userType": "S",
+    "QId": "z8yU"
+  },
+  {
+    "UId": "sam",
+    "pwd": "admin@1",
+    "userType": "A",
+    "QId": "Lk5Q"
+  }
+];
+
+$scope.login=function(){
+	$scope.errMsg="";
+	for(var i=0;i<configData.length;i++){
+		var user=configData[i];
+		if($scope.useId===user.UId && $scope.passKey===user.pwd){
+			var windowUrl=window.location.href;
+			if(user.userType=='A'){
+				console.log(windowUrl);
+				// Set local storage data to storageService
+			  storageService.set('QId', user.QId);
+			  // Get saved local storage data from storageService
+				var data = storageService.get('QId');
+				console.log(data);
+				window.location.replace('http://guidancegroup.co.in/OnlineTestPlatform/question.html');
+				break;
+			}else if(user.userType=='S'){
+				console.log(windowUrl);
+				window.location.replace('http://guidancegroup.co.in/OnlineTestPlatform/exam.html');
+				break;
+			}else{
+				$scope.errMsg="Please,contact Admin";
+				return;
+			}
+			
+		}
+	};
+	
+}
+
+
+
+});
+</script> 
+
+
+</body>
+</html>
