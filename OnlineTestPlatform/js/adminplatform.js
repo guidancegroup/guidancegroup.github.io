@@ -19,6 +19,7 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http,storageService)
 	$scope.scheduledDate="";
 	$scope.scheduledTime="";
 	$scope.today=new Date();
+	$scope.sol="";
 	$scope.marks="";
 	$scope.isNegative=false;
 	$scope.negativeMarks="";
@@ -328,6 +329,7 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http,storageService)
 		finalDate.setMinutes(min);
 		finalDate.setSeconds(00);
 		$scope.questionSet.scheduledDate=finalDate;
+		$scope.sol=$scope.questionSet.scheduledDate;
 		$scope.questionSet.questions=$scope.questionList;
 		$scope.resetQuestion();
 		var num=$scope.questionNumber;
