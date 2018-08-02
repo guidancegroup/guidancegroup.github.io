@@ -1,5 +1,5 @@
 
-platform.controller('adminCtrl',function($rootScope,$scope,$http){
+platform.controller('adminCtrl',function($rootScope,$scope,$http,storageService){
 	$scope.questionSet={
 			"questionSetCode":"",
 			"timeLimit":0,
