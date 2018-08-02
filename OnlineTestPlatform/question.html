@@ -5,7 +5,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Admin -Online Test Platform</title>
-<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
+<link rel="icon" type="image/gif/png" href="../img/GGlogo.png">
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/popper.min.js"></script> 
 <script type="text/javascript" src="js/angular.min.js"></script>
@@ -252,23 +252,27 @@
 								<div class="col">
 									<input type="text" class="form-control" id="QP"
 									value="{{questionSet}}" readonly>
-								<button class="btn btn-primary btn-block"
-									ng-click="copyToClipBoard('QP');">Copy Question Paper</button>
+								<a class="btn btn-primary btn-block"  type="button" ng-href="sample.json" 
+									ng-click="copyToClipBoard('QP');"  download="{{questionSetCode}}.json">Copy Question Paper</a>
 								</div>
 								<div class="col">
 									<input type="text" class="form-control" id="AS"
 									value="{{answerList}}" readonly>
-								<button class="btn btn-primary btn-block"
-									ng-click="copyToClipBoard('AS');">Copy Answer Set</button>
+								<a class="btn btn-primary btn-block" type="button" ng-href="sample.json"
+									ng-click="copyToClipBoard('AS');"  download="{{today}}.json">Copy Answer Set</a>
 								</div>
 							</div>
 							
 						
 						</form>
-						<small for="copyForm" class="form-text">
-							Expected
-							answer is mostly one word or a number.Sentence can not be a
-							expected answer
+						<small for="copyForm" class="form-text ">
+							  
+							<ul  style=" font-family: cursive;">
+								<li>Question Paper Generated Successfully.</li>
+								<li>Copy Question and Answer.</li>
+								<li>Paste it in just downloaded files respectively.</li>
+								<li>Upload Same File in Server.</li>
+							</ul>
 						</small>
 				
 
