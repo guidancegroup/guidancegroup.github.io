@@ -1,6 +1,8 @@
 
 platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,storageService){
-	
+	// Get saved local storage data from storageService
+	var data = storageService.get('QId');
+	console.log(data);
 	$scope.expire=false;
 	$scope.sureResetFlag=false;
 	$scope.sureSubmitFlag=false;
