@@ -279,7 +279,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,s
 	$scope.generateResult=function(){
 		$http({
 	        method : "GET",
-	        url : "qwertyuiop/"+$scope.passKey+".json"
+	        url : "qwertyuiop/_"+$scope.passKey+"_.json"
 	    }).then(function mySuccess(response) {
 	        $scope.answerSet = response.data;
 	        
