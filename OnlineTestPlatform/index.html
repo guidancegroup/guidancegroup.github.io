@@ -116,15 +116,15 @@ $scope.login=function(){
 			var windowUrl=window.location.href;
 			if(user.userType=='A'){
 				console.log(windowUrl);
-				// Set local storage data to storageService
-			  storageService.set('QId', user.QId);
-			  // Get saved local storage data from storageService
-				var data = storageService.get('QId');
-				console.log(data);
 				window.location.replace('http://guidancegroup.co.in/OnlineTestPlatform/question.html');
 				break;
 			}else if(user.userType=='S'){
 				console.log(windowUrl);
+				// Set local storage data to storageService
+				  storageService.set('QId', user.QId);
+				  // Get saved local storage data from storageService
+					var data = storageService.get('QId');
+					console.log(data);
 				window.location.replace('http://guidancegroup.co.in/OnlineTestPlatform/exam.html');
 				break;
 			}else{
