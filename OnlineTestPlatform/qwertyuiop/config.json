@@ -1,0 +1,14 @@
+[
+  {
+    "UId": "nik",
+    "pwd": "test@1",
+    "userType": "S",
+    "QId": "z8yU"
+  },
+  {
+    "UId": "sam",
+    "pwd": "admin@1",
+    "userType": "A",
+    "QId": "Lk5Q"
+  }
+];
