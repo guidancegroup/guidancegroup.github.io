@@ -1,5 +1,5 @@
 
-platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval){
+platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,storageService){
 	
 	$scope.expire=false;
 	$scope.sureResetFlag=false;
