@@ -1,19 +1,29 @@
 
 platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,storageService){
-	// Get saved local storage data from storageService
-	var data = storageService.get('QId');
-	console.log(data);
+	
+	$scope.user=null;
+	$scope.QId=null;
+	$scope.passKey=null;
 	$scope.expire=false;
 	$scope.sureResetFlag=false;
 	$scope.sureSubmitFlag=false;
 	$scope.icon="error";
+	$scope.user=storageService.get('userID');
+	$scope.QId=storageService.get('QId');
+	$scope.passKey=storageService.get('passKey');
+	if($scope.user==null || $scope.QId==null || $scope.passKey==null){
+		console.log("Null Values");
+		$scope.expire=true;
+		return;
+	};
 	$scope.initializeData=function(){
 		$http({
 	        method : "GET",
-	        url : "qwertyuiop/question.json"
+	        url : "qwertyuiop/"+$scope.QId+".json"
 	    }).then(function mySuccess(response) {
 	        $scope.res = response.data;
 	        $scope.timeLimit=$scope.res.timeLimit;
+		$scope.passKey=$scope.res.scheduledDate;
 	        var serverDate=new Date($scope.res.scheduledDate);
 	        
 	        var todayDate=new Date();
@@ -269,7 +279,7 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,s
 	$scope.generateResult=function(){
 		$http({
 	        method : "GET",
-	        url : "qwertyuiop/answer.json"
+	        url : "qwertyuiop/"+$scope.passKey+".json"
 	    }).then(function mySuccess(response) {
 	        $scope.answerSet = response.data;
 	        
