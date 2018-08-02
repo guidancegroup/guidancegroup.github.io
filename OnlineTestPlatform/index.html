@@ -5,16 +5,16 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Index -Online Test Platform</title>
-<link rel="icon" type="image/gif/png" href="img/GGlogo.png">
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/jquery.min.js"></script>
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/popper.min.js"></script> 
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/angular.min.js"></script>
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/angular-cookies.min.js"></script>
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="http://guidancegroup.co.in/OnlineTestPlatform/js/onlinetestplatform.js"></script>
-<link rel="stylesheet" type="text/css" href="http://guidancegroup.co.in/OnlineTestPlatform/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="http://guidancegroup.co.in/OnlineTestPlatform/css/font-awesome.min.css">
+<title>Log In -Online Test Platform,Guidance Group</title>
+<link rel="icon" type="image/gif/png" href="../img/GGlogo.png">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script> 
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/angular-cookies.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/onlinetestplatform.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 </head>
 <style>
 .bg-1{
@@ -82,41 +82,34 @@
 
 	</div>
 <script>
-platform.factory('storageService', ['$rootScope', function($rootScope) {
-
-    return {
-        get: function(key) {
-            return localStorage.getItem(key);
-        },
-        set: function(key, data) {
-            localStorage.setItem(key, data);
-        }
-    };
-}]);
-
 
 platform.controller('loginCtrl',function($rootScope,$scope,$http,storageService){
 $scope.useId="";
 $scope.passKey="";
 $scope.errMsg="";
 $scope.authorize=false;
-var configData=[
-  {
-    "UId": "nik",
-    "pwd": "test@1",
-    "userType": "S",
-    "QId": "z8yU"
-  },
-  {
-    "UId": "sam",
-    "pwd": "admin@1",
-    "userType": "A",
-    "QId": "Lk5Q"
-  }
-];
+var configData=null;
 
+$http({
+	method : "GET",
+	url : "qwertyuiop/config.json"
+    }).then(function mySuccess(response) {
+		$scope.errMsg="";
+		configData=response.data;
+	}, function myError(response) {
+		configData=null;
+		$scope.errMsg = "Server Error "+response.statusText;
+		return;
+    });
+	
 $scope.login=function(){
 	$scope.errMsg="";
+	
+	if(configData.length==0 || configData==null){
+		$scope.errMsg="Server Error";
+		return;
+	}
+	
 	for(var i=0;i<configData.length;i++){
 		var user=configData[i];
 		if($scope.useId===user.UId && $scope.passKey===user.pwd){
@@ -139,6 +132,11 @@ $scope.login=function(){
 				return;
 			}
 			
+		}else{
+			if(configData.length==i+1){
+				$scope.errMsg="Incorrect User ID or Password";
+				return;
+			}
 		}
 	};
 	
