@@ -329,7 +329,7 @@ platform.controller('adminCtrl',function($rootScope,$scope,$http,storageService)
 		finalDate.setMinutes(min);
 		finalDate.setSeconds(00);
 		$scope.questionSet.scheduledDate=finalDate;
-		$scope.sol=$scope.questionSet.scheduledDate;
+		$scope.sol=$scope.questionSet.scheduledDate.getMinutes();
 		$scope.questionSet.questions=$scope.questionList;
 		$scope.resetQuestion();
 		var num=$scope.questionNumber;
