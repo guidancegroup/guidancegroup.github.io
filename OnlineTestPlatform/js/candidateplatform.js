@@ -23,9 +23,8 @@ platform.controller('candidateCtrl',function($rootScope,$scope,$http,$interval,s
 	    }).then(function mySuccess(response) {
 	        $scope.res = response.data;
 	        $scope.timeLimit=$scope.res.timeLimit;
-		$scope.passKey=$scope.res.scheduledDate.getTime();
 	        var serverDate=new Date($scope.res.scheduledDate);
-	        
+	        $scope.passKey=serverDate.getTime();
 	        var todayDate=new Date();
 	        todayDate=todayDate.getTime();
 	        var serverTime=serverDate.getTime();
