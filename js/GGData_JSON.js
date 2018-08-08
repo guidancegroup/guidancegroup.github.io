@@ -236,7 +236,7 @@ $rootScope.carouselData={
 //COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
-		"news":"Latest Government Jobs 2018-19 Notification, 4-10th Aug 2018 CLICK HERE!! " ,
+		"news":"Latest Government Jobs 2018-19 Notification, 4th-10th Aug 2018 CLICK HERE!! " ,
 		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
 	},
 	{
