@@ -242,6 +242,11 @@ $rootScope.newsList=[
 	{
 		"news":"Latest Government Jobs 2018-19 Notification, 4-10 Aug 2018 Hurry Up!! " ,
 		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
+	},
+	{
+		"news":"Indian Bank recruitment 2018-19 notification 417 Probationary Officer Posts Apply Here!! " ,
+		"newsLink":"http://www.indianbank.in/pdfs/rec/31072018porecprocess.pdf"
+		
 	}
 ]
 	
