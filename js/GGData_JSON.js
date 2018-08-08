@@ -232,11 +232,14 @@ $rootScope.carouselData={
 	]
 };
 
-//scrolling News and alerts
+//scrolling News and alerts 
+//COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
 		"news":"Online test series is available,Contact Us Now!! ",
-		"newsLink":"
+		"newsLink":""
+	},
+	{
 		"news":"Latest Government Jobs 2018-19 Notification, 4-10 Aug 2018 Hurry Up!! "
 		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
 	}
