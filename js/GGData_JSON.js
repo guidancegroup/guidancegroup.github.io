@@ -236,16 +236,16 @@ $rootScope.carouselData={
 //COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
-		"news":"Online test series is available,Contact Us Now!! " ,
-		"newsLink":""
-	},
-	{
-		"news":"Latest Government Jobs 2018-19 Notification, 4-10 Aug 2018 CLICK HERE!! " ,
+		"news":"Latest Government Jobs 2018-19 Notification, 4-10th Aug 2018 CLICK HERE!! " ,
 		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
 	},
 	{
 		"news":"Indian Bank recruitment 2018-19 notification 417 Probationary Officer Posts Apply Here!! " ,
 		"newsLink":"http://www.indianbank.in/pdfs/rec/31072018porecprocess.pdf"
+	},
+	{
+		"news":"Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 " ,
+		"newsLink":""
 		
 	}
 ]
