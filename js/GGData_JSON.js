@@ -236,6 +236,10 @@ $rootScope.carouselData={
 //COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
+		"news":"IBPS recruitment 2018-19 notification 4102 Probationary Officer/Management Trainee Posts, APPLY HERE " ,
+		"newsLink":"http://www.ibps.in/wp-content/uploads/CWE_PO_MPS_VIII.pdf"
+	},
+	{
 		"news":"Latest Government Jobs 2018-19 Notification, 4th-10th Aug 2018 CLICK HERE!! " ,
 		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
 	},
