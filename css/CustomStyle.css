@@ -294,7 +294,7 @@ a:-webkit-any-link {
     
 }
 
-.fa-bell {
+.custom-bell {
     background-color: red;
     color: white;
 	cursor:pointer;
