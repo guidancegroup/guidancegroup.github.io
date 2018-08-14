@@ -126,8 +126,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 			<div class="slogan" >Only Guidance Prevails . . .</div>
 			<marquee behavior="scroll" scrollamount="5" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
 				<p  >
-					<span ng-repeat="news in newsList">
-					 &#9670;	<a  style="color:white; font-size: 20px; " ng-href="{{news.newsLink}}">{{news.news}}</a>  &nbsp;&nbsp;
+					<span ng-repeat="news in newsList" class="fa fa-bell">
+						<a  style="color:white; font-size: 20px; " ng-href="{{news.newsLink}}">{{news.news}}</a>  &nbsp;&nbsp;
 					</span>
 				</p>
 			</marquee>
