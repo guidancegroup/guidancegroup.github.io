@@ -48,6 +48,11 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0';
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="notify">
+<p  class="fa fa-bell " title="View All Notifaiction" data-toggle="modal" data-target="#notification"></p>
+</div>
+
 <nav class="navbar sticky-top navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
   <a class="navbar-brand" href="#"><img src="img/GGlogo.png" width="25" height="25" class="d-inline-block align-top" alt="logo">Guidance Group</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -916,6 +921,30 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<a class="tooltip-test" title="Contact Us Now" href="#contact">
 		<img class="img-fluid" alt="" src="img/slide/OnlineMockTestAd.jpg" width="1000" height="800"  ng-click="closeAdAndNavigate();">
 		</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Notification -->
+<div class="modal fade" id="notification" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+	<table class="table table-hover">
+	  <thead>
+		<tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Notification</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr ng-repeat="notice in newsList">
+		  <th scope="row"> {{$index + 1}}</th>
+		  <th><a ng-href="{{notice.newsLink}}"> {{notice.news}} </a></th>
+		</tr>
+
+	  </tbody>
+	</table>
       </div>
     </div>
   </div>
