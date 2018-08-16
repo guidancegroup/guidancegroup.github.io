@@ -316,4 +316,13 @@ a:-webkit-any-link {
     font-size: small;
 }
 
+.mentors{
+	padding-top:60px;
+	padding-bottom:60px;
+}
+.mentors-side{
+	margin-left:50px;
+	margin-right:50px;
+}
+
 }
