@@ -50,7 +50,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 }(document, 'script', 'facebook-jssdk'));</script>
 
 <div class="notify">
-<p  class="fa fa-bell custom-bell" title="View All Notification" data-toggle="modal" data-target="#notification"></p>
+<p  class="fa fa-bell custom-bell" title="View All Notification" data-toggle="modal" data-target="#notification">
+	<span class="no-of-alert">{{newsList.length}}</span>
+	</p>
 </div>
 
 <nav class="navbar sticky-top navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
