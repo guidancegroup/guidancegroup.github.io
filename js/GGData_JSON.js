@@ -227,12 +227,9 @@ $rootScope.carouselData={
 	"slides":[
 		{
 			slide:1,
-			name:"default.jpg"
-		}
-		{
-			slide:2,
 			name:"GG Add01.jpg"
 		}
+		
 	]
 };
 
