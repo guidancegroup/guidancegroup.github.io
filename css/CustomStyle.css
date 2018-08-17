@@ -325,4 +325,9 @@ a:-webkit-any-link {
 	margin-right:50px;
 }
 
+@media not screen and (max-width: 600px) {
+    .slide-size {
+        height: 400px !important;
+    }
+}
 }
