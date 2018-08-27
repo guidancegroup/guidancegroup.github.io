@@ -65,10 +65,10 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 	
 	//loads popup
 	setTimeout(function(){
-	  $('#popUpAdd').modal();
-	}, 5000);
+	  $('#RegisterForm').modal();
+	}, 10000);
 	
 	$rootScope.closeAdAndNavigate=function(){
-		$('#popUpAdd').modal('hide');
+		$('#RegisterForm').modal('hide');
 	}
 });
