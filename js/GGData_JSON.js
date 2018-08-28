@@ -28,50 +28,50 @@ $rootScope.mentorData={
   "mentors":[
     { 
       "name":"Samir Inpure",
-      "about":"M.Com(Management), M.A(Economics), LLB Pursuing AND has appeared for (Territorial Army) Interview round.",
-      "degree":"",
+      "about":"",
+      "degree":["M.Com(Management)", "M.A(Economics)", "LLB Pursuing", "appeared (Territorial Army) Interview round"],
 	  "image":"samir.jpg",
       "url":"#"
     },
     {
       "name":"Akshay Goud",
-      "about":"B.E (Computers), M.A (Public Administration), M.E(CNIS) Pursuing.",
-      "degree":"",
+      "about":"",
+	"degree":["B.E (Computers)", "M.A (Public Administration)","M.E(CNIS) Pursuing"],
 	  "image":"AkshayGoud.jpg",
       "url":"#"
     },
     {
       "name":"Hitesh Potdar",
-      "about":"B.Tech (Mechanical), M.Tech (Mechanical) has appeared for UPSC-CSE Interview.",
-      "degree":"",
+      "about":"",
+      "degree":["B.Tech (Mechanical)", "M.Tech (Mechanical)", "appeared UPSC-CSE Interview"],
 	  "image":"HiteshPotdar.jpg",
       "url":"#"
     },
     {
       "name":"Akshay Palande",
-      "about":"B.E (Mechanical), M.A(Public Administration) has appeared for UPSC-CSE Mains twice.",
-      "degree":"",
+      "about":",  has  .",
+      "degree":["B.E (Mechanical)","M.A(Public Administration)","appeared twice UPSC-CSE Mains"],
 	  "image":"AkshayPalande.jpg",
       "url":"#"
     },
 	{
       "name":"Amit Sarwade",
-      "about":"BMS, he has cleared most of the Tier-1 examinations of IBPS/PO and Clerical. He specializes in Quantitative Aptitude.",
-      "degree":"",
+      "about":"",
+      "degree":["BMS","cracked Tier-1 examinations of IBPS/PO and Clerical","specializes in Quantitative Aptitude"],
 	  "image":"AmitSarwade.jpg",
       "url":"#"
     },
 	{
       "name":"Dr. Vaibhav Napte",
-      "about":"Has appeared for UPSC-CAPF Interview, has achieved a feat of appearing for Mains examinations of MPSC,STI,PSI,UPSC etc in the same year.",
-      "degree":"",
+      "about":"Has , has achieved a feat of  etc in the .",
+      "degree":["appeared UPSC-CAPF Interview","appeared Mains examinations of MPSC,STI,PSI,UPSC in same year"],
 	  "image":"VaibhavNapte.jpg",
       "url":"#"
     },
 	{
       "name":"Monika Sethia",
-      "about":"English Teacher M.COM , She is a NET/SET qualified faculty and currently teaches English.",
-      "degree":"",
+      "about":"",
+      "degree":["M.COM","NET/SET qualified","Specializes in English"],
 	  "image":"MonikaSethia.jpg",
       "url":"#"
     }
