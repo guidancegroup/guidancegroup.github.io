@@ -763,13 +763,15 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="row">
 		<div class="col-lg-3 col-md-6 col-sm-6 " style="margin-bottom:10px;" ng-repeat="mentor in list" >
 			<div class="card h-100 d-flex flex-column justify-content-between" > 
-				<img class="card-img-top rounded-circle" src="img/mentors/{{mentor.image}}" alt="Profile Image">
+			<!--	<img class="card-img-top rounded-circle" src="img/mentors/{{mentor.image}}" alt="Profile Image"> -->
 				<div class="card-body">
 					<h5 class="card-title">{{mentor.name}}</h5>
-					<p class="card-text">{{mentor.about}}</p>
+					<ul class="card-text">
+						<li ng-repeat="degree in mentor.degree" >{{degree}}</li>
+					</ul>
 				</div>
 				<div class="card-footer">
-					<small class="text-muted">{{mentor.degree}}</small>
+					<small class="text-muted"></small>
 				</div>
 			</div>
 		</div>
