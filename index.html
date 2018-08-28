@@ -210,19 +210,18 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <!-- Container (Courses Section) -->
  
  <div id="course"  >
- <div ng-hide="courseFlag"  class="container-fluid text-center" style="background-color: orange;">
+  <div ng-hide="courseFlag"  class="container-fluid text-center" style="background-color: orange;" ng-init="btnStyle='dark'">
   <h2>COURSES</h2>
-  <h4>What we offer</h4>
+  <p>what we offer</p>
   <br>
   <div class="row">
     <div class="col-sm-4 slideanim" ng-repeat="course in courseData.courses ">
-      <div class="container-overlay">
-		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay">
-		<div class="overlay">
-			<div class="text"><h6>{{course.text}}</h6></div><br>
-		<a id="{{course.id}}" role="button" class="btn btn-outline-primary"  data-toggle="collapse" data-target="#{{course.name}}"  aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse(course.id,course.name);"   >Know more</a>
-		</div>
+      <div class="container-overlay" ng-mouseover="btnStyle='primary'" ng-mouseleave="btnStyle='dark'">
+		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay" >
+		<a id="{{course.id}}" style="color:white" role="button" class="btn btn-{{btnStyle}}"  data-toggle="collapse" data-target="#{{course.name}}"  
+			aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse(course.id,course.name);"   >Know more</a>
 	</div>
+	<br>
    </div>
   
  </div>
@@ -800,7 +799,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				</div>
   <div class="col-md-8">
   <h2>Scholarship</h2>
-  <h4>YES, We offer it!</h4>
+  <h4>YES, we offer it!</h4>
 					<p>	This program is an opportunity for every aspirant. Aspirants who are interested in applying for 
 						the scholarship program will have to fill up a simple form mentioned here online and submit a printout of it at our office. 
 						The aspirant will have to appear for a simple test whose results will be declared within a day. 
@@ -813,7 +812,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 						documents. Depending upon that the candidate will be allotted
 						scholarships.</p>
 					<br>
-					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Apply Now</button>
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Book Appointment</button>
 					
 				</div>
 				
@@ -887,7 +886,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; 
 		if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() 
 		</script> 
-		
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Register Later</button>
+	        </div>
     </div>
   </div>
 </div>
