@@ -70,5 +70,9 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 	
 	$rootScope.closeAdAndNavigate=function(){
 		$('#RegisterForm').modal('hide');
-	}
+	};
+	
+	$rootScope.forceReload=function(){
+		location.reload();
+	};
 });
