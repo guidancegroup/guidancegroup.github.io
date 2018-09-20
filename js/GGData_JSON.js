@@ -237,8 +237,8 @@ $rootScope.carouselData={
 //COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
-		"news":"IBPS recruitment 2018-19 notification 4102 Probationary Officer/Management Trainee Posts, APPLY HERE " ,
-		"newsLink":"http://www.ibps.in/wp-content/uploads/CWE_PO_MPS_VIII.pdf"
+		"news":"IBPS recruitment 2018-19 notification 7275 Clerk Vacancies, APPLY HERE " ,
+		"newsLink":"https://files.sabhijobs.com/wp-content/uploads/2018/09/Sabhijobs_IBPS_Clerk_7275_posts.pdf"
 	},
 	{
 		"news":"Latest Government Jobs 2018-19 Notification, 4th-10th Aug 2018 CLICK HERE!! " ,
