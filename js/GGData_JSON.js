@@ -230,7 +230,7 @@ $rootScope.carouselData={
 			name:"OnlineMockTestAd.jpg"
 		{
 			slide:2,
-			name:"slide.txt"
+			name:"slide.jpg"
 		}
 		
 	]
