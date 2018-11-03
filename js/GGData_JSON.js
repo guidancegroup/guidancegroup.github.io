@@ -241,18 +241,6 @@ $rootScope.carouselData={
 //COPY the content from { to  } then give , after } then paste just copied then edit 
 $rootScope.newsList=[
 	{
-		"news":"IBPS recruitment 2018-19 notification 7275 Clerk Vacancies, APPLY HERE " ,
-		"newsLink":"https://files.sabhijobs.com/wp-content/uploads/2018/09/Sabhijobs_IBPS_Clerk_7275_posts.pdf"
-	},
-	{
-		"news":"Latest Government Jobs 2018-19 Notification, 4th-10th Aug 2018 CLICK HERE!! " ,
-		"newsLink":"https://drive.google.com/drive/folders/1eQcj7tDzknj6-AbFusKu3YDfrcR0f5M6?ogsrc=32"
-	},
-	{
-		"news":"Indian Bank recruitment 2018-19 notification 417 Probationary Officer Posts Apply Here!! " ,
-		"newsLink":"http://www.indianbank.in/pdfs/rec/31072018porecprocess.pdf"
-	},
-	{
 		"news":"Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 " ,
 		"newsLink":""
 		
