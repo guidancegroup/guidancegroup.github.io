@@ -227,7 +227,7 @@ $rootScope.carouselData={
 	"slides":[
 		{
 			slide:1,
-			name:"OnlineMockTestAd.jpg"
+			name:"MPSC.jpg"
 		}
 		
 	]
