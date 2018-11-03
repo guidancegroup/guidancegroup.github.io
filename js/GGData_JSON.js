@@ -229,6 +229,10 @@ $rootScope.carouselData={
 			slide:1,
 			name:"MPSC.jpg"
 		}
+		{
+			slide:2,
+			name:"OnlineMockTestAd.jpg"
+		}
 		
 	]
 };
