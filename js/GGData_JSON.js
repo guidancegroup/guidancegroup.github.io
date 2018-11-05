@@ -240,7 +240,7 @@ $rootScope.newsList=[
 	{
 		"news":"Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 " ,
 		"newsLink":""
-		
+	{
 	}
 ]
 	
