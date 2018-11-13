@@ -228,7 +228,6 @@ $rootScope.carouselData={
 		{
 			slide:1,
 			name:"MPSC.jpg"
-		{
 		}
 		
 	]
