@@ -1,2 +1,2 @@
 # guidancegroup.co.in
-All rights reserved to guidancegroup pvt. ltd.
+All rights reserved to guidanceeducon pvt. ltd.
