@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125246445-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-125246445-1');
+</script>
+
+<meta charset="ISO-8859-1">
+<meta name="description" content="coaching class for competitive exams such as upsc,mpsc,banks located in heart of Dadar Mumbai.">
+<meta name="keywords" content="MPSC,UPSC,GUIDANCE,GROUP,MENTOR,CONTACT,Youtube,IAS Coaching, IAS Coaching Centers in India, 
+IAS Guidance, UPSC Coaching India, Civil Services Exams, Current Affairs for UPSC, Free workshop for UPSC, 
+FREE Guidance For IAS aspirants,Best Institute for UPSC, IAS, Civil Services Coaching India,Best IAS Institute in India | Civil Service Online Coaching India,
+Mpsc,upsc,bank po, ias syllabus,ibps clerk 2016,mpsc online,ias exam,ibps clerk,upsc syllabus, upsc exam,ibpspo,ibpsexam,bank exam, ias books, ias preparation, 
+mpsc exam, upsc books, upsc result, ias preparation books, mpsc syllabus, sbirecruitement, ias exam pattern, upsc exam pattern, 
+ias exam syllabus, ibps mock test, ibps bank, upscias, ibps bank exam, ibps online test, mahaonlinempsc,
+ ibpsrrb, online test series for bank examination, upsc notification, sbipo mock test, bank coaching,ssc online,ssccgl, sscchsl">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Guidance Group</title>
+<link rel="icon" type="image/gif/png" href="img/logo.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+ integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-cookies.js"></script>
+<script src="https://apis.google.com/js/plusone.js"></script>
+<script src="https://apis.google.com/js/platform.js"></script>  -->
+
+<script type="text/javascript" src="js/Application.js" ></script>
+<script type="text/javascript" src="js/CustomStyle.js" ></script>
+<script type="text/javascript" src="js/GGData_JSON.js" ></script>
+<script type="text/javascript" src="js/youtube.js"></script>
+ 
+ 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="css/CustomStyle.css">
+
+</head>
+<body id="guidanceGroup" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app="myApp" ng-controller="dataCtrl">
+<!--FB plugin -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="notify">
+<p  class="fa fa-bell custom-bell" title="View All Notification" data-toggle="modal" data-target="#notification">
+	<span class="no-of-alert">{{newsList.length}}</span>
+	</p>
+</div>
+
+<nav class="navbar navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
+  <a class="navbar-brand" href="#"><img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logo" ng-click="forceReload();">Guidance Group</a>
+  
+  <div class="navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto text-center">
+      <li class="nav-item ">
+        <a class="nav-link" href="#about">About Us <span class="sr-only">(current)</span></a>
+      </li>
+	  <li class="nav-item ">
+        <a class="nav-link" href="#course">Courses</a>
+      </li>
+	  
+	  <li class="nav-item dropdown navDown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mentorship Program
+        </a>
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+          	<a class="dropdown-item" href="#mentorship">Mentorship Program</a>
+			<a class="dropdown-item" href="#honorables">Honorable Mentions</a>
+          	<a class="dropdown-item" href="#mentors">Mentors</a>
+        </div>
+      </li>
+	   <li class="nav-item dropdown navDown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Scholarship & More
+        </a>
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item"  href="/downloads">Downloads</a>
+			<a class="dropdown-item" href="#lectures">E-Lectures</a>
+          	<a class="dropdown-item" href="#gallery">Gallery</a>
+			<a class="dropdown-item"  href="http://blog.guidancegroup.co.in">BLOG</a>
+		<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#scholarship">Scholarship</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<nav class="navbar sticky-top navbar-expand-md  navbar-dark bg-dark " >
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+    <ul class="navbar-nav mr-auto text-center">
+      <li class="nav-item ">
+        <a class="nav-link" href="#about">About Us <span class="sr-only">(current)</span></a>
+      </li>
+	  <li class="nav-item ">
+        <a class="nav-link" href="#course">Courses</a>
+      </li>
+	  
+	  <li class="nav-item dropdown navDown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Mentorship Program
+        </a>
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+          	<a class="dropdown-item" href="#mentorship">Mentorship Program</a>
+			<a class="dropdown-item" href="#honorables">Honorable Mentions</a>
+          	<a class="dropdown-item" href="#mentors">Mentors</a>
+        </div>
+      </li>
+	   <li class="nav-item dropdown navDown" >
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Scholarship & More
+        </a>
+        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+			<a class="dropdown-item"  href="/downloads">Downloads</a>
+			<a class="dropdown-item" href="#lectures">E-Lectures</a>
+          	<a class="dropdown-item" href="#gallery">Gallery</a>
+			<a class="dropdown-item"  href="http://blog.guidancegroup.co.in">BLOG</a>
+		<div class="dropdown-divider"></div>
+			<a class="dropdown-item" href="#scholarship">Scholarship</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact">Contact Us</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div id="carouselExampleIndicators" class="carousel slide" data-slide="next" data-ride="carousel" data-interval="5000">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="{{count.slide}}" ng-repeat="count in carouselData.slides" ></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100 slide-size" src="img/slide/default.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item" ng-repeat="slide in carouselData.slides">
+      <img class="d-block w-100 slide-size" src="img/slide/{{slide.name}}" alt="Second slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="row" style="margin-right:0.0%;" >
+		<div class="col-md text-center" style="background-color: orange;">
+			<div class="slogan" >Only Guidance Prevails . . .</div>
+			<marquee behavior="scroll" scrollamount="10" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+				<p  >
+					<span ng-repeat="news in newsList" class="fa fa-bell">
+						<a  style="color:white; font-size: 20px; " ng-href="{{news.newsLink}}">{{news.news}}</a>  &nbsp;&nbsp;
+					</span>
+				</p>
+			</marquee>
+		</div>
+</div>
+<!-- Container (ABOUT Section) -->
+<div id="about" class="container-fluid">
+  <div class="row ">
+  
+  <div class="col-md-8">
+  <h2 class="text-center">ABOUT US</h2>
+	  <br>
+		<div class="row ">
+			<div class="col-md-12 text-left">
+				<strong> GUIDANCE GROUP </strong> is a committed team of faculties who has been involved in preparing candidates for their CIVIL SERVICES Examination preparation for last 5-6 years. 
+				We have been instrumental in successfully guiding aspiring candidates in their quest to become a tough, honest and diligent bureaucrat.  
+				<br><br>
+				This team comprises of faculties and trainers experienced from various fields and have experienced success themselves, but their own thirst is to GUIDE more and more aspirants
+				to achieve their GOAL and this is bigger than their individual goal. Thus led to the birth of  GUIDANCE GROUP.
+				<br><br>
+				Our aim is to GUIDE every aspirant whether in State Services or Central Services to achieve their GOAL in their 1st attempt itself in which we have been fairly successful.
+				<br>
+				If you think you have Honesty, Patience, Perseverance and Will to work hard, COME JOIN US.
+				<br><br>
+				<h5 class="" >Why Guidance Group?</h5>
+					<ul>
+						<li>In order achieve a career goal one needs a PLAN. We have it and it WORKS!!!</li>
+						<li>A Team which is committed to the cause to help you achieve your Career Goal.</li>
+						<li>A clear success mantra.</li>
+						<li> Quality assessment programs on monthly basis.</li>
+						<li>Regular Test Series on Monthly basis.</li>
+						<li> Effective Answer writing and personality enrichment program.</li>
+						<li>Air conditioned class rooms.</li>
+					</ul>
+					
+			</div>
+			
+		</div>
+	  	
+		
+	</div>
+	<div class="col-md-4 text-center slideanim">
+				<img class="img-fluid" alt="logo" src="img/about.jpg" width="300" height="300">
+				<br><br>
+		<div >
+		  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target=".bd-example-modal-lg">Register Now, It's Free</button>
+		  <h1 >	
+			<span class="text-danger">Schedule a <strong class="text-warning"> FREE </strong> Counselling Session.</span>
+		  </h1>
+		
+		</div>
+	</div>
+		
+  </div><hr>
+  <div class="row slideanim text-center">
+	 
+	   <div  class="col-md-4 ">
+			<!-- <img class="img-fluid img-thumbnail" alt="" src="img/slide/OnlineMockTestAd.jpg"   > -->
+			<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+			  <div class="card-header">Header</div>
+			  <div class="card-body">
+				<h5 class="card-title">Primary card title</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			  </div>
+			</div>
+	   </div>
+	    <div  class="col-md-4  ">
+			<div class="fb-page" data-href="https://www.facebook.com/guidancegroup1/" data-tabs="Show Friend&#039;s Faces" 
+				data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+				<blockquote cite="https://www.facebook.com/guidancegroup1/" class="fb-xfbml-parse-ignore">
+					<a href="https://www.facebook.com/guidancegroup1/">Guidance Group</a>
+				</blockquote>
+			</div>
+	  </div>
+	   <div class="col-md-4" >
+			<div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+			  <div class="card-header">Header</div>
+			  <div class="card-body">
+				<h5 class="card-title">Primary card title</h5>
+				<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			  </div>
+			</div>
+	  </div>
+	</div>
+  </div>
+
+  
+ <!-- Container (Courses Section) -->
+ 
+ <div id="course"  >
+  <div ng-hide="courseFlag"  class="container-fluid text-center" style="background-color: orange;" ng-init="btnStyle='dark'">
+  <h2>COURSES</h2>
+  <p>what we offer</p>
+  <br>
+  <div class="row">
+    <div class="col-sm-4 slideanim" ng-repeat="course in courseData.courses ">
+      <div class="container-overlay" ng-mouseover="btnStyle='primary'" ng-mouseleave="btnStyle='dark'">
+		<img src="img/courses/{{course.name}}.png" alt="Course Image" class="image-overlay" >
+		<a id="{{course.id}}" style="color:white" role="button" class="btn btn-{{btnStyle}}"  data-toggle="collapse" data-target="#{{course.name}}"  
+			aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse(course.id,course.name);"   >Know more</a>
+	</div>
+	<br>
+   </div>
+  
+ </div>
+	
+</div>
+<!-- accordian   -->
+<div  ng-show="courseFlag"  id="courseKnowMore" class="container-fluid" style="background-color: orange;">
+	<div class="row courseBackground">
+		<div class="col-md-2 col-sm-0 col-xs-0"></div>
+		<div id="contain" class="col-md-8 col-sm-12 col-xs-12 ">
+			<div  id="UPSC" class="row collapse"  aria-labelledby="upscKnowMore" data-parent="#course">
+			
+				<h2>UPSC <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<img class="img-fluid" alt="logo" src="/img/courses/UPSC.png">
+					</div>
+					<div class="col-md-8">
+					<h5>UNION PUBLIC SERVICE COMMISSION</h5>
+						<p>UPSC is an examination conducting body which comes under Department of Personal and Training.</p>
+						<p>It is a body which has been granted its charter in Part XIV of the Indian Constitution.
+							This body is responsible for appointments to and examinations for All India Services and Grade A and Grade B of Central Services.</p>
+						<p>The Commission directly reports to the President of India and can advise the government through him. 
+							The commission has a Constitutional Status and hence operates with utmost autonomy and freedom.</p>
+						<p>The commission has its Headquarter at Dholpur House, Delhi.</p>
+				
+					</div>
+				</div>
+				
+				<div class="row">
+				<div class="col-md-12">
+					<h6>There are different Examinations that UPSC conducts every year which are listed down as follows:</h6>
+					<ul>
+						<li>Indian Forest Service Examination</li>
+						<li>Engineering Services Examination.</li>
+						<li>Combined Defence Services Examination.</li>
+						<li>National Defence Academy Examination.</li>
+						<li>Naval Academy Examination.</li>
+						<li>Combined Medical Services Examination</li>
+						<li>Indian Economic Service.</li>
+						<li>Indian Statistical Service Examination.</li>
+						<li>Combined Geo Scientist and Geologist Examination.</li>
+						<li>Central Armed Police Forces (Assistant Commandant) Examination.</li>
+					</ul>
+						
+					<h5>Civil Services Examination</h5>
+					<p>This examination is conducted nationwide by UPSC for various Civil Services of the Government of India. 
+						Which include services like Indian Administrative Services(IAS), Indian Police Services(IPS), Indian Foreign Services(IFS), 
+						Indian Revenue Services(IRS) among others..</p>
+					<h6>This Examination is conducted in three phases.</h6>
+					<ol type="A">
+						<li>Preliminary Examination- 400 Marks</li>
+						<li>Mains Examination- 1750 Marks</li>
+						<li>Personality Test(Interview)- 275 Marks </li>
+					</ol>	
+					
+					<h6>A) Preliminary Examination- 400 Marks</h6>
+					<p>This is the entry level examination conducted every year in the month of June advertised in the month of Feb-March.
+						The examination pattern is of Multiple Choice Question(MCQ) based.
+					</p>
+					<p>
+						It is a one day examination divided into 2 papers each of 200 Marks.
+					</p>
+					<ul>
+						<li>Paper-1 (General Studies).</li>
+						<li>Paper-2 (Civil Services Aptitude Test(CSAT)).</li>
+					</ul>
+					<p>Paper -2 is only qualifying in nature whose qualifying is 33% of 200. Once, a candidate secures the cut-off their paper-1 i.e General Studies will be checked. 
+					The cut-off to qualify for the Mains examination is determined by the score one secures in Paper-1 i.e General Studies. </p>
+					
+					<h6>B) Mains Examination- 1750 Marks</h6>
+					<p>This examination is Subjective in nature conducted in October every year. The candidate has to appear for 9 papers as follow:</p>
+					<table class="table table-striped">
+						  <thead>
+							<tr>
+							  <th scope="col">#</th>
+							  <th scope="col">Subject</th>
+							  <th scope="col">Marks</th>
+							  
+							</tr>
+						  </thead>
+						 <tbody>
+							<tr>
+							  <th scope="row">1</th>
+							  <td>English Language (Qualifying) </td>
+							  <td>300</td>
+							  
+							</tr>
+							<tr>
+							  <th scope="row">2</th>
+							  <td>One of the languages listed in 8th schedule of Indian Constitution (Qualifying) 	</td>
+							  <td>300</td>
+						   
+							</tr>
+							<tr>
+							  <th scope="row">3</th>
+							  <td>Essay	</td>
+							   <td>250</td>
+							</tr>
+							 <tr>
+							  <th scope="row">4</th>
+							  <td>GS-I (Indian heritage and culture, history and geography of the world and society)</td>
+							   <td>250</td>
+							</tr>
+							 <tr>
+							  <th scope="row">5</th>
+							  <td>GGS-II (Governance, constitution, Polity, Social Justice and International Relations) </td>
+							   <td>250</td>
+							</tr> <tr>
+							  <th scope="row">6</th>
+							  <td>GS-III (Technology, Economic development, bio-diversity, environment, security and disaster management)</td>
+							  <td>250</td>
+							</tr>
+							<tr>
+							  <th scope="row">7</th>
+							  <td>GS-IV (Ethics, Integrity and Aptitude)</td>
+							   <td>250</td>
+							</tr>
+							<tr>
+							  <th scope="row">8</th>
+							  <td>2 PAPERS on subjects to be selected by the candidate from the list of optional subjects </td>
+							   <td>250 each</td>
+							</tr>
+							<thead>
+							<tr>
+							  <th scope="col"></th>
+							  <th class="text-center" scope="col">Sub-Total</th>
+							  <th scope="col">1750</th>
+							</tr>
+						  </thead>
+						 </tbody>
+					</table>
+					
+					<h6>C) Personality Test(Interview)- 275 Marks</h6>
+				<p>The objective of Personality test is to asses the stability of a candidate for a 
+					career in public services by a board of competent and unbiased observers.</p>
+				<p> Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank. </p>
+				<p>The syllabus of the Civil Services Examination is provided in the <span><a class="text-primary" href="/downloads"  > link here.</a> </span></p>
+				<h5 class="text-center"><span>
+					<a class="text-primary" data-toggle="collapse" href="#UPSCSERVICESLIST"  aria-expanded="false" aria-controls="UPSCSERVICESLIST" href="#UPSCSERVICESLIST">
+						View list of all the different services in UPSC-CSE</a> 
+					</span> </h5>
+				<div class="collapse" id="UPSCSERVICESLIST">
+					<div class="subCourse">
+						<h6>All India Services (Group A)</h6>
+							<ol type="1">
+								<li>Indian Administrative Service (IAS) </li>
+								<li>Indian Police Service (IPS) </li>
+								<li>Indian Forest Service (IFoS)</li>
+							</ol>
+						<h6>Central Services (Group A)</h6>
+							<ol type="1">
+								<li>Indian Audit and Accounts Service (IA&AS)</li>
+								<li>Indian Civil Accounts Service (ICAS)</li>
+								<li>Indian Corporate Law Service (ICLS)</li>
+								<li>Indian Defence Accounts Service (IDAS)</li>
+								<li>Indian Defence Estates Service (IDES)</li>
+								<li>Indian Foreign Service (IFS)</li>
+								<li>Indian Information Service (IIS)</li>
+								<li>Indian Ordnance Factories Service (IOFS) </li>
+								<li>Indian Post & Telecommunication Accounts and Finance Service (IP&TAFS) </li>
+								<li>Indian Postal Service (IPoS)</li>
+								<li>Indian Railway Accounts Service (IRAS) </li>
+								<li>Indian Railway Personnel Service (IRPS) </li>
+								<li>Indian Railway Traffic Service (IRTS) </li>
+								<li>Indian Revenue Service (IRS-IT)</li>
+								<li>Indian Revenue Service (IRS-C&CE) </li>
+								<li>Indian Trade Service (ITrS) </li>
+								<li>Railway Protection Force (RPF)</li>
+							</ol>
+					</div>
+				</div>
+				
+				<h6>FAQ's :</h6>
+				<ol type="1">
+					<li>How should I know whether I am suitable for this kind of career?</li>
+					<li>How and when should I begin my preparation for this exam?</li>
+					<li>What is the exact time for one to begin their preparation?</li>
+					<li>What is the Eligibility criteria.</li>
+					<li>Number of attempts for this examination?</li>
+				</ol>
+				
+				<hr>
+				<br>
+					<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
+					<h6 class="lead text-primary" align="center">To put them to rest visit us at our office.</h6>
+					<h6 class="lead text-primary" align="center">We are always happy to help you and GUIDE you.</h6>
+				<br>
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
+				</div>
+				</div>
+				
+			</div>
+			<!-- id upsc ends here -->
+			<div id="MPSC" class="row collapse" aria-labelledby="mpscKnowMore" data-parent="#course">
+			<h2>MPSC <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<img class="img-fluid" alt="logo" src="/img/courses/MPSC.png">
+					</div>
+					<div class="col-sm-8">
+						<h6>Maharashtra Public Service Commission</h6>
+						<p>This is a body created by the Constitution of India under Article 315 to select officers for Civil Services jobs in the Indian state of Maharashtra.
+							The head office is located in Mumbai. </p>
+						
+						<h6>The following examinations are conducted by MPSC every year:</h6>
+						<ol type="1">
+							<li>State Services Exam</li>
+							<li>Maharashtra Engineering Services Exam</li>
+							<li>Forest Services Exam</li>
+							<li>Agricultural Services Exam</li>
+						</ol>
+					</div>
+				</div>
+				<div  class="row">
+					<div class="col-md-12">
+						<p>The state services examination is conducted every year for Grade ‘A’ Gazetted Posts and Grade ‘B’ Non Gazetted Posts.</p>
+						
+						<h6>This Examination is conducted statewide in three phases.</h6>
+						<ol type="A">
+							<li>Preliminary Examination- 400 Marks</li>
+							<li>Mains Examination- 800 Marks</li>
+							<li>Personality Test(Interview)- 100 Marks </li>
+						</ol>
+						
+						<h6>A) Preliminary Examination- 400 Marks</h6>
+						<p>This examination is conducted every year in the month of April.
+							It is a 1 day examination divided into 2 papers each of 200 Marks.
+						</p>
+						<p>
+							It is a one day examination divided into 2 papers each of 200 Marks.
+						</p>
+						<ul>
+							<li>Paper-1 (General Studies).</li>
+							<li>Paper-2 (Civil Services Aptitude Test(CSAT)).</li>
+						</ul>
+						<p>This examination is qualifying in nature.
+							The candidate has to secure minimum cut-off( declared by MPSC) in-order to qualify for the Mains examination. </p>
+						
+						<h6>B) Mains Examination - 800 Marks</h6>
+						<p>This examination is conducted every year in the month of August or September.
+							The commission has brought in certain changes to the examination pattern which is mentioned below:</p>
+							
+						<table class="table table-striped">
+							  <thead>
+								<tr>
+								  <th scope="col">#</th>
+								  <th scope="col">Subject</th>
+								  <th scope="col">Marks</th>
+								  
+								</tr>
+							  </thead>
+							 <tbody>
+								<tr>
+								  <th scope="row">1</th>
+								  <td>English Language (Compulsory) (MCQ) </td>
+								  <td>50</td>
+								  
+								</tr>
+								<tr>
+								  <th scope="row">2</th>
+								  <td>Marathi Language (Compulsory) (MCQ)</td>
+								  <td>50</td>
+							   
+								</tr>
+								<tr>
+								  <th scope="row">3</th>
+								  <td>English Language (Compulsory) (Subjective)</td>
+								   <td>50</td>
+								</tr>
+								 <tr>
+								  <th scope="row">4</th>
+								  <td>Marathi Language (Compulsory) (Subjective)</td>
+								   <td>50</td>
+								</tr>
+								 <tr>
+								  <th scope="row">5</th>
+								  <td>GS-I (History, Geography and Agriculture) </td>
+								   <td>150</td>
+								</tr> <tr>
+								  <th scope="row">6</th>
+								  <td>GS-II (Indian Constitution,Polity and ( with special reference to Maharashtra))</td>
+								  <td>150</td>
+								</tr>
+								<tr>
+								  <th scope="row">7</th>
+								  <td>GS-III (Human Resources and Human Rights)</td>
+								   <td>150</td>
+								</tr>
+								<tr>
+								  <th scope="row">8</th>
+								  <td>GS-IV	 (Economy and Planning,Economics of Development and Agriculture, S&T)</td>
+								   <td>150</td>
+								</tr>
+								<thead>
+								<tr>
+								  <th scope="col"></th>
+								  <th class="text-center" scope="col">Sub-Total</th>
+								  <th scope="col">800</th>
+								</tr>
+							  </thead>
+							 </tbody>
+						</table>
+						
+						<h6>C) Personality Test(Interview)- 100 Marks</h6>
+						<p>
+							The objective of Personality test is to asses the stability of a candidate for a career in public services by a board of competent and unbiased observers.
+							Final selection of a candidate is depended upon their total score obtained in Mains and Personality Test which determines a candidate’s rank.
+						</p>
+						<p>The syllabus of the State Civil Services Examination is provided in the <span><a class="text-primary" href="/downloads" > link here.</a> </span></p>
+						
+						<h5 class="text-center"><span>
+							<a class="text-primary" data-toggle="collapse" href="#MPSCSERVICESLIST"  aria-expanded="false" aria-controls="MPSCSERVICESLIST" href="#MPSCSERVICESLIST">
+								Show List of all posts offered by MPSC-State Services Examination:</a> 
+							</span> </h5>
+						<div class="collapse" id="MPSCSERVICESLIST">
+							<div class="subCourse">
+								<h6>Group 'A' Gazetted Posts :</h6>
+									<ol type="1">
+										<li>Deputy Collector </li>
+										<li>Deputy Superintendent of Police  </li>
+										<li>Deputy District of Registrar, Cooperatives </li>
+										<li>Deputy Engineer </li>
+										<li>Deputy CEO</li>
+										<li>Assistant Executive Engineer </li>
+										<li>Assistant Engineer </li>
+										<li>Asst Commissioner of Sales Tax</li>
+										<li>Chief Officer, Municipality</li>
+										<li>Block Development Officer </li>
+										<li>Finance & Account Officer </li>
+										<li>Assistant Electrical Inspector </li>
+										<li>Electrical Inspector </li>
+										<li>Lecturer  </li>
+										<li>Deputy Superitendant of Land records </li>
+										<li>Asst Conservator of Forest  </li>
+									</ol>
+								<h6>Group 'B' Gazetted Posts :</h6>
+									<ol type="1">
+										<li>District Education Officer2</li>
+										<li>Naib Tahsildar </li>
+										<li>Block Development Officer </li>
+										<li>Chief Officer </li>
+										<li>Assistant Engineer </li>
+										<li>RFO</li>
+									</ol>
+								<p>MPSC also conducts different examinations for different position of Group ‘B’ and Group ‘C’ positions as well.</p>
+									
+								<h6>Group ‘B’ Positions:</h6>
+									<ol type="1">
+										<li>Police Sub-Inspector   </li>
+										<li>Sales Tax Inspector  </li>
+										<li>Assistant Desk officer</li>
+									</ol>
+									
+								<h6>Group ‘C’ Positions:</h6>
+									<ol type="1">
+										<li>Tax Assistant </li>
+										<li>Assistant Motor Vehicle   </li>
+										<li>Clerk Typist</li>
+									</ol>
+							</div>
+						</div>
+						
+						<h6>FAQ's :</h6>
+						<ol type="1">
+							<li>How should I know whether I am suitable for this kind of career?</li>
+							<li>How and when should I begin my preparation for this exam?</li>
+							<li>What is the exact time for one to begin their preparation?</li>
+							<li>What is the Eligibility criteria.</li>
+							<li>Number of attempts for this examination?</li>
+						</ol>
+						
+						<hr>
+						<br>
+							<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
+							<h6 class="lead text-primary" align="center">To put them to rest visit us at our office.</h6>
+							<h6 class="lead text-primary" align="center">We are always happy to help you and GUIDE you.</h6>
+						<br>
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
+					</div>
+				</div>
+			</div>
+			<!-- id mpsc ends -->
+			<div id="MLEP" class="row collapse"  aria-labelledby="mlepKnowMore" data-parent="#course">
+				<h2>MLEP <span >
+				<a id="{{dataID}}" class="fa fa-close cross " data-toggle="collapse" data-target="#{{dataTarget}}"  aria-expanded="false" aria-controls="{{dataTarget}}" ng-click="setCourse(dataID,dataTarget);"></a>
+				</span></h2>
+				<div class="row">
+					<div class="col-sm-4">
+						<img class="img-fluid" alt="logo" src="/img/courses/MLEP.png">
+					</div>
+					<div class="col-sm-8">
+						<h6>Multi Linkage Examination Program</h6>
+						<p>This is an indigenously designed educational program. This course program is designed in such a way 
+						that a middle path to all other competitive exams like Staff Selection commission (SSC), Institute of Banking Personal and 
+						Selection (IBPS) and alike examinations have been structured out. 
+						The candidate will be trained for all these examinations in a common minimum agenda and we guarantee that candidate will clear one of these examinations.</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+					<hr>
+					<br>
+						<h6 class="lead text-danger" align="center">We are sure you must be having more questions on your mind.</h6>
+						<h6 class="lead text-primary" align="center">To put them to rest visit us at our office.</h6>
+						<h6 class="lead text-primary" align="center">We are always happy to help you and GUIDE you.</h6>
+					<br>
+					<h2><span> <a href="#course"><span style="margin-left:50% !important; " align="center" class="fa fa-chevron-circle-up cross " ></span></a></span></h2>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2 col-sm-0 col-xs-0"></div>
+	</div>
+	
+</div>
+</div>
+
+   <!-- Container (youtube Section) -->
+  <div id="lectures" ng-init="getListFromDataForSlides(youtubePlayerData.players,'youtube');" style="background-color: #f3f3f3;padding-top:50px;"  >
+  <br>
+  <h2 class="text-center">VIDEO LECTURES</h2>
+  <p class="text-center">explore our lecture series</p>
+  <div id="carouselExampleControls3" class="carousel slide" data-slide="next" data-ride="carousel" data-interval="false">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+	<div class="container-fluid" >
+	<div class="row" >
+	<div class="col-lg-3"></div>
+	<div class="col-lg-6 text-center">
+	<h3>For More Free Video Subscribe Us Now</h3>
+		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full" data-count="hidden">
+		</div>
+	
+	</div>
+	<div class="col-lg-3"></div>
+	 </div>
+	  </div>
+	   </div>
+    <div class="carousel-item" ng-repeat="list in youtubeList" >
+	<div class="container-fluid" >
+	<div class="row text-center " >
+		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="video in list" >
+			<div id="{{video.player}}"></div>
+		</div>
+    </div>
+	 </div>
+	
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls3" role="button" data-slide="prev" style="width:50px;" title="Previous">
+    <span class="carousel-control-prev-icon arrow " aria-hidden="true"   ></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls3" role="button" data-slide="next" style="width:50px;" title="Next" >
+    <span class="carousel-control-next-icon arrow" aria-hidden="true"  ></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  </div>
+
+  <!-- Container (Mentor Section) -->
+  <div id="mentorship" class="container-fluid" style="background-color: white;" >
+  <h2 class="text-center" >MENTORSHIP PROGRAM</h2>
+	<div class="row">
+		  <div class="col-md-4 slideanim">
+		  <img class="img-fluid" alt="" src="img/mentorship.png" width="300" height="300">
+		  </div>
+		  <div class="col-md-8">
+		  <p>Our program is specially created for </p>
+			<ul>
+				<li>Aspirants who are repeaters and do not wish to enroll for full time program.</li>
+				<li>Aspirants who cannot find time from their busy work schedule for classes and want to utilize maximum of the available time by preparing themselves.</li>
+			</ul>
+			  <p>In this program every aspirant is allotted a "Mentor". This Mentor will be someone who has already cracked different Civil Services examination. 
+				  The Mentor will act like a philosopher and guide. The role of a Mentor is clear cut defined. 
+				  The Mentor will help the aspirant in creating a ad-hoc study program followed by multiple levels of evaluations. 
+				  The candidate has to register at the office for the same. </p>
+			<ul>
+				<li>The Aspirant has to abide by the rules set by the institute and their allotted Mentors.</li>
+				<li>The Aspirant will have both personal meeting as well as telephonic(If required) sessions with their mentors.</li>
+			</ul>	 
+			<p class="lead text-primary text-center">To know more in detail about this program kindly contact on the numbers mentioned in contact us section.</p>
+		  </div>
+		</div>
+
+	</div>
+<div id="honorables" class="">
+    <div class="">
+   <div class="col-md-2 "></div>
+    <div class="col-md-8 container-fluid testimonial "  style="background-color: orange;">
+  <h4 class="text-center">Honorable Mentions</h4>
+<div id="myCarousel" class="carousel slide text-center" data-ride="carousel" data-interval="2000">
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="{{count.slide}}" ng-repeat="count in wellWisherData.wellWishers"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <h5>Our Well Wishers<br></h5>
+		<p>we are supported by powerful personalities</p>
+		<br><br><br>
+      </div>
+      <div class="carousel-item" ng-repeat="wisher in wellWisherData.wellWishers">
+        <h5>{{wisher.name}}<br>{{wisher.post}}</h5>
+		<p>{{wisher.about}}</p>
+		<br><br><br>
+      </div>
+	   <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-2"></div>
+  </div>
+ </div>
+ <div id="mentors" class="mentors" ng-init="getListFromDataForSlides(mentorData.mentors,'mentor2');">
+ <h4 class="text-center mentors-side">We can shape your Future</h4>
+ <hr class="mentors-side">
+  <div id="carouselExampleControls4" class="carousel slide" data-ride="carousel" data-slide="next" data-interval="false">
+  <div class="carousel-inner">
+  <div class="carousel-item active">
+	 <button type="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target=".bd-example-modal-lg"><h4>Book an Appointment Now</h4></button>
+    </div>
+    <div class="carousel-item " ng-repeat="list in mentorsList">
+	<div class="container-fluid" >
+	<div class="row">
+		<div class="col-lg-3 col-md-6 col-sm-6 " style="margin-bottom:10px;" ng-repeat="mentor in list" >
+			<div class="card h-100 d-flex flex-column justify-content-between" > 
+			<!--	<img class="card-img-top rounded-circle" src="img/mentors/{{mentor.image}}" alt="Profile Image"> -->
+				<div class="card-body">
+					<h5 class="card-title">{{mentor.name}}</h5>
+					<ul class="card-text">
+						<li ng-repeat="degree in mentor.degree" >{{degree}}</li>
+					</ul>
+				</div>
+				<div class="card-footer">
+					<small class="text-muted"></small>
+				</div>
+			</div>
+		</div>
+    </div>
+	 </div>
+	 </div>
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls4" role="button" data-slide="prev" style="width:50px;">
+    <span class="carousel-control-prev-icon arrow" aria-hidden="true"  ></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls4" role="button" data-slide="next" style="width:50px;" >
+    <span class="carousel-control-next-icon arrow" aria-hidden="true" ></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  
+ </div>
+</div>
+ <!-- Container scholarship-->
+ <div id="scholarship" class="container-fluid" style="background-color: orange;">
+ <div class="row">
+  <div class="col-md-4 slideanim">
+					<img class="img-fluid" alt="" src="img/scholarship.png" width="300"
+						height="300">
+				</div>
+  <div class="col-md-8">
+  <h2>Scholarship</h2>
+  <h4>YES, we offer it!</h4>
+					<p>	This program is an opportunity for every aspirant. Aspirants who are interested in applying for 
+						the scholarship program will have to fill up a simple form mentioned here online and submit a printout of it at our office. 
+						The aspirant will have to appear for a simple test whose results will be declared within a day. 
+						After satisfactory result the candidate will be offered special scholarships in the fees of a particular course of their choice.</p>
+
+					<hr>
+					<h4>Special Scholarship</h4>
+					<p>Special Scholarship for students from economically backward
+						class. To avail for this the candidate has to provide necessary
+						documents. Depending upon that the candidate will be allotted
+						scholarships.</p>
+					<br>
+					<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target=".bd-example-modal-lg">Book Appointment</button>
+					
+				</div>
+				
+  </div>
+ </div>
+ <!-- Container Gallery-->
+ <div id="gallery" class="container-fluid">
+ <h2 class="text-center" >GALLERY</h2>
+ <p class="text-center">Our achievements and proud moments</p>
+ <hr>
+ <div class="row slideanim" >
+ <div class="col-lg-2 col-md-2  " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery" ng-click="viewImage(photo);" title="View Image" >
+ <img class="img-thumbnail" src="img/gallery/{{photo.name}}">
+ </div>
+ </div>
+ 
+</div>
+
+ <!-- Container (Contact Section) -->
+<div id="contact" class="container-fluid" style="background-color: navy; color: white;">
+  <h2 class="text-center">CONTACT</h2>
+  <p class="text-center">Contact us and we'll get back to you within 24 hours.</p>
+  <div class="row">
+    <div class="col-sm-5">
+      <p><span class="fa fa-map-marker" style="font-size:24px; color:yellow;" ></span>
+	  <a href="https://www.google.co.in/maps/place/GUIDANCE+GROUP+-+Best+UPSC+-+IAS,+MPSC,+Bank+PO+IBPS+%26+SSC+Classes+in+Mumbai,+Dadar/@19.0198827,72.8414611,17.22z/data=!4m5!3m4!1s0x0:0x5c1ca02cda1788a!8m2!3d19.020313!4d72.8413599" style="color:white;">
+	  14, 1st Floor, Plot No. 6, Mukund Mansion, Opp Nakshatra Mall,
+	  Ranade Road, Dadar(W), Mumbai - 400 028</a></p>
+      <p><span class="fa fa-phone" style="font-size:24px;color:#00ff00;"></span> +91 77387 38982</p>
+      <p><span class="fa fa-envelope" style="font-size:24px;color:red;"></span><a href="https://mail.google.com/mail/?view=cm&fs=1&to=guidanceeducon@gmail.com&su=About+Enrollment&body=Respected+Sir," style="color:white;"> guidanceeducon@gmail.com </a></p>
+	  <p>Connect with us on :</p>
+	  <div class="row slideanim">
+		<div >
+		<a href="https://www.facebook.com/guidancegroup1/" class="fa fa-facebook Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.instagram.com/guidancegroup1/" class="fa fa-instagram Ifa"></a>&nbsp;&nbsp;
+		<a href="{{linkedin}}" class="fa fa-linkedin Ifa"></a>&nbsp;&nbsp;
+		<a href="https://www.youtube.com/channel/UCmmrT8dABxBE6D5VSmO-HIw" class="fa fa-youtube Ifa"></a>&nbsp;&nbsp;
+		</div>
+	  </div>
+	    <br>
+    </div>
+	<!--Contact form -->
+    <div class="col-sm-7 ">
+		<div class="typeform-widget" data-url="https://guidancegroup.typeform.com/to/E9OU7B" data-transparency="0" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 250px;"></div> 
+		<script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; 
+		if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() 
+		</script> 
+					
+    </div>
+  </div>
+  <br>
+  <hr style="background-color:white;" >
+	<div class="row">
+		<div class="col-sm-6 text-left">
+			&#169; 2018 Guidance Group | All Rights Reserved.
+		</div>
+		<div class="col-sm-6 text-right">
+			Developed and maintained By <a href="#" title="Developer - Nikhil Inpure">
+			<span style="color:white; font-size: 15px;" >Guidance Educon Pvt.Ltd.</span>
+			</a>
+		</div>
+	</div>
+	
+	</div>
+<!-- forms -->
+<div id="RegisterForm" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+		<!-- TypeForm -->
+		<div class="typeform-widget" data-url="https://guidancegroup.typeform.com/to/E9OU7B" data-transparency="0" data-hide-headers=true data-hide-footer=true style="width: 100%; height: 500px;"></div> 
+		<script> (function() { var qs,js,q,s,d=document, gi=d.getElementById, ce=d.createElement, gt=d.getElementsByTagName, id="typef_orm", b="https://embed.typeform.com/"; 
+		if(!gi.call(d,id)) { js=ce.call(d,"script"); js.id=id; js.src=b+"embed.js"; q=gt.call(d,"script")[0]; q.parentNode.insertBefore(js,q) } })() 
+		</script> 
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-dismiss="modal">Register Later</button>
+	        </div>
+    </div>
+  </div>
+</div>
+<!--gallery Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"> Gallery </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img class="img-fluid" alt="gallery image" src="img/gallery/{{viewImageObj.name}}" width="600" height="600">
+		<br><br>
+		<div>
+			<span ng-if=" viewImageObj.index != '1'"  class="fa fa-angle-double-left galleryArrow " 
+				title="Previous" ng-click="preNextImage(viewImageObj.index,'PREV');"  ></span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span ng-if=" viewImageObj.index != galleryData.gallery.length" class="fa fa-angle-double-right galleryArrow" 
+				title="Next" ng-click="preNextImage(viewImageObj.index,'NEXT');"></span>
+		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Pop up Add -->
+<div class="modal fade" id="popUpAdd" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+		<a class="tooltip-test" title="Contact Us Now" href="#contact">
+		<img class="img-fluid" alt="" src="img/slide/GG Add01.jpg" width="1000" height="800"  ng-click="">
+		</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Notification -->
+<div class="modal fade" id="notification" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+	<table class="table table-hover">
+	  <thead>
+		<tr>
+		  <th scope="col">#</th>
+		  <th scope="col">Notification</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr ng-repeat="notice in newsList">
+		  <th scope="row"> {{$index + 1}}</th>
+		  <th><a ng-href="{{notice.newsLink}}"> {{notice.news}} </a></th>
+		</tr>
+
+	  </tbody>
+	</table>
+      </div>
+	<div class="modal-footer ">
+        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      	</div>
+    </div>
+  </div>
+</div>
+</body>
+<!-- build 2.5.8 -->
+</html>
