@@ -92,11 +92,11 @@ $rootScope.courseData={
 			  },
 			   {
 				  "type":"Classroom",
-				  "isAvailable":"N"
+				  "isAvailable":"checked"
 			  },
 			   {
 				  "type":"Mentorship",
-				 "isAvailable":"checked"
+				 "isAvailable":"N"
 			  }
 				],
       "info":"Multi-Linkage Examination Program",
