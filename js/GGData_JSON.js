@@ -229,18 +229,18 @@ $rootScope.testimonialData={
 	{ 
 		"index":"5",
 		"name":"Tushar Bhor",
-		"Image":"default.jpg",
-		"knownFor":"student of SSC/IBPS",
-		"rating":"2",
-		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+		"Image":"aneesh.jpg",
+		"knownFor":"Student of MPSC",
+		"rating":"5",
+		"says":"This is fabulous class for civil service's Examination."
     },
 	{ 
 		"index":"6",
-		"name":"Dhiraj Ghadi",
-		"Image":"default.jpg",
-		"knownFor":"student of MPSC",
-		"rating":"4",
-		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+		"name":"Satish Singh",
+		"Image":"satish.jpg",
+		"knownFor":"Parents",
+		"rating":"5",
+		"says":"Dynamic way of teaching. Strategic plan for every student to prepare for Competitive exams. My daughter is currently benefits of this"
     }
 	]
 };
