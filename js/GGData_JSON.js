@@ -330,7 +330,7 @@ $rootScope.galleryData={
     },
     {
 		"index":"17",
-      "name":"img17.jpg",
+      "name":"img17.JPG",
       "url":"#"
     },
     {
