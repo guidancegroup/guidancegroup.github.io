@@ -196,11 +196,11 @@ $rootScope.testimonialData={
 	"testimonial":[
 	{ 
 		"index":"1",
-		"name":"john doe",
+		"name":"Vanita Valvi",
 		"Image":"default.jpg",
 		"knownFor":"Student of something",
 		"rating":"3",
-		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+		"says":"सर्वात महत्वाचे आणि उत्कृष्ट मार्गदर्शन सोप्या शब्दात समजावून सांगणारे विविध विषयात उत्कृष्ट असलेले  शिक्षक  त्याच्या मार्गदर्शनाने आज मला MPSC च्या तयारी साठी  खुप छान आणि महत्वाचे मार्गदर्शनाचा लाभ होतोय म्हणून Guidance Group चे मनःपुर्वक आभार best for MPSC and UPSC students"
     },
 	{ 
 		"index":"2",
