@@ -84,7 +84,7 @@ $rootScope.courseData={
     },
 	{
       "name":"SSC",
-	  "Image":"MPSC.png",
+	  "Image":"SSC Final.png",
 	  "availableIn":[
 			  {
 				  "type":"Online",
