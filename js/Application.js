@@ -75,4 +75,6 @@ app.controller('appCtrl',function($rootScope,$scope,$http){
 	$rootScope.forceReload=function(){
 		location.reload();
 	};
+	
+	
 });
