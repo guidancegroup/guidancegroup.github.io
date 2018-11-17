@@ -292,6 +292,27 @@ $rootScope.galleryData={
 		"index":"9",
       "name":"img9.jpg",
       "url":"#"
+    },
+    {
+		"index":"10",
+      "name":"img10.jpg",
+      "url":"#"
+    },
+    {
+		"index":"11",
+      "name":"img11.jpg",
+      "url":"#"
+    },
+    {
+		"index":"12",
+      "name":"img12.jpg",
+      "url":"#"
+    },
+    {
+		"index":"13",
+      "name":"img13.jpg",
+      "url":"#"
+	    
     }
     
     ]
