@@ -112,7 +112,7 @@ $rootScope.mentorData={
       "name":"Samir Inpure",
       "about":"",
       "degree":["M.Com(Management)", "M.A(Economics)", "LLB Pursuing", "appeared (Territorial Army) Interview round"],
-	  "image":"DSC_0012.JPG",
+	  "image":"samir.jpg",
       "url":"#"
     },
     {
