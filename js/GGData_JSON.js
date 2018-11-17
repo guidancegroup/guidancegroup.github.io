@@ -212,19 +212,19 @@ $rootScope.testimonialData={
     },
 	{ 
 		"index":"3",
-		"name":"Rahul Palande",
-		"Image":"default.jpg",
-		"knownFor":"25 years Experienced proffesor",
+		"name":"Shrushti Masurkar",
+		"Image":"Shrushti.jpg",
+		"knownFor":"Student of Banking",
 		"rating":"5",
-		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+		"says":"Best class ever went.. perfect guidance to ur success"
     },
 	{ 
 		"index":"4",
-		"name":"Piyush Nikam",
+		"name":"Rupesh Mohit",
 		"Image":"default.jpg",
-		"knownFor":"Director of something",
+		"knownFor":"#",
 		"rating":"5",
-		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+		"says":"They are provide training to students who wish to make their careers in any kind of Competitive Examination like Government Sector, Private Sector. GUIDANCE GROUP Team is of highly qualified individuals, which has been helping many students for their Career Counselling as well."
     },
 	{ 
 		"index":"5",
