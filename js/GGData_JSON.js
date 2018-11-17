@@ -2,23 +2,105 @@ app.controller('dataCtrl',function($rootScope,$scope){
 
 $rootScope.slogan="";
 
+//Live classroom configuration
+$rootScope.liveClassData=[
+	{
+		"header":"Click Here To Join",
+		"title":"Live Classroom",
+		"info":"Be ready with your meeting ID",
+		"link":"http://guidancegroup.co.in/"
+	},
+	{
+		"header":"",
+		"title":"",
+		"info":"",
+		"link":""
+	}
+]
+
+
 //courses entries
 $rootScope.courseData={
   "courses":[
     {
       "name":"MPSC",
-      "text":"What is MPSC?",
+	  "Image":"MPSC.png",
+	  "availableIn":[
+			  {
+				  "type":"Online",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Classroom",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Mentorship",
+				  "isAvailable":"checked"
+			  }
+				],
+      "info":"What is MPSC?",
 	  "id":"mpscKnowMore"
     },
     {
       "name":"UPSC",
-      "text":"What is UPSC?",
+	  "Image":"UPSC.png",
+	  "availableIn":[
+			  {
+				  "type":"Online",
+				  "isAvailable":"N"
+			  },
+			   {
+				  "type":"Classroom",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Mentorship",
+				  "isAvailable":"checked"
+			  }
+				],
+      "info":"What is UPSC?",
 	  "id":"upscKnowMore"
     },
     {
       "name":"MLEP",
-      "text":"Multi-Linkage Examination Program",
+	  "Image":"MLEP.png",
+	  "availableIn":[
+			  {
+				  "type":"Online",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Classroom",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Mentorship",
+				  "isAvailable":"N"
+			  }
+				],
+      "info":"Multi-Linkage Examination Program",
 	  "id":"mlepKnowMore"
+    },
+	{
+      "name":"SSC",
+	  "Image":"MPSC.png",
+	  "availableIn":[
+			  {
+				  "type":"Online",
+				  "isAvailable":"checked"
+			  },
+			   {
+				  "type":"Classroom",
+				  "isAvailable":"N"
+			  },
+			   {
+				  "type":"Mentorship",
+				 "isAvailable":"checked"
+			  }
+				],
+      "info":"Multi-Linkage Examination Program",
+	  "id":""
     }
     ]
 }
@@ -109,6 +191,59 @@ $rootScope.wellWisherData={
     
     ]
 }
+
+$rootScope.testimonialData={
+	"testimonial":[
+	{ 
+		"index":"1",
+		"name":"john doe",
+		"Image":"default.jpg",
+		"knownFor":"Student of something",
+		"rating":"3",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    },
+	{ 
+		"index":"2",
+		"name":"Neha  Rathod",
+		"Image":"default.jpg",
+		"knownFor":"Student of UPSC",
+		"rating":"4",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    },
+	{ 
+		"index":"3",
+		"name":"Rahul Palande",
+		"Image":"default.jpg",
+		"knownFor":"25 years Experienced proffesor",
+		"rating":"5",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    },
+	{ 
+		"index":"4",
+		"name":"Piyush Nikam",
+		"Image":"default.jpg",
+		"knownFor":"Director of something",
+		"rating":"5",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    },
+	{ 
+		"index":"5",
+		"name":"Tushar Bhor",
+		"Image":"default.jpg",
+		"knownFor":"student of SSC/IBPS",
+		"rating":"2",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    },
+	{ 
+		"index":"6",
+		"name":"Dhiraj Ghadi",
+		"Image":"default.jpg",
+		"knownFor":"student of MPSC",
+		"rating":"4",
+		"says":"Awesome dinawnnoaf foanwfono nwanoann waw noanwonoanonan wanwad"
+    }
+	]
+};
 
 //gallery  photo entries
 $rootScope.galleryData={
