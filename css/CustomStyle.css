@@ -312,7 +312,31 @@ a:-webkit-any-link {
 
 @media not screen and (max-width: 600px) {
     .slide-size {
-        height: 400px !important;
+        height: 450px !important;
     }
 }
+
+#primaryNav{
+	letter-spacing: 4px;
+}
+#secondaryNav{
+	z-index:9990 !important;
+}
+
+.star-checked{
+	color:orange;
+}
+
+.tick-checked{
+	color:green;
+}
+
+.gallery{
+	width:36rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .gallery {width:24rem;}
+}
+
 }
