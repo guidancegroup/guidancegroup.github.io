@@ -32,6 +32,14 @@ $(document).ready(function(){
     });
   });
   
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+
+	$(function () {
+	  $('[data-toggle="popover"]').popover()
+	});
+  
 	$('.navDown').hover(function() {
 		$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
 	}, function() {
