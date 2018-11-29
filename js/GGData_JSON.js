@@ -208,7 +208,7 @@ $rootScope.testimonialData={
 		"Image":"Seema.jpg",
 		"knownFor":"Student of Banking",
 		"rating":"5",
-		"says":"Good class to start you career in banking sector with best faculties"
+		"says":"Good class to start your career in banking sector with best faculties"
     },
 	{ 
 		"index":"3",
@@ -228,7 +228,7 @@ $rootScope.testimonialData={
     },
 	{ 
 		"index":"5",
-		"name":"Tushar Bhor",
+		"name":"Anish Nagwekar",
 		"Image":"aneesh.jpg",
 		"knownFor":"Student of MPSC",
 		"rating":"5",
