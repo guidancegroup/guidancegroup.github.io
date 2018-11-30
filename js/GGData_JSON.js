@@ -250,91 +250,76 @@ $rootScope.galleryData={
   "gallery":[
     { 
 		"index":"1",
-      "name":"img1.jpg",
-      "url":"#"
-    },
-    {
-		"index":"2",
-      "name":"img2.jpg",
-      "url":"#"
-    },
-    {
-		"index":"3",
-      "name":"img3.jpg",
-      "url":"#"
-    },
-    {
-		"index":"4",
       "name":"img4.jpg",
       "url":"#"
     },
     {
-		"index":"5",
+		"index":"2",
       "name":"img7.jpg",
       "url":"#"
     },
     {
-		"index":"6",
+		"index":"3",
       "name":"img8.jpg",
       "url":"#"
     },
     {
-		"index":"7",
+		"index":"4",
       "name":"img9.jpg",
       "url":"#"
     },
     {
-		"index":"8",
+		"index":"5",
       "name":"img10.jpg",
       "url":"#"
     },
     {
-		"index":"9",
+		"index":"6",
       "name":"img11.jpg",
       "url":"#"
     },
     {
-		"index":"10",
+		"index":"7",
       "name":"img12.jpg",
       "url":"#"
     },
     {
-		"index":"11",
+		"index":"8",
       "name":"img13.jpg",
       "url":"#"
     },
     {
-		"index":"12",
+		"index":"9",
       "name":"img14.jpg",
       "url":"#"
     },
     {
-		"index":"13",
+		"index":"10",
       "name":"img15.jpg",
       "url":"#"
     },
     {
-		"index":"14",
+		"index":"11",
       "name":"img16.jpg",
       "url":"#"
     },
     {
-		"index":"15",
+		"index":"12",
       "name":"img17.JPG",
       "url":"#"
     },
     {
-		"index":"16",
+		"index":"13",
       "name":"img18.jpg",
       "url":"#"
     },
     {
-		"index":"17",
+		"index":"14",
       "name":"img19.jpg",
       "url":"#"
     },
     {
-		"index":"18",
+		"index":"15",
       "name":"img20.jpg",
       "url":"#"
     }
