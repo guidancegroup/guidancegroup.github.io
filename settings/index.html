@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html ng-app="myAdmin">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>admin</title>
+<link rel="icon" type="image/gif/png" href="">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style>
+.active-nav{
+	background-color:gray;
+	border-bottom:solid 1px orange;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+	
+	border-bottom: 1px solid #dddddd;
+}
+
+</style>
+<body id="admin" layout="column"   ng-controller="adminCtrl" ng-cloak> 
+<section layout="row" flex>
+	<md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-md')"
+        md-whiteframe="4">
+
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Menu</h1>
+      </md-toolbar>
+      <md-content >
+	  <md-list flex>
+		<md-list-item class="md-2-line" ng-repeat="item in data.adminMenu" ng-click="viewSelected(item);"  md-theme="dark-green"  >
+			<i class="md-avatar {{item.menuIcon}}" ng-style="{'font-size':'36px'}"></i>
+          <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.menuId}}" /> -->
+          <div class="md-list-item-text" layout="column">
+            <a >{{ item.menuName }}</a>
+            
+          </div>
+        </md-list-item>
+	</md-list>
+	  
+        <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide show-gt-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+
+    </md-sidenav>
+	
+	<md-content layout="column" layout-xs="row" flex md-theme="dark-green" md-swipe-right="onSwipeRight($event, $target)">
+		<md-tabs md-dynamic-height md-border-bottom >
+		
+		  <md-tab label="View Records">
+			<md-content class="md-padding">
+			  <h1 class="md-display-2">{{activeMenu}}</h1>
+			  <md-card>
+					 <md-card-content>
+					   <table>
+						<tr >
+							<th ng-repeat="header in headerList track by $index">{{header}}</th>
+						 </tr>
+						 <tr ng-repeat="recs in containList">
+							<td ng-repeat="rec in recs track by $index" ng-init="tp=detectType(rec);subtp=detectType(rec[0]);">
+								<span ng-if="tp=='[object String]' || tp == '[object Number]' || tp == '[object Boolean]' ">
+									{{rec}} 
+								</span>
+								<span ng-if="tp=='[object Array]' && subtp=='[object Object]' ">
+									<p ng-repeat="subCon in subContainList track by $index">{{subCon}}</p>
+								</span>
+								<span ng-if="tp=='[object Array]' && subtp=='[object String]' ">
+									<p ng-repeat="subRec in rec track by $index">{{subRec}}</p>
+								</span>
+							</td>
+						 </tr>
+					   </table>
+					 </md-card-content>
+					 <md-card-footer>
+					   <md-button class="md-raised md-cornered md-primary">Refresh Records</md-button> 
+					 </md-card-footer>
+			</md-card>
+			  
+			</md-content>
+		  </md-tab>
+		  
+		  <md-tab label="Add Records">
+			<md-content class="md-padding">
+			  <h1 class="md-display-2">{{activeMenu}}</h1>
+					<md-card>
+					 <md-card-content>
+						<form name="userForm">
+							<md-input-container class="md-block" flex-gt-sm ng-repeat="fields in fieldList track by $index" 
+								ng-init="enableChips(fields);">
+								<div ng-if="fields.fieldType=='[object String]' 
+												||fields.fieldType == '[object Number]' 
+												|| fields.fieldType == '[object Boolean]' ">
+								<label>{{fields.fieldName}} </label>
+								<input  ng-model="user.firstName">
+								</div>
+								
+							</md-input-container >
+							{{ftype}}
+							<md-chips
+									ng-if="enableChip"
+								  ng-model="listContain"
+								  md-separator-keys="separators"
+								  placeholder="{{chipLabel}}"
+								  secondary-placeholder="Comma separated tags"></md-chips>
+							
+						</form>
+						
+					   
+					 </md-card-content>
+					 <md-card-footer>
+					   <md-button class="md-raised md-cornered md-primary">Add Record</md-button> 
+					 </md-card-footer>
+					</md-card>
+			 </md-content>
+		  </md-tab>
+	  </md-tabs>
+		
+	</md-content>
+	
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+<script type="text/javascript">
+var admin= angular.module("myAdmin",['ngMaterial','ngMessages']);
+
+admin.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('orange')
+    .accentPalette('indigo')
+
+	$mdThemingProvider.theme('dark-green').backgroundPalette('green').dark();
+});
+
+admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSidenav, $log,$mdConstant){
+	
+	$scope.separators = [$mdConstant.KEY_CODE.ENTER, $mdConstant.KEY_CODE.COMMA];
+    $scope.listContain = [];
+	$scope.enableChip=false;
+
+	$scope.toggleLeft = function () {
+		  $mdSidenav('left').toggle()
+			.then(function () {
+			  $log.debug("close LEFT is done");
+			});
+	};
+
+	$scope.onSwipeRight = function(ev, target) {
+			$mdSidenav('left').open()
+			.then(function () {
+			  $log.debug("on right swipe Nav Open");
+			  $log.log('Event Target: ', ev.target);
+			  $log.log('Event Current Target: ', ev.currentTarget);
+			  $log.log('Original Current Target: ', target.current);
+			});
+	}
+ 
+	$scope.viewSelected=function(menu){
+		$scope.enableChip=false;
+		console.log("enableChip "+$scope.enableChip);
+		$scope.activeMenu=menu.menuName;
+		$scope.headerList=[];
+		$scope.containList=[];
+		$scope.fieldList=[];
+		var contain = menu.menuContain;
+		$scope.headerList=$scope.getKeys(contain[0]);
+		console.log("headerList "+$scope.headerList);
+		
+		for(var key in contain[0]){
+			var field=contain[0][key];
+			var fieldType=$scope.detectType(field);
+			if(fieldType=='[object Array]'){
+				$scope.enableChip=true;
+				$scope.chipLabel=key;
+				console.log("enableChip "+$scope.enableChip);
+			}
+			var fieldObj={};
+			fieldObj.fieldName=key;
+			fieldObj.fieldType=fieldType;
+			$scope.fieldList.push(fieldObj);
+			
+		}
+		console.log("fieldList "+$scope.fieldList);
+		for(var i=0;i<contain.length;i++){
+			console.log("menuContain "+contain[i]);
+			var tempList=[];
+			for(var j=0;j<$scope.headerList.length;j++){
+				var tempContain=contain[i][$scope.headerList[j]];
+				
+				var containType=$scope.detectType(tempContain);
+				if(containType=='[object Array]'){
+					console.log($scope.headerList[j]+"type of "+containType);
+					containType=$scope.detectType(tempContain[0]);
+					var subKeyList=[];
+					if(containType=='[object Object]'){
+						console.log("object detected "+containType);
+						subKeyList=$scope.getKeys(tempContain[0]);
+						console.log(subKeyList);
+						$scope.subContainList=[];
+						for(var l=0;l<tempContain.length;l++){
+							for(var k=0;k<subKeyList.length;k++){
+								var str="";
+								console.log("tempContain"+tempContain[l]);
+								str=subKeyList[k]+" : "+tempContain[l][subKeyList[k]];
+								$scope.subContainList.push(str);
+							}
+						}
+						
+					}
+					
+				}
+				
+				tempList.push(tempContain);
+			}
+			console.log(tempList);
+			$scope.containList.push(tempList);
+			 
+		}
+		console.log($scope.containList);
+	}
+	
+	$scope.detectType=function(element){
+		return Object.prototype.toString.call(element);
+	}
+	
+	$scope.getKeys=function(obj){
+		var keyList=[];
+		for(var key in obj){
+			keyList.push(key);
+			console.log(key);
+		}
+		return keyList;
+	};
+
+
+//========================================//
+$scope.data={
+  "adminMenu": [
+    {
+      "menuId": 1,
+      "menuName": "Courses",
+	  "menuIcon":"fa fa-book",
+      "menuContain": [
+        {
+          "name": "MPSC",
+          "Image": "MPSC.png",
+          "availableIn": [
+            {
+              "type": "Online",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Classroom",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Mentorship",
+              "isAvailable": "checked"
+            }
+          ],
+          "info": "What is MPSC?",
+          "id": "mpscKnowMore"
+        },
+        {
+          "name": "UPSC",
+          "Image": "UPSC.png",
+          "availableIn": [
+            {
+              "type": "Online",
+              "isAvailable": "N"
+            },
+            {
+              "type": "Classroom",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Mentorship",
+              "isAvailable": "checked"
+            }
+          ],
+          "info": "What is UPSC?",
+          "id": "upscKnowMore"
+        },
+        {
+          "name": "MLEP",
+          "Image": "MLEP.png",
+          "availableIn": [
+            {
+              "type": "Online",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Classroom",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Mentorship",
+              "isAvailable": "N"
+            }
+          ],
+          "info": "Multi-Linkage Examination Program",
+          "id": "mlepKnowMore"
+        },
+        {
+          "name": "SSC",
+          "Image": "SSC Final.png",
+          "availableIn": [
+            {
+              "type": "Online",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Classroom",
+              "isAvailable": "checked"
+            },
+            {
+              "type": "Mentorship",
+              "isAvailable": "N"
+            }
+          ],
+          "info": "Multi-Linkage Examination Program",
+          "id": ""
+        }
+      ]
+    },
+    {
+      "menuId": 2,
+      "menuName": "Live Classes",
+	  "menuIcon":"fa fa-video-camera",
+      "menuContain": [
+        {
+          "header": "Click Here To Join",
+          "title": "Live Classroom",
+          "info": "Be ready with your meeting ID",
+          "link": "http://guidancegroup.co.in/"
+        },
+        {
+          "header": "",
+          "title": "",
+          "info": "",
+          "link": ""
+        }
+      ]
+    },
+    {
+      "menuId": 3,
+      "menuName": "Mentors",
+	  "menuIcon":"fa fa-user",
+      "menuContain": [
+        {
+          "name": "Samir Inpure",
+          "about": "",
+          "degree": [
+            "M.Com(Management)",
+            "M.A(Economics)",
+            "LLB Pursuing",
+            "appeared (Territorial Army) Interview round"
+          ],
+          "image": "samir01.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Akshay Goud",
+          "about": "",
+          "degree": [
+            "B.E (Computers)",
+            "M.A (Public Administration)",
+            "M.E(CNIS) Pursuing"
+          ],
+          "image": "AkshayGoud.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Hitesh Potdar",
+          "about": "",
+          "degree": [
+            "B.Tech (Mechanical)",
+            "M.Tech (Mechanical)",
+            "appeared UPSC-CSE Interview"
+          ],
+          "image": "HiteshPotdar.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Akshay Palande",
+          "about": ",  has  .",
+          "degree": [
+            "B.E (Mechanical)",
+            "M.A(Public Administration)",
+            "appeared twice UPSC-CSE Mains"
+          ],
+          "image": "AkshayPalande.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Amit Sarwade",
+          "about": "",
+          "degree": [
+            "BMS",
+            "cracked Tier-1 examinations of IBPS/PO and Clerical",
+            "specializes in Quantitative Aptitude"
+          ],
+          "image": "AmitSarwade.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Dr. Vaibhav Napte",
+          "about": "Has , has achieved a feat of  etc in the .",
+          "degree": [
+            "appeared UPSC-CAPF Interview",
+            "appeared Mains examinations of MPSC,STI,PSI,UPSC in same year"
+          ],
+          "image": "VaibhavNapte.jpg",
+          "url": "#"
+        },
+        {
+          "name": "Monika Sethia",
+          "about": "",
+          "degree": [
+            "M.COM",
+            "NET/SET qualified",
+            "Specializes in English"
+          ],
+          "image": "MonikaSethia.jpg",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "menuId": 4,
+      "menuName": "Well Wishers Slides",
+	  "menuIcon":"fa fa-smile-o",
+      "menuContain": [
+        {
+          "name": "Nitin Kusalkar",
+          "about": "Currently serving in Odisha cadre.",
+          "post": "IPS",
+          "slide": "1"
+        },
+        {
+          "name": "Swapnil Meshram ",
+          "about": "Currently serving in Odisha cadre.",
+          "post": "Assistant BDO",
+          "slide": "2"
+        },
+        {
+          "name": "Rahul Nikam",
+          "about": "B.E (PRODUCTION), has appeared UPSC-CSE Interview round.",
+          "post": "Nayab Tahasildar",
+          "slide": "3"
+        },
+        {
+          "name": "Digvijay Patil",
+          "about": "B.E, Author of a book specially designed for students focusing on Assistant Commadant position.",
+          "post": "Assistant Commandant Officer",
+          "slide": "4"
+        }
+      ]
+    },
+    {
+      "menuId": 5,
+      "menuName": "Testimonial",
+	  "menuIcon":"fa fa-quote-left",
+      "menuContain": [
+        {
+          "index": "1",
+          "name": "Vanita Valvi",
+          "Image": "default.jpg",
+          "knownFor": "MPSC Student",
+          "rating": "5",
+          "says": "सर्वात महत्वाचे आणि उत्कृष्ट मार्गदर्शन सोप्या शब्दात समजावून सांगणारे विविध विषयात उत्कृष्ट असलेले  शिक्षक  त्याच्या मार्गदर्शनाने आज मला MPSC च्या तयारी साठी  खुप छान आणि महत्वाचे मार्गदर्शनाचा लाभ होतोय म्हणून Guidance Group चे मनःपुर्वक आभार best for MPSC and UPSC students"
+        },
+        {
+          "index": "2",
+          "name": "Seema Ahirwar",
+          "Image": "Seema.jpg",
+          "knownFor": "Student of Banking",
+          "rating": "5",
+          "says": "Good class to start your career in banking sector with best faculties"
+        },
+        {
+          "index": "3",
+          "name": "Shrushti Masurkar",
+          "Image": "Shrushti.jpg",
+          "knownFor": "Student of Banking",
+          "rating": "5",
+          "says": "Best class ever went.. perfect guidance to ur success"
+        },
+        {
+          "index": "4",
+          "name": "Rupesh Mohit",
+          "Image": "default.jpg",
+          "knownFor": "#",
+          "rating": "5",
+          "says": "They are provide training to students who wish to make their careers in any kind of Competitive Examination like Government Sector, Private Sector. GUIDANCE GROUP Team is of highly qualified individuals, which has been helping many students for their Career Counselling as well."
+        },
+        {
+          "index": "5",
+          "name": "Anish Nagwekar",
+          "Image": "aneesh.jpg",
+          "knownFor": "Student of MPSC",
+          "rating": "5",
+          "says": "This is fabulous class for civil service's Examination."
+        },
+        {
+          "index": "6",
+          "name": "Satish Singh",
+          "Image": "satish.jpg",
+          "knownFor": "Parents",
+          "rating": "5",
+          "says": "Dynamic way of teaching. Strategic plan for every student to prepare for Competitive exams. My daughter is currently benefits of this"
+        }
+      ]
+    },
+    {
+      "menuId": 6,
+      "menuName": "Gallery",
+	  "menuIcon":"fa fa-file-photo-o",
+      "menuContain": [
+        {
+          "index": "1",
+          "name": "img1.jpg",
+          "url": "#"
+        },
+        {
+          "index": "2",
+          "name": "img2.jpg",
+          "url": "#"
+        },
+        {
+          "index": "3",
+          "name": "img3.jpg",
+          "url": "#"
+        },
+        {
+          "index": "4",
+          "name": "img4.jpg",
+          "url": "#"
+        },
+        {
+          "index": "5",
+          "name": "img7.jpg",
+          "url": "#"
+        },
+        {
+          "index": "6",
+          "name": "img8.jpg",
+          "url": "#"
+        },
+        {
+          "index": "7",
+          "name": "img9.jpg",
+          "url": "#"
+        },
+        {
+          "index": "8",
+          "name": "img10.jpg",
+          "url": "#"
+        },
+        {
+          "index": "9",
+          "name": "img11.jpg",
+          "url": "#"
+        },
+        {
+          "index": "10",
+          "name": "img12.jpg",
+          "url": "#"
+        },
+        {
+          "index": "11",
+          "name": "img13.jpg",
+          "url": "#"
+        },
+        {
+          "index": "12",
+          "name": "img14.jpg",
+          "url": "#"
+        },
+        {
+          "index": "13",
+          "name": "img15.jpg",
+          "url": "#"
+        },
+        {
+          "index": "14",
+          "name": "img16.jpg",
+          "url": "#"
+        },
+        {
+          "index": "15",
+          "name": "img17.JPG",
+          "url": "#"
+        },
+        {
+          "index": "16",
+          "name": "img18.jpg",
+          "url": "#"
+        },
+        {
+          "index": "17",
+          "name": "img19.jpg",
+          "url": "#"
+        },
+        {
+          "index": "18",
+          "name": "img20.jpg",
+          "url": "#"
+        }
+      ]
+    },
+    {
+      "menuId": 7,
+      "menuName": "Youtube Videos",
+	  "menuIcon":"fa fa-youtube-play",
+      "menuContain": [
+        {
+          "name": "player1",
+          "player": "player1"
+        },
+        {
+          "name": "player2",
+          "player": "player2"
+        },
+        {
+          "name": "player3",
+          "player": "player3"
+        },
+        {
+          "name": "player4",
+          "player": "player4"
+        }
+      ]
+    },
+    {
+      "menuId": 8,
+      "menuName": "Downloads",
+	  "menuIcon":"fa fa-file",
+      "menuContain": [
+        {
+          "fileName": "State Service Main Examination Syllabus [In Marathi].pdf",
+          "examination": "MPSC",
+          "category": "syllabus"
+        },
+        {
+          "fileName": "UPSC Syllabus New.pdf",
+          "examination": "UPSC",
+          "category": "syllabus"
+        },
+        {
+          "fileName": "Bank Examination Syllabus.pdf",
+          "examination": "Bank",
+          "category": "syllabus"
+        },
+        {
+          "fileName": "State Service Main Examination-[In English].pdf",
+          "examination": "MPSC",
+          "category": "syllabus"
+        },
+        {
+          "fileName": "State Services Preliminary Examination.pdf",
+          "examination": "MPSC",
+          "category": "syllabus"
+        },
+        {
+          "fileName": "UPSC Book List.pdf",
+          "examination": "UPSC",
+          "category": "book"
+        }
+      ]
+    },
+    {
+      "menuId": 9,
+      "menuName": "Main Slide Show",
+	  "menuIcon":"fa fa-object-group",
+      "menuContain": [
+        {
+          "slide": 1,
+          "name": "Website.jpg"
+        },
+        {
+          "slide": 2,
+          "name": "MPSC.jpg"
+        }
+      ]
+    },
+    {
+      "menuId": 10,
+      "menuName": "Notifications",
+	  "menuIcon":"fa fa-bell",
+      "menuContain": [
+        {
+          "news": "Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 ",
+          "newsLink": ""
+        }
+      ]
+    }
+  ]
+};
+//=====================================================================================//
+
+$scope.viewSelected($scope.data.adminMenu[0]); 
+
+
+});
+
+
+</script>
+</body>
+
+</html>
