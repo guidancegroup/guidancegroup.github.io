@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html ng-app="myAdmin">
 <head>
@@ -42,52 +43,68 @@ th {
 	<md-sidenav
         class="md-sidenav-left"
         md-component-id="left"
-        md-is-locked-open="$mdMedia('gt-md')"
+        md-is-locked-open="$mdMedia('gt-xs')"
         md-whiteframe="4">
 		
-      <md-toolbar class=" md-theme-indigo">
-	  <div class="md-toolbar-tools">
-		  <img ng-src="GGlogo.png"  style="width:40px;height:40px; border-radius :50px" alt="logo" />
-        <h1 layout-align="center center" >Menu</h1>
-		</div>
-      </md-toolbar>
+	<md-toolbar class="" >
+      <div layout="row" class="inset">
+        <md-toolbar-filler layout="row" layout-align="center center">
+          <img ng-src="GGlogo.png" style="border-radius :50px"   alt="logo" />
+        </md-toolbar-filler>
+        <h2 class="md-toolbar-tools">
+          <span>Menu</span>
+        </h2>
+      </div>
+    </md-toolbar>
+		
       <md-content >
 	  <md-list flex >
-		<md-list-item class="md-2-line" ng-repeat="item in data.adminMenu track by $index " ng-click="viewSelected(item,$index);"   >
+		<md-list-item  class="md-2-line " ng-repeat="item in data.adminMenu track by $index " ng-click="viewSelected(item,$index);" >
 			<i class="md-avatar {{item.menuIcon}}" ng-style="{'font-size':'36px'}"></i>
           <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.menuId}}" /> -->
           <div class="md-list-item-text" layout="column">
-            <a >{{ item.menuName }}</a>
+            <a >{{ item.menuName }} </a>
             
-          </div>
-        </md-list-item>
-	</md-list>
-	  
-        <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md>
-          Close Sidenav Left
-        </md-button>
-        <p hide show-gt-md>
-          This sidenav is locked open on your device. To go back to the default behavior,
-          narrow your display.
-        </p>
+			  </div>
+			  <md-divider md-inset hide-sm ></md-divider>
+               <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+			</md-list-item>
+		</md-list>
+		<md-divider ></md-divider>
+		  <a title="Nikhil Inpure" href="#" ng-style="{'font-size':'12px'}">developed and maintained by Guidance Educon Pvt. Ltd.</a>
+		  <br><br>
       </md-content>
-
+		
     </md-sidenav>
 	
 	<md-content layout="column" layout-xs="row" flex  md-swipe-right="onSwipeRight($event, $target)">
-		<md-tabs md-dynamic-height md-border-bottom >
+		<md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab" >
 		
-		  <md-tab label="View Records">
-			<md-content class="md-padding">
-			  <h1 class="md-display-2">{{activeMenu}}</h1>
-			  <md-card>
+		
+		  <md-tab label="View Records" >
+			<md-content class="md-padding" >
+				<div layout="row" layout-align="end end">
+			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
+			 	 
+			 	 <md-input-container class="md-icon-float md-block">
+			      <!-- Use floating label instead of placeholder -->
+			      <label>Quick Search</label>
+			      <md-icon ><i class="md-avatar fa fa-search" ng-style="{'font-size':'24px','color':'green'}"></i></md-icon>
+			      <input ng-model="searchKey" type="text">
+			    </md-input-container>
+			 	 
+			  </div>
+			  <md-card  >
 					 <md-card-content>
+					
 					   <table>
 						<tr >
 							<th ng-repeat="header in headerList track by $index">{{header}}</th>
+							<th><i class="md-avatar fa fa-pencil " ng-style="{'font-size':'24px'}" ></i></th>
 							<th><i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px'}" ></i></th>
+							
 						 </tr>
-						 <tr ng-repeat="recs in containList">
+						 <tr ng-repeat="recs in containList| filter:searchKey">
 							<td ng-repeat="rec in recs track by $index" ng-init="tp=detectType(rec);subtp=detectType(rec[0]);">
 								<span ng-if="tp=='[object String]' || tp == '[object Number]' || tp == '[object Boolean]' ">
 									{{rec}} 
@@ -96,9 +113,13 @@ th {
 									<p ng-repeat="subRec in rec track by $index">{{subRec}}</p>
 								</span>
 							</td>
-							<td><a   class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'red'}"  
-										href="#" ng-click="deleteRecord($index);"></a>
+							<td><a   class="md-avatar fa fa-pencil " ng-style="{'font-size':'24px','color':'navy','cursor':'pointer'}"  
+										 ng-click="editRecord($index);"></a>
 							</td>
+							<td><a   class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'red','cursor':'pointer'}"  
+										 ng-click="deleteRecord($index);"></a>
+							</td>
+							
 							
 						 </tr>
 					   </table>
@@ -111,10 +132,10 @@ th {
 			</md-content>
 		  </md-tab>
 		  
-		  <md-tab label="Add Records">
+		  <md-tab label="Add Records" ng-click="resetMode();">
 			<md-content class="md-padding">
 			  <h1 class="md-display-2">{{activeMenu}}</h1>
-					<md-card>
+					<md-card >
 					 <md-card-content>
 						<form  ng-submit="addRecord();">
 							<md-input-container class="md-block" flex-gt-sm ng-repeat="fields in fieldList track by $index"  
@@ -135,46 +156,57 @@ th {
 							</md-input-container >
 							
 							<md-button type="submit" class="md-raised md-cornered md-primary" >Add Record</md-button> 
+							
 						</form>
 						
 					   
 					 </md-card-content>
 					 <md-card-footer>
-					   *upload respective images in respective location
+					   *upload respective media at respective location.
 					 </md-card-footer>
 					</md-card>
 			 </md-content>
 		  </md-tab>
 		  <md-tab label="Save Records" >
-			<md-content class="md-padding">
-			  <h1 class="md-display-2">Save & Download</h1>
-					<md-card  >
-						<md-card-title md-theme="dark-blue" layout="column" layout-align="center">
-						  <md-card-title-text>
-							<span class="md-headline">If you are all done!! Follow The Steps</span>
-							<span class="md-subhead">Make sure all the changes are done!</span>
-							<span class="md-subhead">Click Save and Download button</span>
-							<span class="md-subhead">Open host server and backup existing data file</span>
-							<span class="md-subhead">Copy just downloaded file and replace in server</span>
-							<span class="md-subhead">Don't forget to upload corresponding media in respective folder</span>
-						  </md-card-title-text>
-						</md-card-title>
-					 <md-card-content >
+		  	<h1 class="md-display-2 md-padding" layout="row" layout-align="start center">Save Records</h1>
+			<md-content class="md-padding" layout="column" layout-align="center center">
+			  
+					<md-card flex="50" ng-show="!isUserValid"  >
+						<md-card-content >
+						<form autocomplete="off"   ng-submit="getAccess();">
+								<md-input-container class="md-icon-float md-block">
+							      <label>User Name</label>
+							      <md-icon><i class="md-avatar fa fa-user" ng-style="{'font-size':'24px'}"></i></md-icon>
+							      <input ng-model="user.userName" type="text">
+							    </md-input-container>
 							
-						<md-card-actions layout="column" layout-align="start">
-						  <md-button class="md-raised md-cornered md-warn" ng-click="addRecord();">Save and Download</md-button>
-						</md-card-actions>
-						
-					   
-					 </md-card-content>
-					
+							    <md-input-container md-no-float class="md-icon-float md-block">
+							    <label>Password</label>
+							      <md-icon ><i class="md-avatar fa fa-lock" ng-style="{'font-size':'24px'}"></i></md-icon>
+							      <input ng-model="user.passKey" type="password" >
+							    </md-input-container>
+							   
+						          <md-button type="submit" class="md-raised md-cornered md-primary">Login</md-button>
+						        
+						</form>
+						</md-card-content>
+					</md-card>
+					<md-card flex="50" ng-show="isUserValid"  >
+						<md-card-content >
+						<form autocomplete="off"   ng-submit="saveContain();">
+							   
+						          <md-button type="submit" class="md-raised md-cornered md-primary">Save</md-button>
+						        
+						</form>
+						</md-card-content>
 					</md-card>
 			 </md-content>
 		  </md-tab>
+		 
 	  </md-tabs>
 		
 	</md-content>
-	
+	 
 </section>
 
 
@@ -193,7 +225,11 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 var admin= angular.module("myAdmin",['ngMaterial','ngMessages']);
 
 admin.config(function($mdThemingProvider) {
-		$mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+	
+	$mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+	  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+	  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+	  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
 
 admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSidenav, $log,$mdDialog){
@@ -201,8 +237,25 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	$scope.enableChip=false;
 	$scope.addedRecord=false;
 	$scope.deletedRecord=false;
+	$scope.editedRecord=false;
+	$scope.isUserValid=false;
+	$scope.user={};
 	$scope.dynamicModel={};
-
+	$scope.selectedTab=0;
+	$scope.data={};
+	$http.get("../js/GGData.json")
+	    .then(function(response) {
+	        //First function handles success
+	        console.log("get Response ");console.log(response.data);
+	        //$scope.data = JSON.parse(atob(response.data.content));
+	       	//$scope.viewSelected($scope.data.adminMenu[0],0); 
+	        console.log("$scope.data ");
+	        console.log($scope.data); 
+	    }, function(response) {
+	        //Second function handles error
+	        $scope.data.error = "Something went wrong";
+	    });
+	
 	$scope.toggleLeft = function () {
 		  $mdSidenav('left').toggle()
 			.then(function () {
@@ -218,19 +271,92 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			  $log.log('Event Current Target: ', ev.currentTarget);
 			  $log.log('Original Current Target: ', target.current);
 			});
+	};
+	
+	$scope.credits="";
+	$scope.getAccess=function(){
+		console.log($scope.user.userName+":"+$scope.user.passKey);
+	   	$scope.credits=btoa($scope.user.userName+":"+$scope.user.passKey);
+	   	console.log($scope.credits);
+	    $http.get("https://api.github.com/user",
+				{ headers: {
+						'Authorization':'Basic '+ $scope.credits
+					 }
+				}
+		)
+	    .then(function(response) {
+	        console.log(response.data);
+	        $scope.isUserValid=true;
+	    }, function(response) {
+	    	 console.log(response);
+	    	 $scope.credits="";
+	    	 $scope.isUserValid=false;
+	    }); 
+	    
+	 
+	};
+	
+	$scope.saveContain=function(){
+		 $http.get("https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/GGData.json",
+				 { headers: {
+						'Authorization':'Basic '+ btoa("nikhildinpure:Tomi1vijet@")
+						
+					 }
+				}
+		 )
+		    .then(function(response) {
+		        //First function handles success
+		        console.log("get Response ");console.log(response.data);
+		        $scope.data = JSON.parse(atob(response.data.content));
+		       	$scope.viewSelected($scope.data.adminMenu[0],0); 
+		        console.log("$scope.data ");
+		        console.log($scope.data);
+		    }, function(response) {
+		        //Second function handles error
+		        $scope.data.error = "Something went wrong";
+		    });
+		var commitObj={
+			  message: "",
+			  committer: {
+			    name: "Nikhil Inpure",
+			    email: "nikhildinpure@gmail.com"
+			  },
+			  content: ""
+			  
+		};
+		commitObj.message="without sha";
+		commitObj.content=btoa("Adding more Content in txt");
+		commitObj.sha="bacbf35448c724df9d2190aa8a98edbe86130a8a";
+		console.log(commitObj);
+		var reqData=btoa(commitObj);
+		$http.put("https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/README.md",
+				commitObj,
+				{headers: {
+						'Authorization':'Basic '+ $scope.credits
+					 }
+				}
+				 )
+	    .then(function(response) {
+	        console.log(response.data);
+	        
+	    }, function(response) {
+	    	 console.log(response);
+	    }); 
 	}
  
 	$scope.viewSelected=function(menu,menuIndex){
 		$scope.dynamicModel={};
 		$scope.addedRecord=false;
 		$scope.deletedRecord=false;
+		$scope.editedRecord=false;
+		console.log("editedRecord "+$scope.editedRecord);
 		console.log("addedRecord "+$scope.addedRecord);
 		console.log("deletedRecord "+$scope.deletedRecord);
 		console.log("dynamicModel "+$scope.dynamicModel);
 		$scope.selectedMenu=menu;
 		$scope.selectedMenuIndex=menuIndex;
 		console.log("selectedMenuIndex "+$scope.selectedMenuIndex);
-		
+		$scope.selectedTab=0;
 		$scope.activeMenu=menu.menuName;
 	
 		$scope.containList=[];
@@ -299,10 +425,20 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			return false;
 		}
 		
+		if($scope.editedRecord){
+			$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.splice($scope.editIndex, 1);
+			console.log("Deleted to update ");
+		}
+		
 		for(var i=0;i<$scope.chipList.length;i++){
 			var stringToSplit= $scope.dynamicModel[$scope.chipList[i]];
-			var arrString=stringToSplit.split('\n');
-			$scope.dynamicModel[$scope.chipList[i]]=arrString;
+			if(stringToSplit.indexOf('\n') !== -1 || stringToSplit.length>0){
+				var arrString=stringToSplit.split('\n');
+				$scope.dynamicModel[$scope.chipList[i]]=arrString;
+			}else {
+				$scope.dynamicModel[$scope.chipList[i]]=[];
+			}
+			
 		}
 		
 		console.log("updated dynamicModel"+$scope.dynamicModel);
@@ -314,7 +450,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			  $mdDialog.alert()
 				.parent(angular.element(document.querySelector('#add')))
 				.clickOutsideToClose(true)
-				.title('Record Added Successfully')
+				.title('Record Added Successfully!!')
 				.textContent('Visit View Record Tab, you might need to refresh records.')
 				.ariaLabel('Add')
 				.ok('Got it!')
@@ -346,453 +482,49 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 				return false;
 			});
 		
+	};
+	
+	$scope.resetMode=function(){
+		$scope.editedRecord=false;
+		$scope.dynamicModel={};
+		console.log('Mode Resetted '+$scope.editedRecord);
+		console.log($scope.dynamicModel);
 	}
+	
+	$scope.editRecord=function(index){
+		$scope.editIndex=index;
+		var editObj=$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain[index];
+		for(var n=0;n<$scope.headerList.length;n++){
+			var tempObj=editObj[$scope.headerList[n]];
+			var type=$scope.detectType(tempObj);
+			if(type=='[object Array]'){
+				var tempStr='';
+				for(var m=0;m<tempObj.length;m++){
+					tempStr=tempStr+tempObj[m]+'\n';
+				}
+				tempObj=tempStr;
+			}
+			
+			$scope.dynamicModel[$scope.headerList[n]]=tempObj;
+		}
+		console.log("Object loaded to Edit ");
+		console.log($scope.dynamicModel);
+		$scope.selectedTab=1;
+		$scope.editedRecord=true;
+		
+	}
+	
+	$scope.saveDownload=function(){
+			var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data));
+			var downloadAnchorNode = document.createElement('a');
+			downloadAnchorNode.setAttribute("href",     dataStr);
+			downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
+			document.body.appendChild(downloadAnchorNode); // required for firefox
+			downloadAnchorNode.click();
+			downloadAnchorNode.remove();
+	};
 
-//========================================//
-$scope.data={
-  "adminMenu": [
-    {
-      "menuId": 1,
-      "menuName": "Courses",
-	  "menuIcon":"fa fa-book",
-      "menuContain": [
-        {	
-		  "uid":"1",
-          "name": "MPSC",
-          "Image": "MPSC.png",
-          "availableIn": [ "Online","Classroom","Mentorship"],
-          "info": "What is MPSC?",
-          "id": "mpscKnowMore"
-        },
-        {
-			"uid":"2",
-          "name": "UPSC",
-          "Image": "UPSC.png",
-          "availableIn": [ "Classroom","Mentorship"],
-          "info": "What is UPSC?",
-          "id": "upscKnowMore"
-        },
-        {
-			"uid":"3",
-          "name": "MLEP",
-          "Image": "MLEP.png",
-          "availableIn": [ "Online","Classroom"],
-          "info": "Multi-Linkage Examination Program",
-          "id": "mlepKnowMore"
-        },
-        {
-			"uid":"4",
-          "name": "SSC",
-          "Image": "SSC Final.png",
-          "availableIn": [ "Online","Classroom"],
-          "info": "Multi-Linkage Examination Program",
-          "id": ""
-        }
-      ]
-    },
-    {
-      "menuId": 2,
-      "menuName": "Live Classes",
-	  "menuIcon":"fa fa-video-camera",
-      "menuContain": [
-        {	
-		"uid":"1",
-          "header": "Click Here To Join",
-          "title": "Live Classroom",
-          "info": "Be ready with your meeting ID",
-          "link": "http://guidancegroup.co.in/"
-        },
-        {
-		"uid":"2",
-          "header": "",
-          "title": "",
-          "info": "",
-          "link": ""
-        }
-      ]
-    },
-    {
-      "menuId": 3,
-      "menuName": "Mentors",
-	  "menuIcon":"fa fa-user",
-      "menuContain": [
-        {
-			"uid":"1",
-          "name": "Samir Inpure",
-          "about": "",
-          "degree": [
-            "M.Com(Management)",
-            "M.A(Economics)",
-            "LLB Pursuing",
-            "appeared (Territorial Army) Interview round"
-          ],
-          "image": "samir01.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"2",
-          "name": "Akshay Goud",
-          "about": "",
-          "degree": [
-            "B.E (Computers)",
-            "M.A (Public Administration)",
-            "M.E(CNIS) Pursuing"
-          ],
-          "image": "AkshayGoud.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"3",
-          "name": "Hitesh Potdar",
-          "about": "",
-          "degree": [
-            "B.Tech (Mechanical)",
-            "M.Tech (Mechanical)",
-            "appeared UPSC-CSE Interview"
-          ],
-          "image": "HiteshPotdar.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"4",
-          "name": "Akshay Palande",
-          "about": ",  has  .",
-          "degree": [
-            "B.E (Mechanical)",
-            "M.A(Public Administration)",
-            "appeared twice UPSC-CSE Mains"
-          ],
-          "image": "AkshayPalande.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"5",
-          "name": "Amit Sarwade",
-          "about": "",
-          "degree": [
-            "BMS",
-            "cracked Tier-1 examinations of IBPS/PO and Clerical",
-            "specializes in Quantitative Aptitude"
-          ],
-          "image": "AmitSarwade.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"6",
-          "name": "Dr. Vaibhav Napte",
-          "about": "Has , has achieved a feat of  etc in the .",
-          "degree": [
-            "appeared UPSC-CAPF Interview",
-            "appeared Mains examinations of MPSC,STI,PSI,UPSC in same year"
-          ],
-          "image": "VaibhavNapte.jpg",
-          "url": "#"
-        },
-        {
-		"uid":"7",
-          "name": "Monika Sethia",
-          "about": "",
-          "degree": [
-            "M.COM",
-            "NET/SET qualified",
-            "Specializes in English"
-          ],
-          "image": "MonikaSethia.jpg",
-          "url": "#"
-        }
-      ]
-    },
-    {
-      "menuId": 4,
-      "menuName": "Well Wishers Slides",
-	  "menuIcon":"fa fa-smile-o",
-      "menuContain": [
-        {
-		"uid":"1",
-          "name": "Nitin Kusalkar",
-          "about": "Currently serving in Odisha cadre.",
-          "post": "IPS",
-          "slide": "1"
-        },
-        {
-		"uid":"2",
-          "name": "Swapnil Meshram ",
-          "about": "Currently serving in Odisha cadre.",
-          "post": "Assistant BDO",
-          "slide": "2"
-        },
-        {
-		"uid":"3",
-          "name": "Rahul Nikam",
-          "about": "B.E (PRODUCTION), has appeared UPSC-CSE Interview round.",
-          "post": "Nayab Tahasildar",
-          "slide": "3"
-        },
-        {
-		"uid":"4",
-          "name": "Digvijay Patil",
-          "about": "B.E, Author of a book specially designed for students focusing on Assistant Commadant position.",
-          "post": "Assistant Commandant Officer",
-          "slide": "4"
-        }
-      ]
-    },
-    {
-      "menuId": 5,
-      "menuName": "Testimonial",
-	  "menuIcon":"fa fa-quote-left",
-      "menuContain": [
-        {
-          "uid": "1",
-          "name": "Vanita Valvi",
-          "Image": "default.jpg",
-          "knownFor": "MPSC Student",
-          "rating": "5",
-          "says": "सर्वात महत्वाचे आणि उत्कृष्ट मार्गदर्शन सोप्या शब्दात समजावून सांगणारे विविध विषयात उत्कृष्ट असलेले  शिक्षक  त्याच्या मार्गदर्शनाने आज मला MPSC च्या तयारी साठी  खुप छान आणि महत्वाचे मार्गदर्शनाचा लाभ होतोय म्हणून Guidance Group चे मनःपुर्वक आभार best for MPSC and UPSC students"
-        },
-        {
-          "uid": "2",
-          "name": "Seema Ahirwar",
-          "Image": "Seema.jpg",
-          "knownFor": "Student of Banking",
-          "rating": "5",
-          "says": "Good class to start your career in banking sector with best faculties"
-        },
-        {
-          "uid": "3",
-          "name": "Shrushti Masurkar",
-          "Image": "Shrushti.jpg",
-          "knownFor": "Student of Banking",
-          "rating": "5",
-          "says": "Best class ever went.. perfect guidance to ur success"
-        },
-        {
-          "uid": "4",
-          "name": "Rupesh Mohit",
-          "Image": "default.jpg",
-          "knownFor": "#",
-          "rating": "5",
-          "says": "They are provide training to students who wish to make their careers in any kind of Competitive Examination like Government Sector, Private Sector. GUIDANCE GROUP Team is of highly qualified individuals, which has been helping many students for their Career Counselling as well."
-        },
-        {
-          "uid": "5",
-          "name": "Anish Nagwekar",
-          "Image": "aneesh.jpg",
-          "knownFor": "Student of MPSC",
-          "rating": "5",
-          "says": "This is fabulous class for civil service's Examination."
-        },
-        {
-          "uid": "6",
-          "name": "Satish Singh",
-          "Image": "satish.jpg",
-          "knownFor": "Parents",
-          "rating": "5",
-          "says": "Dynamic way of teaching. Strategic plan for every student to prepare for Competitive exams. My daughter is currently benefits of this"
-        }
-      ]
-    },
-    {
-      "menuId": 6,
-      "menuName": "Gallery",
-	  "menuIcon":"fa fa-file-photo-o",
-      "menuContain": [
-        {
-          "uid": "1",
-          "name": "img1.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "2",
-          "name": "img2.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "3",
-          "name": "img3.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "4",
-          "name": "img4.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "5",
-          "name": "img7.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "6",
-          "name": "img8.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "7",
-          "name": "img9.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "8",
-          "name": "img10.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "9",
-          "name": "img11.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "10",
-          "name": "img12.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "11",
-          "name": "img13.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "12",
-          "name": "img14.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "13",
-          "name": "img15.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "14",
-          "name": "img16.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "15",
-          "name": "img17.JPG",
-          "url": "#"
-        },
-        {
-          "uid": "16",
-          "name": "img18.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "17",
-          "name": "img19.jpg",
-          "url": "#"
-        },
-        {
-          "uid": "18",
-          "name": "img20.jpg",
-          "url": "#"
-        }
-      ]
-    },
-    {
-      "menuId": 7,
-      "menuName": "Youtube Videos",
-	  "menuIcon":"fa fa-youtube-play",
-      "menuContain": [
-        {
-			"uid": "1",
-          "name": "player1",
-          "player": "player1"
-        },
-        {
-		"uid": "2",
-          "name": "player2",
-          "player": "player2"
-        },
-        {
-			"uid": "3",
-          "name": "player3",
-          "player": "player3"
-        },
-        {
-		"uid": "4",
-          "name": "player4",
-          "player": "player4"
-        }
-      ]
-    },
-    {
-      "menuId": 8,
-      "menuName": "Downloads",
-	  "menuIcon":"fa fa-file",
-      "menuContain": [
-        {
-		"uid": "1",
-          "fileName": "State Service Main Examination Syllabus [In Marathi].pdf",
-          "examination": "MPSC",
-          "category": "syllabus"
-        },
-        {
-		"uid": "2",
-          "fileName": "UPSC Syllabus New.pdf",
-          "examination": "UPSC",
-          "category": "syllabus"
-        },
-        {
-		"uid": "3",
-          "fileName": "Bank Examination Syllabus.pdf",
-          "examination": "Bank",
-          "category": "syllabus"
-        },
-        {
-		"uid": "4",
-          "fileName": "State Service Main Examination-[In English].pdf",
-          "examination": "MPSC",
-          "category": "syllabus"
-        },
-        {
-		"uid": "5",
-          "fileName": "State Services Preliminary Examination.pdf",
-          "examination": "MPSC",
-          "category": "syllabus"
-        },
-        {
-		"uid": "6",
-          "fileName": "UPSC Book List.pdf",
-          "examination": "UPSC",
-          "category": "book"
-        }
-      ]
-    },
-    {
-      "menuId": 9,
-      "menuName": "Main Slide Show",
-	  "menuIcon":"fa fa-object-group",
-      "menuContain": [
-        {
-			"uid": "1",
-          "slide": 1,
-          "name": "Website.jpg"
-        },
-        {
-		"uid": "2",
-          "slide": 2,
-          "name": "MPSC.jpg"
-        }
-      ]
-    },
-    {
-      "menuId": 10,
-      "menuName": "Notifications",
-	  "menuIcon":"fa fa-bell",
-      "menuContain": [
-        {
-		"uid": "1",
-          "news": "Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 ",
-          "newsLink": ""
-        }
-      ]
-    }
-  ]
-};
-//=====================================================================================//
 
-$scope.viewSelected($scope.data.adminMenu[0],0); 
 
 
 });
