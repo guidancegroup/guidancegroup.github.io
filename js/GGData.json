@@ -69,7 +69,7 @@
 		{
 			"menuId": 3,
 			"menuName": "Mentors",
-			"menuIcon": "fa fa-user",
+			"menuIcon": "fa fa-users",
 			"menuContain": [
 				{
 					"uid": "1",
@@ -443,5 +443,6 @@
 				}
 			]
 		}
-	]
+	],
+	"filePath":"https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/GGData.json"
 }
