@@ -37,7 +37,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <script type="text/javascript" src="js/Application.js" ></script>
 <script type="text/javascript" src="js/CustomStyle.js" ></script>
 <script type="text/javascript" src="js/GGData_JSON.js" ></script>
-<script type="text/javascript" src="js/youtube.js"></script>
+<!--  <script type="text/javascript" src="js/youtube.js"></script>  -->
  
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -148,13 +148,13 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <div id="carouselExampleIndicators" class="carousel slide" data-slide="next" data-ride="carousel" data-interval="5000">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="{{count.slide}}" ng-repeat="count in carouselData.slides" ></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="{{count.slide}}" ng-repeat="count in carouselData" ></li>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="d-block w-100 slide-size" src="img/slide/default.jpg" alt="First slide">
     </div>
-    <div class="carousel-item" ng-repeat="slide in carouselData.slides">
+    <div class="carousel-item" ng-repeat="slide in carouselData">
       <img class="d-block w-100 slide-size" src="img/slide/{{slide.name}}" alt="Second slide">
     </div>
   </div>
@@ -230,18 +230,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		
   </div><hr>
   <div class="row slideanim text-center">
-	 
-	   <div  class="col-md-4 ">
-			<!-- <img class="img-fluid img-thumbnail" alt="" src="img/slide/OnlineMockTestAd.jpg"   > -->
-			<div class="card h-100 justify-content-between text-dark bg-warning mb-3"  >
-			  <div class="card-header"><a href="{{liveClassData[0].link}}" target="_blank">{{liveClassData[0].header}}</a></div>
-			  <div class="card-body">
-				<h5 class="card-title">{{liveClassData[0].title}}</h5>
-				<p class="card-text">{{liveClassData[0].info}}</p>
-			  </div>
-			</div>
-	   </div>
-	    <div  class="col-md-4  ">
+	 <div  class="col-md-4  ">
 			<div class="fb-page" data-href="https://www.facebook.com/guidancegroup1/" data-tabs="Show Friend&#039;s Faces" 
 				data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
 				<blockquote cite="https://www.facebook.com/guidancegroup1/" class="fb-xfbml-parse-ignore">
@@ -249,15 +238,18 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				</blockquote>
 			</div>
 	  </div>
-	   <div class="col-md-4" >
+	   <div  class="col-md-4 " ng-repeat="classroom in liveClassData">
+			<!-- <img class="img-fluid img-thumbnail" alt="" src="img/slide/OnlineMockTestAd.jpg"   > -->
 			<div class="card h-100 justify-content-between text-dark bg-warning mb-3"  >
-			  <div class="card-header"><a href="{{liveClassData[1].link}}" target="_blank">{{liveClassData[1].header}}</a></div>
+			  <div class="card-header"><a href="{{classroom.link}}" target="_blank">{{classroom.header}}</a></div>
 			  <div class="card-body">
-				<h5 class="card-title">{{liveClassData[1].title}}</h5>
-				<p class="card-text">{{liveClassData[1].info}}</p>
+				<h5 class="card-title">{{classroom.title}}</h5>
+				<p class="card-text">{{classroom.info}}</p>
 			  </div>
 			</div>
-	  </div>
+	   </div>
+	    
+	   
 	</div>
   </div>
 
@@ -270,13 +262,14 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <p>what we offer</p>
   <br>
   <div class="row">
-    <div class="col-sm-3 slideanim " style="margin-bottom:10px;" ng-repeat="course in courseData.courses ">
+    <div class="col-sm-3 slideanim " style="margin-bottom:10px;" ng-repeat="course in courseData ">
 		
-			<div class="card h-100  justify-content-between" >
+			<div class="card h-100  justify-content-between" ng-init="course.id != '#' ? course.id=course.id : course.id=''">
 			<img class="card-img-top" src="img/courses/{{course.Image}}" alt="Card image cap">
 			  <ul class="list-group list-group-flush" ng-mouseover="btnStyle='primary'" ng-mouseleave="btnStyle='dark'">
 			  
-				<li class="list-group-item" ng-repeat="mode in course.availableIn" ><span class="fa fa-{{sign}}-o  tick-{{mode.isAvailable}}" ng-init="mode.isAvailable=='checked'? sign='check-circle' : sign='window-close'"  ></span> {{mode.type}}</li>
+				<li class="list-group-item" ng-repeat="mode in course.availableIn" >
+					{{mode}} </li>
 				
 				 <li ng-if="course.id!=''" class="list-group-item"><a id="{{course.id}}" style="color:white" role="button" class="btn btn-{{btnStyle}}"  data-toggle="collapse" 
 				 data-target="#{{course.name}}"  aria-expanded="false" aria-controls="{{course.name}}" ng-click="setCourse(course.id,course.name);"   >Know more</a></li>
@@ -303,7 +296,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				
 				<div class="row">
 					<div class="col-md-4">
-						<img class="img-fluid" alt="logo" src="/img/courses/UPSC.png">
+						<img class="img-fluid" alt="logo" src="img/courses/UPSC.png">
 					</div>
 					<div class="col-md-8">
 					<h5>UNION PUBLIC SERVICE COMMISSION</h5>
@@ -488,7 +481,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				</span></h2>
 				<div class="row">
 					<div class="col-sm-4">
-						<img class="img-fluid" alt="logo" src="/img/courses/MPSC.png">
+						<img class="img-fluid" alt="logo" src="img/courses/MPSC.png">
 					</div>
 					<div class="col-sm-8">
 						<h6>Maharashtra Public Service Commission</h6>
@@ -679,7 +672,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 				</span></h2>
 				<div class="row">
 					<div class="col-sm-4">
-						<img class="img-fluid" alt="logo" src="/img/courses/MLEP.png">
+						<img class="img-fluid" alt="logo" src="img/courses/MLEP.png">
 					</div>
 					<div class="col-sm-8">
 						<h6>Multi Linkage Examination Program</h6>
@@ -709,7 +702,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 </div>
 
    <!-- Container (youtube Section) -->
-  <div id="lectures" ng-init="getListFromDataForSlides(youtubePlayerData.players,'youtube');" style="background-color: #f3f3f3;padding-top:50px;"  >
+  <div id="lectures" ng-init="" style="background-color: #f3f3f3;padding-top:50px;"  >
   <br>
   <h2 class="text-center">VIDEO LECTURES</h2>
   <p class="text-center">explore our lecture series</p>
@@ -721,7 +714,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	<div class="col-lg-3"></div>
 	<div class="col-lg-6 text-center">
 	<h3>For More Free Video Subscribe Us Now</h3>
-		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full" data-theme="dark" data-count="default"></div>
+		<div class="g-ytsubscribe" data-channelid="UCmmrT8dABxBE6D5VSmO-HIw" data-layout="full"  data-count="default"></div>
 	
 	</div>
 	<div class="col-lg-3"></div>
@@ -731,8 +724,10 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
     <div class="carousel-item" ng-repeat="list in youtubeList" >
 	<div class="container-fluid" >
 	<div class="row text-center " >
-		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="video in list" >
-			<div id="{{video.player}}"></div>
+		<div class="col-lg-3 col-md-6 col-sm-6" ng-repeat="video in list"  >
+			<!-- <div id="{{video.player}}"></div> -->
+			<iframe width="220" height="140" ng-src="{{video.videoId|trustUrl}}"  frameborder="0" allowfullscreen></iframe>
+			
 		</div>
     </div>
 	 </div>
@@ -777,7 +772,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 
 	</div>
 
- <div id="mentors" class="mentors" ng-init="getListFromDataForSlides(mentorData.mentors,'mentor2');">
+ <div id="mentors" class="mentors" >
  <h4 class="text-center mentors-side">We can shape your Future</h4>
  <hr class="mentors-side">
   <div id="carouselExampleControls4" class="carousel slide" data-ride="carousel" data-slide="next" data-interval="false">
@@ -826,7 +821,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <div id="myCarousel" class="carousel slide text-center" data-ride="carousel" data-interval="2000">
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="{{count.slide}}" ng-repeat="count in wellWisherData.wellWishers"></li>
+      <li data-target="#myCarousel" data-slide-to="{{count.slide}}" ng-repeat="count in wellWisherData"></li>
     </ol>
 
     <div class="carousel-inner" role="listbox">
@@ -835,7 +830,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 		<p>we are supported by powerful personalities</p>
 		<br><br><br>
       </div>
-      <div class="carousel-item" ng-repeat="wisher in wellWisherData.wellWishers">
+      <div class="carousel-item" ng-repeat="wisher in wellWisherData">
         <h5>{{wisher.name}}<br>{{wisher.post}}</h5>
 		<p>{{wisher.about}}</p>
 		<br><br><br>
@@ -860,7 +855,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <h4 class="text-center mentors-side">Testimonials</h4>
  <hr class="">
 	<div class="row">
-		<div class="col-lg-3 col-md-6 col-sm-6 " style="margin-bottom:10px;" ng-repeat="review in testimonialData.testimonial" >
+		<div class="col-lg-3 col-md-6 col-sm-6 " style="margin-bottom:10px;" ng-repeat="review in testimonialData" >
 			<div class="row" style="border-left: solid 4px navy;" data-toggle="popover"  data-trigger="hover"  title="review"
 			 data-placement="bottom" data-template='<div class="card"><div class="card-body"><blockquote class="blockquote mb-0">
 			 <p> <span class="fa fa-quote-left" ></span>  {{review.says}}</p><footer class="blockquote-footer"><cite title="Source Title">{{review.knownFor}} </cite></footer></blockquote></div></div>' >
@@ -919,7 +914,7 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
  <p class="text-center">Our achievements and proud moments</p>
  <hr>
  <div class="row slideanim" >
- <div class="col-lg-2 col-md-2  " style="cursor:zoom-in;" ng-repeat="photo in galleryData.gallery"  title="double click to view" >
+ <div class="col-lg-2 col-md-2  " style="cursor:zoom-in;" ng-repeat="photo in galleryData"  title="double click to view" >
  <img class="img-thumbnail" src="img/gallery/{{photo.name}}" 
 	data-toggle="popover"  data-trigger="hover" title="Popover title" data-placement="right" data-template='<div class="card bg-dark text-white gallery">
 																											  <img class="card-img" src="img/gallery/{{photo.name}}" alt="Card image">
@@ -1057,5 +1052,5 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   </div>
 </div>
 </body>
-<!-- build 3.0.0 -->
+<!-- build 4.0.0 -->
 </html>
