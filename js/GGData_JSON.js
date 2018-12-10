@@ -2,7 +2,7 @@ app.controller('dataCtrl',function($rootScope,$scope,$http){
 
 
 
-$http.get("GGData.json").then(function(response) {
+$http.get("../js/GGData.json").then(function(response) {
     //First function handles success
     $scope.menuList = response.data.adminMenu;
     console.log("$scope.menuList ");
