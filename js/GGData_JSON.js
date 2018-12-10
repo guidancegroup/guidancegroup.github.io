@@ -1,415 +1,61 @@
-app.controller('dataCtrl',function($rootScope,$scope){
-
-$rootScope.slogan="";
-
-//Live classroom configuration
-$rootScope.liveClassData=[
-	{
-		"header":"Click Here To Join",
-		"title":"Live Classroom",
-		"info":"Be ready with your meeting ID",
-		"link":"http://guidancegroup.co.in/"
-	},
-	{
-		"header":"",
-		"title":"",
-		"info":"",
-		"link":""
-	}
-]
+app.controller('dataCtrl',function($rootScope,$scope,$http){
 
 
-//courses entries
-$rootScope.courseData={
-  "courses":[
-    {
-      "name":"MPSC",
-	  "Image":"MPSC.png",
-	  "availableIn":[
-			  {
-				  "type":"Online",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Classroom",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Mentorship",
-				  "isAvailable":"checked"
-			  }
-				],
-      "info":"What is MPSC?",
-	  "id":"mpscKnowMore"
-    },
-    {
-      "name":"UPSC",
-	  "Image":"UPSC.png",
-	  "availableIn":[
-			  {
-				  "type":"Online",
-				  "isAvailable":"N"
-			  },
-			   {
-				  "type":"Classroom",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Mentorship",
-				  "isAvailable":"checked"
-			  }
-				],
-      "info":"What is UPSC?",
-	  "id":"upscKnowMore"
-    },
-    {
-      "name":"MLEP",
-	  "Image":"MLEP.png",
-	  "availableIn":[
-			  {
-				  "type":"Online",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Classroom",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Mentorship",
-				  "isAvailable":"N"
-			  }
-				],
-      "info":"Multi-Linkage Examination Program",
-	  "id":"mlepKnowMore"
-    },
-	{
-      "name":"SSC",
-	  "Image":"SSC Final.png",
-	  "availableIn":[
-			  {
-				  "type":"Online",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Classroom",
-				  "isAvailable":"checked"
-			  },
-			   {
-				  "type":"Mentorship",
-				 "isAvailable":"N"
-			  }
-				],
-      "info":"Multi-Linkage Examination Program",
-	  "id":""
-    }
-    ]
-}
-	
-//mentors entry
-$rootScope.mentorData={
-  "mentors":[
-    { 
-      "name":"Samir Inpure",
-      "about":"",
-      "degree":["M.Com(Management)", "M.A(Economics)", "LLB Pursuing", "appeared (Territorial Army) Interview round"],
-	  "image":"samir01.jpg",
-      "url":"#"
-    },
-    {
-      "name":"Akshay Goud",
-      "about":"",
-	"degree":["B.E (Computers)", "M.A (Public Administration)","M.E(CNIS) Pursuing"],
-	  "image":"AkshayGoud.jpg",
-      "url":"#"
-    },
-    {
-      "name":"Hitesh Potdar",
-      "about":"",
-      "degree":["B.Tech (Mechanical)", "M.Tech (Mechanical)", "appeared UPSC-CSE Interview"],
-	  "image":"HiteshPotdar.jpg",
-      "url":"#"
-    },
-    {
-      "name":"Akshay Palande",
-      "about":",  has  .",
-      "degree":["B.E (Mechanical)","M.A(Public Administration)","appeared twice UPSC-CSE Mains"],
-	  "image":"AkshayPalande.jpg",
-      "url":"#"
-    },
-	{
-      "name":"Amit Sarwade",
-      "about":"",
-      "degree":["BMS","cracked Tier-1 examinations of IBPS/PO and Clerical","specializes in Quantitative Aptitude"],
-	  "image":"AmitSarwade.jpg",
-      "url":"#"
-    },
-	{
-      "name":"Dr. Vaibhav Napte",
-      "about":"Has , has achieved a feat of  etc in the .",
-      "degree":["appeared UPSC-CAPF Interview","appeared Mains examinations of MPSC,STI,PSI,UPSC in same year"],
-	  "image":"VaibhavNapte.jpg",
-      "url":"#"
-    },
-	{
-      "name":"Monika Sethia",
-      "about":"",
-      "degree":["M.COM","NET/SET qualified","Specializes in English"],
-	  "image":"MonikaSethia.jpg",
-      "url":"#"
+
+$http.get("GGData.json").then(function(response) {
+    //First function handles success
+    $scope.menuList = response.data.adminMenu;
+    console.log("$scope.menuList ");
+    console.log($scope.menuList);
+    for(var i=0;i<$scope.menuList.length;i++){
+    	if($scope.menuList[i].menuId=='1'){
+    		$rootScope.courseData=$scope.menuList[i].menuContain;
+    		 console.log($rootScope.courseData);
+    	}else if($scope.menuList[i].menuId=='2'){
+    		$rootScope.liveClassData=$scope.menuList[i].menuContain;
+    		console.log($rootScope.liveClassData);
+    	}else if($scope.menuList[i].menuId=='3'){
+    		$rootScope.mentorData=$scope.menuList[i].menuContain;
+    		$rootScope.getListFromDataForSlides($rootScope.mentorData,'mentor2');
+    		console.log($rootScope.mentorData);
+    	}else if($scope.menuList[i].menuId=='4'){
+    		$rootScope.wellWisherData=$scope.menuList[i].menuContain;
+    		console.log($rootScope.wellWisherData);
+    	}else if($scope.menuList[i].menuId=='5'){
+    		$rootScope.testimonialData=$scope.menuList[i].menuContain;
+    		console.log($rootScope.testimonialData);
+    	}else if($scope.menuList[i].menuId=='6'){
+    		$rootScope.galleryData=$scope.menuList[i].menuContain;
+    		console.log($rootScope.galleryData);
+    	}else if($scope.menuList[i].menuId=='7'){
+    		$rootScope.youtubePlayerData=$scope.menuList[i].menuContain;
+    		$rootScope.youtubePlayerData=$rootScope.youtubePlayerData.reverse();
+    		$rootScope.getListFromDataForSlides($rootScope.youtubePlayerData,'youtube');
+    		console.log($rootScope.youtubePlayerData);
+
+    		
+    	}else if($scope.menuList[i].menuId=='8'){
+    		$rootScope.downloadsData=$scope.menuList[i].menuContain;
+    		$rootScope.initDownload();
+    		console.log($rootScope.downloadsData);
+    	}else if($scope.menuList[i].menuId=='9'){
+    		$rootScope.carouselData=$scope.menuList[i].menuContain;
+    		console.log($rootScope.carouselData);
+    	}else if($scope.menuList[i].menuId=='10'){
+    		$rootScope.newsList=$scope.menuList[i].menuContain;
+    		console.log($rootScope.newsList);
+    	}else{
+    		console.log( "More Menus than expected");
+    	}
+    	
+    	
     }
     
-    ]
-}
-
-//wellWishers entries
-$rootScope.wellWisherData={
-  "wellWishers":[
-    { 
-      "name":"Nitin Kusalkar",
-      "about":"Currently serving in Odisha cadre.",
-      "post":"IPS",
-      "slide":"1"
-    },
-    {
-      "name":"Swapnil Meshram ",
-      "about":"Currently serving in Odisha cadre.",
-      "post":"Assistant BDO",
-      "slide":"2"
-    },
-    {
-      "name":"Rahul Nikam",
-      "about":"B.E (PRODUCTION), has appeared UPSC-CSE Interview round.",
-      "post":"Nayab Tahasildar",
-      "slide":"3"
-    },
-    {
-      "name":"Digvijay Patil",
-      "about":"B.E, Author of a book specially designed for students focusing on Assistant Commadant position.",
-      "post":"Assistant Commandant Officer",
-      "slide":"4"
-    }
-    
-    ]
-}
-
-$rootScope.testimonialData={
-	"testimonial":[
-	{ 
-		"index":"1",
-		"name":"Vanita Valvi",
-		"Image":"default.jpg",
-		"knownFor":"MPSC Student",
-		"rating":"5",
-		"says":"सर्वात महत्वाचे आणि उत्कृष्ट मार्गदर्शन सोप्या शब्दात समजावून सांगणारे विविध विषयात उत्कृष्ट असलेले  शिक्षक  त्याच्या मार्गदर्शनाने आज मला MPSC च्या तयारी साठी  खुप छान आणि महत्वाचे मार्गदर्शनाचा लाभ होतोय म्हणून Guidance Group चे मनःपुर्वक आभार best for MPSC and UPSC students"
-    },
-	{ 
-		"index":"2",
-		"name":"Seema Ahirwar",
-		"Image":"Seema.jpg",
-		"knownFor":"Student of Banking",
-		"rating":"5",
-		"says":"Good class to start your career in banking sector with best faculties"
-    },
-	{ 
-		"index":"3",
-		"name":"Shrushti Masurkar",
-		"Image":"Shrushti.jpg",
-		"knownFor":"Student of Banking",
-		"rating":"5",
-		"says":"Best class ever went.. perfect guidance to ur success"
-    },
-	{ 
-		"index":"4",
-		"name":"Rupesh Mohit",
-		"Image":"default.jpg",
-		"knownFor":"#",
-		"rating":"5",
-		"says":"They are provide training to students who wish to make their careers in any kind of Competitive Examination like Government Sector, Private Sector. GUIDANCE GROUP Team is of highly qualified individuals, which has been helping many students for their Career Counselling as well."
-    },
-	{ 
-		"index":"5",
-		"name":"Anish Nagwekar",
-		"Image":"aneesh.jpg",
-		"knownFor":"Student of MPSC",
-		"rating":"5",
-		"says":"This is fabulous class for civil service's Examination."
-    },
-	{ 
-		"index":"6",
-		"name":"Satish Singh",
-		"Image":"satish.jpg",
-		"knownFor":"Parents",
-		"rating":"5",
-		"says":"Dynamic way of teaching. Strategic plan for every student to prepare for Competitive exams. My daughter is currently benefits of this"
-    }
-	]
-};
-
-//gallery  photo entries
-$rootScope.galleryData={
-  "gallery":[
-    { 
-		"index":"1",
-      "name":"img4.jpg",
-      "url":"#"
-    },
-    {
-		"index":"2",
-      "name":"img7.jpg",
-      "url":"#"
-    },
-    {
-		"index":"3",
-      "name":"img8.jpg",
-      "url":"#"
-    },
-    {
-		"index":"4",
-      "name":"img9.jpg",
-      "url":"#"
-    },
-    {
-		"index":"5",
-      "name":"img10.jpg",
-      "url":"#"
-    },
-    {
-		"index":"6",
-      "name":"img11.jpg",
-      "url":"#"
-    },
-    {
-		"index":"7",
-      "name":"img12.jpg",
-      "url":"#"
-    },
-    {
-		"index":"8",
-      "name":"img13.jpg",
-      "url":"#"
-    },
-    {
-		"index":"9",
-      "name":"img14.jpg",
-      "url":"#"
-    },
-    {
-		"index":"10",
-      "name":"img15.jpg",
-      "url":"#"
-    },
-    {
-		"index":"11",
-      "name":"img16.jpg",
-      "url":"#"
-    },
-    {
-		"index":"12",
-      "name":"img17.JPG",
-      "url":"#"
-    },
-    {
-		"index":"13",
-      "name":"img18.jpg",
-      "url":"#"
-    },
-    {
-		"index":"14",
-      "name":"img19.jpg",
-      "url":"#"
-    },
-    {
-		"index":"15",
-      "name":"img20.jpg",
-      "url":"#"
-    }
-    
-    ]
-}
-
-$rootScope.youtubePlayerData={
-	"players":[
-	{ 
-		"name":"player1" ,
-		"player":"player1" 
-	},
-	{ 
-		"name":"player2" ,
-		"player":"player2"
-	},
-	{ 
-		"name":"player3" ,
-		"player":"player3"
-	},
-	{ 
-		"name":"player4" ,
-		"player":"player4"
-	}
-	]
-}
-
-$rootScope.youtubePlayerData.players=$rootScope.youtubePlayerData.players.reverse();
-	
-//download material entry
-$rootScope.downloadsData={
-	"downloads":[
-		{
-			"fileName":"State Service Main Examination Syllabus [In Marathi].pdf",
-			"examination":"MPSC",
-			"category":"syllabus"
-		},
-		{
-			
-			"fileName":"UPSC Syllabus New.pdf",
-			"examination":"UPSC",
-			"category":"syllabus"
-		},
-		{
-			"fileName":"Bank Examination Syllabus.pdf",
-			"examination":"Bank",
-			"category":"syllabus"
-		},
-		{
-			"fileName":"State Service Main Examination-[In English].pdf",
-			"examination":"MPSC",
-			"category":"syllabus"
-		},
-		{
-			"fileName":"State Services Preliminary Examination.pdf",
-			"examination":"MPSC",
-			"category":"syllabus"
-		},
-		{
-			"fileName":"UPSC Book List.pdf",
-			"examination":"UPSC",
-			"category":"book"
-		}
-	]
-}
-
-//Add slides for main slideshow here
-$rootScope.carouselData={
-	"slides":[
-		{
-			slide:1,
-			name:"Website.jpg"
-		},
-		{
-			slide:2,
-			name:"MPSC.jpg"
-		}
-	]
-};
-
-//scrolling News and alerts 
-//COPY the content from { to  } then give , after } then paste just copied then edit 
-$rootScope.newsList=[
-	{
-		"news":"Online test series for IBPS/RBI/RRB Examinations are available. To avail kindly Contact Us on 7738738982 " ,
-		"newsLink":""
-	}
-]
-	
+}, function(response) {
+    //Second function handles error
+	console.log( "Something went wrong");
+   
+});
 
 
 //------------------------------------------------------------------------------------------
@@ -430,20 +76,22 @@ $rootScope.carouselTwoInterval="2000";
 //--------------------Downloads-------------------------------------------------------------------
 //Creates required Lists
 	$scope.keywordList=[];
-	for(var i=0;i<$scope.downloadsData.downloads.length;i++){
-		var key1="";
-		var key2="";
-		var key3="";
-		$scope.downloadsData.downloads[i].index=i+1;
-		key1=$scope.downloadsData.downloads[i].fileName.split('.')[0];
-		key2=$scope.downloadsData.downloads[i].examination;
-		key3=$scope.downloadsData.downloads[i].category;
-		$scope.keywordList.push(key1);
-		if($scope.keywordList.indexOf(key2) === -1 ){
-			$scope.keywordList.push(key2);
-		}
-		if($scope.keywordList.indexOf(key3) === -1){
-			$scope.keywordList.push(key3);
+	$rootScope.initDownload=function(){
+		for(var i=0;i<$rootScope.downloadsData.length;i++){
+			var key1="";
+			var key2="";
+			var key3="";
+			$rootScope.downloadsData[i].index=i+1;
+			key1=$rootScope.downloadsData[i].fileName.split('.')[0];
+			key2=$rootScope.downloadsData[i].examination;
+			key3=$rootScope.downloadsData[i].category;
+			$scope.keywordList.push(key1);
+			if($scope.keywordList.indexOf(key2) === -1 ){
+				$scope.keywordList.push(key2);
+			}
+			if($scope.keywordList.indexOf(key3) === -1){
+				$scope.keywordList.push(key3);
+			}
 		}
 	}
 //autoComplete code developed by GuidanceGroup using angularJS
