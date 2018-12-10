@@ -37,6 +37,13 @@ th {
 	border-bottom: 1px solid #dddddd;
 }
 
+.success-message{
+	color: green;
+}
+.failure-message{
+	color: red;
+}
+
 </style>
 <body id="admin" layout="column"   ng-controller="adminCtrl" ng-cloak> 
 <section layout="row" flex>
@@ -100,7 +107,7 @@ th {
 					   <table>
 						<tr >
 							<th ng-repeat="header in headerList track by $index">{{header}}</th>
-							<th><i class="md-avatar fa fa-pencil " ng-style="{'font-size':'24px'}" ></i></th>
+							<th><i class="md-avatar fa fa-edit " ng-style="{'font-size':'24px'}" ></i></th>
 							<th><i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px'}" ></i></th>
 							
 						 </tr>
@@ -113,7 +120,7 @@ th {
 									<p ng-repeat="subRec in rec track by $index">{{subRec}}</p>
 								</span>
 							</td>
-							<td><a   class="md-avatar fa fa-pencil " ng-style="{'font-size':'24px','color':'navy','cursor':'pointer'}"  
+							<td><a   class="md-avatar fa fa-edit " ng-style="{'font-size':'24px','color':'navy','cursor':'pointer'}"  
 										 ng-click="editRecord($index);"></a>
 							</td>
 							<td><a   class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'red','cursor':'pointer'}"  
@@ -177,28 +184,38 @@ th {
 								<md-input-container class="md-icon-float md-block">
 							      <label>User Name</label>
 							      <md-icon><i class="md-avatar fa fa-user" ng-style="{'font-size':'24px'}"></i></md-icon>
-							      <input ng-model="user.userName" type="text">
+							      <input ng-model="user.userName" type="text" required>
 							    </md-input-container>
 							
 							    <md-input-container md-no-float class="md-icon-float md-block">
 							    <label>Password</label>
 							      <md-icon ><i class="md-avatar fa fa-lock" ng-style="{'font-size':'24px'}"></i></md-icon>
-							      <input ng-model="user.passKey" type="password" >
+							      <input ng-model="user.passKey" type="password" required>
 							    </md-input-container>
 							   
 						          <md-button type="submit" class="md-raised md-cornered md-primary">Login</md-button>
 						        
 						</form>
+						
+						<div ng-if="statusMessage.length!=0" layout="row" layout-sm="column" layout-align="space-around">
+					      <p class="{{statusClass}}">{{statusMessage}}</p>
+					    </div>
+						<div ng-show="progressFlag" layout="row" layout-sm="column" layout-align="space-around">
+					      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+					    </div>
 						</md-card-content>
 					</md-card>
 					<md-card flex="50" ng-show="isUserValid"  >
 						<md-card-content >
-						<form autocomplete="off"   ng-submit="saveContain();">
-							   
-						          <md-button type="submit" class="md-raised md-cornered md-primary">Save</md-button>
-						        
-						</form>
+							<div  layout="row" layout-sm="column" layout-align="space-around">
+					      		<p class="">Login Successful, Please Save File.</p>
+					    	</div>
+					    	
 						</md-card-content>
+						<md-card-actions layout="column" layout-align="space-around">
+						     <md-button type="submit" class="md-raised md-cornered md-primary" ng-click="saveContain()">Save</md-button>
+						        
+							</md-card-actions>
 					</md-card>
 			 </md-content>
 		  </md-tab>
@@ -239,21 +256,31 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	$scope.deletedRecord=false;
 	$scope.editedRecord=false;
 	$scope.isUserValid=false;
+	$scope.progressFlag=false;
 	$scope.user={};
 	$scope.dynamicModel={};
 	$scope.selectedTab=0;
 	$scope.data={};
+	$scope.filePath="";
+	$scope.statusMessage="";
+	$scope.statusClass="";
 	$http.get("../js/GGData.json")
 	    .then(function(response) {
 	        //First function handles success
 	        console.log("get Response ");console.log(response.data);
-	        //$scope.data = JSON.parse(atob(response.data.content));
-	       	//$scope.viewSelected($scope.data.adminMenu[0],0); 
+	        $scope.data = response.data;
+	        $scope.filePath=$scope.data.filePath.toString();
+	       	$scope.viewSelected($scope.data.adminMenu[0],0);
+	       	console.log("$scope.filePath ");
+	        console.log($scope.filePath); 
 	        console.log("$scope.data ");
 	        console.log($scope.data); 
+	        $scope.statusMessage ="";
+	        $scope.statusClass="";
 	    }, function(response) {
 	        //Second function handles error
-	        $scope.data.error = "Something went wrong";
+	        $scope.statusMessage = "Something went wrong";
+	        $scope.statusClass="failure-message";
 	    });
 	
 	$scope.toggleLeft = function () {
@@ -274,11 +301,14 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	};
 	
 	$scope.credits="";
+	$scope.fileProperties={};
 	$scope.getAccess=function(){
-		console.log($scope.user.userName+":"+$scope.user.passKey);
+		$scope.progressFlag=true;
+		$scope.statusMessage="";
+		 $scope.statusClass="";
 	   	$scope.credits=btoa($scope.user.userName+":"+$scope.user.passKey);
-	   	console.log($scope.credits);
-	    $http.get("https://api.github.com/user",
+	   	console.log("$scope.credits"+$scope.credits);
+	    $http.get($scope.filePath,
 				{ headers: {
 						'Authorization':'Basic '+ $scope.credits
 					 }
@@ -286,63 +316,65 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		)
 	    .then(function(response) {
 	        console.log(response.data);
+	        $scope.fileProperties.sha=response.data.sha;
+	        $scope.fileProperties.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+	        console.log("fileProperties");
+	        console.log($scope.fileProperties);
 	        $scope.isUserValid=true;
+	        $scope.progressFlag=false;
 	    }, function(response) {
 	    	 console.log(response);
 	    	 $scope.credits="";
 	    	 $scope.isUserValid=false;
+	    	 $scope.progressFlag=false;
+	    	 $scope.statusClass="failure-message";
+	    	 $scope.statusMessage="Wrong Username or Password";
+	    	 
 	    }); 
 	    
 	 
 	};
 	
 	$scope.saveContain=function(){
-		 $http.get("https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/GGData.json",
-				 { headers: {
-						'Authorization':'Basic '+ btoa("nikhildinpure:Tomi1vijet@")
+		$scope.statusMessage="";
+		 $scope.statusClass="";
+		var encodedURIData=encodeURIComponent(JSON.stringify($scope.data));
+		var dataStr = "data:text/json;charset=utf-8," + encodedURIData;
+		var downloadAnchorNode = document.createElement('a');
+		downloadAnchorNode.setAttribute("href",     dataStr);
+		downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
+		document.body.appendChild(downloadAnchorNode); // required for firefox
+		downloadAnchorNode.click();
+		downloadAnchorNode.remove();
+		console.log("Downloaded ==>"+encodedURIData);
+		$scope.fileProperties.message="testing";
+		 $scope.fileProperties.content=btoa(unescape(encodedURIData));
+		 console.log("fileProperties");
+	     console.log($scope.fileProperties);
+		$http.put($scope.filePath,$scope.fileProperties,
+				{headers: {
+						'Authorization':'Basic '+ $scope.credits
 						
 					 }
 				}
-		 )
-		    .then(function(response) {
-		        //First function handles success
-		        console.log("get Response ");console.log(response.data);
-		        $scope.data = JSON.parse(atob(response.data.content));
-		       	$scope.viewSelected($scope.data.adminMenu[0],0); 
-		        console.log("$scope.data ");
-		        console.log($scope.data);
-		    }, function(response) {
-		        //Second function handles error
-		        $scope.data.error = "Something went wrong";
-		    });
-		var commitObj={
-			  message: "",
-			  committer: {
-			    name: "Nikhil Inpure",
-			    email: "nikhildinpure@gmail.com"
-			  },
-			  content: ""
-			  
-		};
-		commitObj.message="without sha";
-		commitObj.content=btoa("Adding more Content in txt");
-		commitObj.sha="bacbf35448c724df9d2190aa8a98edbe86130a8a";
-		console.log(commitObj);
-		var reqData=btoa(commitObj);
-		$http.put("https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/README.md",
-				commitObj,
-				{headers: {
-						'Authorization':'Basic '+ $scope.credits
-					 }
-				}
-				 )
+		)
 	    .then(function(response) {
 	        console.log(response.data);
+	        $scope.statusMessage="Successfully Saved";
+	        $scope.statusClass="success-message";
+	        $scope.isUserValid=false;
+	    	$scope.progressFlag=false;
+	    	$scope.user={};
 	        
 	    }, function(response) {
 	    	 console.log(response);
+	    	 $scope.statusMessage="Something went wrong, backup file is downloaded.\n Upload manually or try again later";
+	    	 $scope.statusClass="failure-message";
+	    	 $scope.isUserValid=false;
+	    	 $scope.progressFlag=false;
+	    	 $scope.user={};
 	    }); 
-	}
+	};
  
 	$scope.viewSelected=function(menu,menuIndex){
 		$scope.dynamicModel={};
@@ -465,7 +497,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		}
 		var deleteRec = $mdDialog.confirm()
 							  .title('Would you like to delete this record?')
-							  .textContent('there is no Undo also make sure to save changes')
+							  .textContent('')
 							  .ariaLabel('Delete')
 							  .ok('Please do it!')
 							  .cancel('Cancel');
@@ -489,7 +521,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		$scope.dynamicModel={};
 		console.log('Mode Resetted '+$scope.editedRecord);
 		console.log($scope.dynamicModel);
-	}
+	};
 	
 	$scope.editRecord=function(index){
 		$scope.editIndex=index;
@@ -512,17 +544,8 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		$scope.selectedTab=1;
 		$scope.editedRecord=true;
 		
-	}
-	
-	$scope.saveDownload=function(){
-			var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.data));
-			var downloadAnchorNode = document.createElement('a');
-			downloadAnchorNode.setAttribute("href",     dataStr);
-			downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
-			document.body.appendChild(downloadAnchorNode); // required for firefox
-			downloadAnchorNode.click();
-			downloadAnchorNode.remove();
 	};
+	
 
 
 
