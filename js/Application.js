@@ -1,6 +1,14 @@
 var app= angular.module("myApp",[]);
 
+app.filter('trustUrl', function ($sce) {
+    return function(url) {
+    	url='https://www.youtube.com/embed/'+url;
+        return $sce.trustAsResourceUrl(url);
+      };
+   });
+
 app.controller('appCtrl',function($rootScope,$scope,$http){
+	$rootScope.path="";
 	$rootScope.getListFromDataForSlides=function(dataToSlice,id){
 	var quotient=Math.floor(dataToSlice.length/4);
 	var remainder=dataToSlice.length%4;
