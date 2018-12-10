@@ -38,15 +38,16 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 <link rel="stylesheet" type="text/css" href="../css/CustomStyle.css">
 
 </head>
-<body id="guidanceGroup" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app="myApp" ng-controller="dataCtrl">
+<body id="guidanceGroup" data-spy="scroll" data-target=".navbar" data-offset="60" ng-app="myApp" ng-controller="dataCtrl" >
 
-<nav class="navbar fixed-top navbar-expand-md  navbar-dark bg-dark " ng-controller="appCtrl">
+
+<nav class="navbar fixed-top navbar-expand-md  navbar-dark bg-dark " ng-controller=" appCtrl" >
   <a class="navbar-brand" href="http://guidancegroup.co.in/"><img src="../img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="logo">Guidance Group</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
     <ul class="navbar-nav ml-auto  text-center">
       <li class="nav-item ">
         <a class="nav-link" href="http://guidancegroup.co.in/">Home</a>
@@ -90,8 +91,8 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="downloads in downloadsData.downloads|filter:downloadKeyword">
-							<th>{{downloads.index}}</th>
+						<tr ng-repeat="downloads in downloadsData |filter:downloadKeyword">
+							<th>{{$index+1}}</th>
 							<th>{{downloads.fileName.split('.')[0]}}</th>
 							<th class="text-center"> <a class="btn btn-outline-primary" ng-href="{{downloads.fileName}}" download role="button" title="{{downloads.examination}}">
 																<span class="fa fa-download"></span></a> </th>
@@ -154,3 +155,5 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
 	</div>
 	
 </div>
+
+</body>
