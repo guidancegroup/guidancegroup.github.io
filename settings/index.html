@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html ng-app="myAdmin">
 <head>
@@ -141,7 +142,16 @@ th {
 		  
 		  <md-tab label="Add Records" ng-click="resetMode();">
 			<md-content class="md-padding">
-			  <h1 class="md-display-2">{{activeMenu}}</h1>
+			<div layout="row" layout-align="end end">
+			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
+			 	 
+			 	 <input class="ng-hide"  id="mediaUpload" media-Upload multiple type="file"  />
+				<label for="mediaUpload" class="md-button md-raised md-primary md-block"  >
+					<i class="md-avatar fa fa-paperclip " ng-style="{'font-size':'24px','color':'orange'}" ></i>
+					Upload Media</label> 
+			 	 
+			  </div>
+			 
 					<md-card >
 					 <md-card-content>
 						<form  ng-submit="addRecord();">
@@ -158,7 +168,7 @@ th {
 							
 								<label>{{chip}} </label>
 								<textarea  ng-model="dynamicModel[chip]"  rows="5" md-select-on-focus required></textarea>
-								<p  class="hint" >Press enter to Separate your input</p>
+								<p  ng-style="{'color':'orange'}" >Press enter to Separate your input</p>
 								
 							</md-input-container >
 							
@@ -168,8 +178,9 @@ th {
 						
 					   
 					 </md-card-content>
-					 <md-card-footer>
-					   *upload respective media at respective location.
+					 <md-card-footer >
+					 <p  ng-style="{'color':'orange'}" >*upload  media if required.(Multiple media supported).</p>
+						
 					 </md-card-footer>
 					</md-card>
 			 </md-content>
@@ -239,6 +250,9 @@ integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b
   <!-- Angular Material Library -->
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
 <script type="text/javascript">
+
+
+
 var admin= angular.module("myAdmin",['ngMaterial','ngMessages']);
 
 admin.config(function($mdThemingProvider) {
@@ -249,8 +263,65 @@ admin.config(function($mdThemingProvider) {
 	  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 });
 
+admin.directive('mediaUpload', ['$rootScope',function (rootScope) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      var canvas = document.createElement("canvas");
+	   
+      elem.on('change', function () {
+		scope.selectedFiles=elem[0].files;
+		console.log(scope.selectedFiles);
+		scope.idx=0;
+		for(var i=0;i<scope.selectedFiles.length;i++){
+			
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				scope.mediaObj={};
+				console.log("scope.idx "+scope.idx);
+				var isPresent=false;
+				scope.mediaObj.name=scope.selectedFiles[scope.idx].name;
+				
+				for(var j=0;j<rootScope.uplaodMediaList.length;j++){
+					if(rootScope.uplaodMediaList[j].name==scope.mediaObj.name && rootScope.uplaodMediaList[j].location==rootScope.menuPath){
+						console.log(scope.mediaObj.name +" file ALREADY EXISTS at"+ rootScope.menuPath);
+						isPresent=true;
+						break;
+					}
+				}
+
+				if(!isPresent){
+					scope.mediaObj.location=rootScope.menuPath;
+					scope.mediaObj.media= e.target.result;
+					console.log("Adding mediaObj ==>");
+					console.log(scope.mediaObj);
+					rootScope.uplaodMediaList.push(scope.mediaObj);
+					console.log("uplaodMediaList ====>");
+					console.log(rootScope.uplaodMediaList);
+					isPresent=false;
+				}
+
+				scope.idx++;
+				scope.$apply();
+
+			}
+			
+			reader.readAsDataURL(scope.selectedFiles[i]);
+			
+		
+	  }
+    
+       
+      });
+	 
+           
+        }
+    }
+}]);
+
+
 admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSidenav, $log,$mdDialog){
-	
+	$rootScope.uplaodMediaList=[];
 	$scope.enableChip=false;
 	$scope.addedRecord=false;
 	$scope.deletedRecord=false;
@@ -308,7 +379,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		 $scope.statusClass="";
 	   	$scope.credits=btoa($scope.user.userName+":"+$scope.user.passKey);
 	   	console.log("$scope.credits"+$scope.credits);
-	    $http.get($scope.filePath,
+	    $http.get($scope.filePath+'js/GGData.json',
 				{ headers: {
 						'Authorization':'Basic '+ $scope.credits
 					 }
@@ -332,8 +403,9 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	    	 
 	    }); 
 	    
-	 
 	};
+	
+
 	
 	$scope.saveContain=function(){
 		$scope.statusMessage="";
@@ -341,17 +413,17 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		var encodedURIData=encodeURIComponent(JSON.stringify($scope.data));
 		var dataStr = "data:text/json;charset=utf-8," + encodedURIData;
 		var downloadAnchorNode = document.createElement('a');
-		downloadAnchorNode.setAttribute("href",     dataStr);
+		downloadAnchorNode.setAttribute("href", dataStr);
 		downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
 		document.body.appendChild(downloadAnchorNode); // required for firefox
 		downloadAnchorNode.click();
 		downloadAnchorNode.remove();
 		console.log("Downloaded ==>"+encodedURIData);
-		$scope.fileProperties.message="testing";
+		$scope.fileProperties.message=new Date().getTime().toString();
 		 $scope.fileProperties.content=btoa(unescape(encodedURIData));
 		 console.log("fileProperties");
 	     console.log($scope.fileProperties);
-		$http.put($scope.filePath,$scope.fileProperties,
+		/* $http.put($scope.filePath+'js/GGData.json',$scope.fileProperties,
 				{headers: {
 						'Authorization':'Basic '+ $scope.credits
 						
@@ -373,7 +445,38 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	    	 $scope.isUserValid=false;
 	    	 $scope.progressFlag=false;
 	    	 $scope.user={};
-	    }); 
+	    });  */
+		
+		for(var m=0;m<$rootScope.uplaodMediaList.length;m++){
+			var dPath=$scope.filePath+$rootScope.uplaodMediaList[m].location+$rootScope.uplaodMediaList[m].name;
+			console.log("media path "+dPath);
+			var mObj={};
+			mObj.message=new Date().getTime().toString();
+			mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+			mObj.content=$rootScope.uplaodMediaList[m].media.split(',')[1];
+			console.log("mObj -->");
+			console.log(mObj);
+			/* $http.put(dPath,mObj,
+					{headers: {
+							'Authorization':'Basic '+ $scope.credits
+							
+						 }
+					}
+			)
+		    .then(function(response) {
+		        console.log(response.data);
+		        $scope.statusMessage="Successfully Saved";
+		        $scope.statusClass="success-message";
+		        
+		    }, function(response) {
+		    	 console.log(response);
+		    	 $scope.statusMessage="Something went wrong, backup file is downloaded.\n Upload manually or try again later";
+		    	 $scope.statusClass="failure-message";
+		    	
+		    });  */
+			
+			console.log("iterator "+m);
+		}
 	};
  
 	$scope.viewSelected=function(menu,menuIndex){
@@ -390,7 +493,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		console.log("selectedMenuIndex "+$scope.selectedMenuIndex);
 		$scope.selectedTab=0;
 		$scope.activeMenu=menu.menuName;
-	
+		$rootScope.menuPath=menu.menuPath;
 		$scope.containList=[];
 	
 		var contain = menu.menuContain;
