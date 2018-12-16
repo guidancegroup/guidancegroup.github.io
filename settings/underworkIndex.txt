@@ -578,8 +578,9 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		$rootScope.logger("Pointer equals ",$scope.pointer);
 		$rootScope.logger("request path ",dPath);
 	 	$rootScope.logger("request Object ",mObj);
-		if($scope.pointer<$rootScope.uplaodMediaList.length){
+		if($scope.pointer>$rootScope.uplaodMediaList.length){
 			$rootScope.logger("Request returning");
+			console.log($rootScope.debugLog);
 			return;
 		}
 		
@@ -615,7 +616,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	    	 $scope.pointer++;
 	    	 $rootScope.logger("Error "+$scope.otherName,response);
 			 var statusObj={};
-			 if(m==0){
+			 if( ($scope.pointer-1)==0){
 				statusObj.fileName=$scope.otherName;
 				statusObj.filePath=$scope.otherPath;
 			 }else{
@@ -820,11 +821,12 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	
 
 	$scope.resetOnDone=function(){
-		console.log($rootScope.debugLog);
 		$rootScope.uplaodMediaList=[];
 		$scope.statusList=[];
 		 $scope.statusFlag=false;
 		 $rootScope.logger("Reloading, credits are ");
+		 console.log($rootScope.debugLog);
+		 $rootScope.debugLog="";
 		$scope.getAccess();
 		
 	};
