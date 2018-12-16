@@ -1,0 +1,848 @@
+
+
+
+
+<!DOCTYPE html>
+<html ng-app="myAdmin">
+<head>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>admin</title>
+<link rel="icon" type="image/gif/png" href="../img/logo.png">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<style>
+.active-nav{
+	background-color:gray;
+	border-bottom:solid 1px orange;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+	
+	border-bottom: 1px solid #dddddd;
+}
+
+.success-message{
+	color: green;
+}
+.failure-message{
+	color: red;
+}
+
+</style>
+<body id="admin" layout="column"   ng-controller="adminCtrl" ng-cloak> 
+<section layout="row" flex>
+	<md-sidenav
+        class="md-sidenav-left"
+        md-component-id="left"
+        md-is-locked-open="$mdMedia('gt-xs')"
+        md-whiteframe="4">
+		
+	<md-toolbar class="" md-whiteframe="4">
+      <div layout="row" class="inset">
+        <md-toolbar-filler layout="row" layout-align="center center">
+          <img ng-src="../img/logo.png" style="border-radius :50px"   alt="logo" />
+        </md-toolbar-filler>
+        <h2 class="md-toolbar-tools">
+          <span>Menu</span>
+        </h2>
+      </div>
+    </md-toolbar>
+		
+      <md-content >
+	  <md-list flex >
+		<md-list-item  class="md-2-line " ng-repeat="item in data.adminMenu track by $index " ng-click="viewSelected(item,$index);" >
+			<i class="md-avatar {{item.menuIcon}}" ng-style="{'font-size':'36px'}"></i>
+          <!-- <img ng-src="{{item.face}}?{{$index}}" class="md-avatar" alt="{{item.menuId}}" /> -->
+          <div class="md-list-item-text" layout="column">
+            <a >{{ item.menuName }} </a>
+            
+			  </div>
+			  <md-divider md-inset hide-sm ></md-divider>
+               <md-divider hide-gt-sm ng-if="!$last"></md-divider>
+			</md-list-item>
+		</md-list>
+		<md-divider ></md-divider>
+		  <a title="Nikhil Inpure" href="#" ng-style="{'font-size':'12px'}">developed and maintained by Guidance Educon Pvt. Ltd.</a>
+		  <br><br>
+      </md-content>
+		
+    </md-sidenav>
+	
+	<md-content layout="column" layout-xs="row" flex  md-swipe-right="onSwipeRight($event, $target)">
+		<md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab" ng-show="isUserValid" >
+		
+		
+		  <md-tab label="View Records" >
+			<md-content class="md-padding" >
+				<div layout="row" layout-align="end end">
+			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
+			 	 
+			 	 <md-input-container class="md-icon-float md-block">
+			      <!-- Use floating label instead of placeholder -->
+			      <label>Quick Search</label>
+			      <md-icon ><i class="md-avatar fa fa-search" ng-style="{'font-size':'24px','color':'green'}"></i></md-icon>
+			      <input ng-model="searchKey" type="text">
+			    </md-input-container>
+			 	 
+			  </div>
+			  <md-card  >
+					 <md-card-content>
+					
+					   <table>
+						<tr >
+							<th ng-repeat="header in headerList track by $index">{{header}}</th>
+							<th><i class="md-avatar fa fa-edit " ng-style="{'font-size':'24px'}" ></i></th>
+							<th><i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px'}" ></i></th>
+							
+						 </tr>
+						 <tr ng-repeat="recs in containList| filter:searchKey">
+							<td ng-repeat="rec in recs track by $index" ng-init="tp=detectType(rec);subtp=detectType(rec[0]);">
+								<span ng-if="tp=='[object String]' || tp == '[object Number]' || tp == '[object Boolean]' ">
+									{{rec}} 
+								</span>
+								<span ng-if="tp=='[object Array]' && subtp=='[object String]' ">
+									<p ng-repeat="subRec in rec track by $index">{{subRec}}</p>
+								</span>
+							</td>
+							<td><a   class="md-avatar fa fa-edit " ng-style="{'font-size':'24px','color':'navy','cursor':'pointer'}"  
+										 ng-click="editRecord($index);"></a>
+							</td>
+							<td><a   class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'red','cursor':'pointer'}"  
+										 ng-click="deleteRecord($index);"></a>
+							</td>
+							
+							
+						 </tr>
+					   </table>
+					 </md-card-content>
+					 <md-card-footer>
+					   <md-button class="md-raised md-cornered md-primary" ng-click="viewSelected(selectedMenu,selectedMenuIndex);">Refresh Records</md-button> 
+					 </md-card-footer>
+			</md-card>
+			  
+			</md-content>
+		  </md-tab>
+		  
+		  <md-tab label="Add Records" ng-click="resetMode();">
+			<md-content class="md-padding">
+			<div layout="row" layout-align="end end">
+			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
+			 	 
+			 	 <input class="ng-hide"  id="mediaUpload" media-Upload multiple type="file"  />
+				<label for="mediaUpload" class="md-button md-fab md-warn"  title="Upload Media">
+					{{uplaodMediaList.length-1}}
+					<i class="fa fa-paperclip " ng-style="{'font-size':'24px','color':'white'}" ></i>
+				</label> 
+			 	 
+			  </div>
+			 
+					<md-card >
+					 <md-card-content>
+						<form  ng-submit="addRecord();">
+							<md-input-container class="md-block" flex-gt-sm ng-repeat="fields in fieldList track by $index"  
+								ng-if="fields.fieldType !='[object Array]'" >
+							
+								<label>{{fields.fieldName}} </label>
+								<input  ng-model="dynamicModel[fields.fieldName]" required>
+								
+							</md-input-container >
+							
+							
+							<md-input-container ng-if="enableChip" class="md-block" flex-gt-sm ng-repeat="chip in chipList track by $index" >
+							
+								<label>{{chip}} </label>
+								<textarea  ng-model="dynamicModel[chip]"  rows="5" md-select-on-focus required></textarea>
+								<p  ng-style="{'color':'grey'}" >Press enter to Separate your input</p>
+								
+							</md-input-container >
+							
+							<md-button type="submit" class="md-raised md-cornered md-primary" >Add Record</md-button> 
+							
+						</form>
+						
+					   
+					 </md-card-content>
+					 <md-card-footer >
+					 <p  ng-style="{'color':'orange'}" >
+						<i class="fa fa-paperclip "></i>
+						upload  media if required.(multiple selection supported).
+					</p>
+						
+					 </md-card-footer>
+					</md-card>
+			 </md-content>
+		  </md-tab>
+		  <md-tab label="Save Records" >
+		  	<h1 class="md-display-2 md-padding" layout="row" layout-align="start center">Save Records</h1>
+			<md-content class="md-padding" >
+			  
+					<md-card flex  >
+						<md-card-content >
+							<table ng-if="!statusFlag">
+								<tr>
+									<th >File Name</th>
+									<th>File Path</th>
+									<th><i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px'}" ></i></th>
+									
+								 </tr>
+								
+								 <tr ng-repeat="media in uplaodMediaList track by $index">
+									<td >
+										<span ng-if="$index==0">Records</span>
+										<span ng-if="$index>0">{{media.name}}</span>
+									</td>
+									<td>{{media.location}}</td>
+									<td > 
+										<i ng-click="removeMedia($index);" class="md-avatar fa fa-trash " title="remove" ng-style="{'font-size':'24px','color':'red','cursor':'pointer'}" ></i>
+									</td>
+									
+								 </tr>
+								
+							</table>
+							
+							<table ng-if="statusFlag">
+								<tr>
+									<th >File Name</th>
+									<th>File Path</th>
+									<th>Status</th>
+									
+								 </tr>
+								 <tr ng-repeat="file in statusList">
+									<td>{{file.fileName}}</td>
+									<td>{{file.filePath}}</td>
+									<td > 
+										<span ng-if="file.fileStatus=='S'" class="success-message">Saved Successfully.</span>
+										<span ng-if="file.fileStatus=='F'" class="failure-message">Operation Failed.</span>
+									</td>
+									
+								 </tr>
+							</table>
+							
+						</md-card-content>
+						<md-card-actions layout="column" layout-align="space-around">
+						     <md-button ng-if="!statusFlag && !progressFlag" type="submit" class="md-raised md-cornered md-warn" ng-click="saveContain()">Save</md-button>
+							
+						      <md-progress-circular ng-show="progressFlag && !statusFlag" md-mode="indeterminate"></md-progress-circular>
+						   
+						     <md-button ng-if="statusFlag" class="md-raised md-cornered md-warn" ng-click="resetOnDone()">Done</md-button>
+						</md-card-actions>
+					</md-card>
+			 </md-content>
+		  </md-tab>
+		 
+	  </md-tabs>
+		<div class="md-padding" layout="column" layout-align=" center center" ng-show="!isUserValid" >
+
+			<md-card flex=""  >
+			<md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Sign In</span>
+          </md-card-title-text>
+		  </md-card-title>
+						<md-card-content >
+						<form autocomplete="off"   ng-submit="getAccess();">
+								<md-input-container class="md-icon-float md-block">
+							      <label>User Name</label>
+							      <md-icon><i class="md-avatar fa fa-user" ng-style="{'font-size':'24px'}"></i></md-icon>
+							      <input ng-model="user.userName" type="text" required>
+							    </md-input-container>
+							
+							    <md-input-container md-no-float class="md-icon-float md-block">
+							    <label>Password</label>
+							      <md-icon ><i class="md-avatar fa fa-lock" ng-style="{'font-size':'24px'}"></i></md-icon>
+							      <input ng-model="user.passKey" type="password" required>
+							    </md-input-container>
+							   
+						          <md-button type="submit" class="md-raised md-cornered md-primary">
+									<md-icon><i class="md-avatar fa fa-sign-in" ng-style="{'font-size':'24px'}"></i></md-icon>
+								  </md-button>
+						        
+						</form>
+						
+						<div ng-if="statusMessage.length!=0" layout="row" layout-sm="column" layout-align="space-around">
+					      <p class="{{statusClass}}">{{statusMessage}}</p>
+					    </div>
+						<div ng-show="progressFlag" layout="row" layout-sm="column" layout-align="space-around">
+					      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+					    </div>
+						</md-card-content>
+					</md-card>
+				</div>
+		
+	</md-content>
+	 
+</section>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+ <!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+<script type="text/javascript">
+
+
+
+var admin= angular.module("myAdmin",['ngMaterial','ngMessages']);
+
+admin.config(function($mdThemingProvider) {
+	
+	$mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
+	  $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
+	  $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
+	  $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+});
+
+admin.directive('mediaUpload', ['$rootScope',function (rootScope) {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      var canvas = document.createElement("canvas");
+	   
+      elem.on('change', function () {
+		scope.selectedFiles=elem[0].files;
+		rootScope.logger(" selectedFiles",scope.selectedFiles);
+		scope.idx=0;
+		for(var i=0;i<scope.selectedFiles.length;i++){
+			
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				scope.mediaObj={};
+				var isPresent=false;
+				rootScope.logger("file  at ",scope.idx);
+				scope.mediaObj.name=scope.selectedFiles[scope.idx].name;
+				
+				for(var j=0;j<rootScope.uplaodMediaList.length;j++){
+					if(rootScope.uplaodMediaList[j].name==scope.mediaObj.name && rootScope.uplaodMediaList[j].location==rootScope.menuPath){
+						rootScope.logger("file ALREADY EXISTS at ",scope.mediaObj.name);
+						isPresent=true;
+						break;
+					}
+				}
+
+				if(!isPresent){
+					scope.mediaObj.location=rootScope.menuPath;
+					scope.mediaObj.media= e.target.result;
+					rootScope.uplaodMediaList.push(scope.mediaObj);
+					rootScope.logger("uplaodMediaList ",rootScope.uplaodMediaList);
+					isPresent=false;
+				}
+
+				scope.idx++;
+				scope.$apply();
+
+			}
+			
+			reader.readAsDataURL(scope.selectedFiles[i]);
+			
+		
+	  }
+    
+       
+      });
+	 
+           
+        }
+    }
+}]);
+
+
+admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSidenav, $log,$mdDialog){
+	$rootScope.uplaodMediaList=[];
+	$scope.enableChip=false;
+	$scope.addedRecord=false;
+	$scope.deletedRecord=false;
+	$scope.editedRecord=false;
+	$scope.isUserValid=false;
+	$scope.progressFlag=false;
+	$scope.statusFlag=false;
+	$scope.user={};
+	$scope.dynamicModel={};
+	$scope.selectedTab=0;
+	$scope.data={};
+	$scope.filePath="";
+	$scope.statusMessage="";
+	$scope.statusClass="";
+	
+	$scope.toggleLeft = function () {
+		  $mdSidenav('left').toggle()
+			.then(function () {
+			  $log.debug("close LEFT is done");
+			});
+	};
+
+	$scope.onSwipeRight = function(ev, target) {
+			$mdSidenav('left').open()
+			.then(function () {
+			  $log.debug("on right swipe Nav Open");
+			  $log.log('Event Target: ', ev.target);
+			  $log.log('Event Current Target: ', ev.currentTarget);
+			  $log.log('Original Current Target: ', target.current);
+			});
+	};
+	
+	$scope.b64EncodeUnicode= function (str) {
+		// first we use encodeURIComponent to get percent-encoded UTF-8,
+		// then we convert the percent encodings into raw bytes which
+		// can be fed into btoa.
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+			function toSolidBytes(match, p1) {
+				return String.fromCharCode('0x' + p1);
+		}));
+	}
+
+	$scope.b64DecodeUnicode=function (str) {
+		// Going backwards: from bytestream, to percent-encoding, to original string.
+		return decodeURIComponent(atob(str).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+	};
+
+	$scope.configObj={};
+	$scope.credits="";
+	$scope.fileProperties={};
+	$scope.getAccess=function(){
+		$scope.progressFlag=true;
+		$scope.statusMessage="";
+		 $scope.statusClass="";
+	   	$scope.credits=btoa($scope.user.userName+":"+$scope.user.passKey);
+	    $rootScope.logger("credits ",$scope.credits);
+		//'https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/sampleData.json'
+		$http.get('https://api.github.com/repos/guidancegroup/guidancegroup.github.io/contents/js/GGData.json',
+				{headers: {
+						'Authorization':'Basic '+ $scope.credits
+						
+					 }
+				}
+		)
+	    .then(function(response) {
+	    
+	        $rootScope.logger("Success ",response.data);
+			$scope.data=JSON.parse($scope.b64DecodeUnicode(response.data.content));
+	        $scope.filePath=$scope.data.filePath.toString();
+	       	$scope.viewSelected($scope.data.adminMenu[0],0);
+	        $scope.statusMessage ="";
+	        $scope.statusClass="";
+			
+			$scope.configObj.sha=response.data.sha;
+			$scope.configObj.location=response.data.path;
+			$rootScope.uplaodMediaList.push($scope.configObj);
+			$rootScope.logger("uplaodMediaList ",$rootScope.uplaodMediaList);
+			
+			$scope.isUserValid=true;
+	        $scope.progressFlag=false;
+	        
+	    }, function(response) {
+	    	$rootScope.logger("Error ",response);
+			 $scope.isUserValid=false; //temp make it false
+	    	 $scope.progressFlag=false;
+	    	 $scope.statusFlag=false;
+	    	 $scope.statusClass="failure-message";
+	    	 $scope.statusMessage=response;
+	    	
+	    }); 
+	    
+	};
+	
+
+
+	$scope.otherName="";
+	$scope.otherPath="";
+	$scope.saveContain=function(){
+		$scope.statusMessage="";
+		 $scope.statusClass="";
+		var strigifiedData=JSON.stringify($scope.data);
+		var encodedURIData=encodeURIComponent(strigifiedData);
+		var dataStr = "data:text/json;charset=utf-8," + encodedURIData;
+		var downloadAnchorNode = document.createElement('a');
+		downloadAnchorNode.setAttribute("href", dataStr);
+		downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
+		document.body.appendChild(downloadAnchorNode); // required for firefox
+		downloadAnchorNode.click();
+		downloadAnchorNode.remove();
+		$rootScope.logger("Downloaded ",dataStr);
+
+		$rootScope.logger("uplaodMediaList ",$rootScope.uplaodMediaList);
+		$scope.statusList=[];
+		/* for(var m=0;m<$rootScope.uplaodMediaList.length;m++){
+			$scope.progressFlag=true;
+			var dPath="";
+			var mObj={};
+			mObj.message=new Date().getTime().toString();
+			mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+			if(m == 0){//GGData file 
+				$scope.otherName="Records";
+				$scope.otherPath=$rootScope.uplaodMediaList[0].location;
+				//dPath=$scope.filePath+$scope.otherPath;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
+				mObj.sha=$rootScope.uplaodMediaList[0].sha;
+				mObj.content=$scope.b64EncodeUnicode(strigifiedData);
+			}else{// other media
+				$scope.otherName=$rootScope.uplaodMediaList[m].name;
+				$scope.otherPath=$rootScope.uplaodMediaList[m].location;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				mObj.content=$rootScope.uplaodMediaList[m].media.split(',')[1];
+				
+			}
+		 	$rootScope.logger("request Object ",mObj);
+			
+			$http.put(dPath,mObj,
+					{headers: {
+							'Authorization':'Basic '+ $scope.credits
+							
+						 }
+					}
+			)
+		    .then(function(response) {
+		        $rootScope.logger("Success "+response.data.content.name,response.data);
+				var statusObj={};
+				statusObj.fileName=response.data.content.name;
+				statusObj.filePath=response.data.content.path;
+				statusObj.fileStatus="S";
+				$scope.statusList.push(statusObj);
+				if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+					$rootScope.logger("All files processed (S)");
+					$scope.progressFlag=false;
+					$scope.statusFlag=true;
+				}
+		        
+		    }, function(response) {
+		    	 $rootScope.logger("Error "+$scope.otherName,response);
+				 var statusObj={};
+				 if(m==0){
+					statusObj.fileName=$scope.otherName;
+					statusObj.filePath=$scope.otherPath;
+				 }else{
+					 statusObj.fileName=$scope.otherName;
+					statusObj.filePath=$scope.otherPath; 
+				 }
+				statusObj.fileStatus="F";
+				$scope.statusList.push(statusObj);
+				
+		    	$rootScope.logger("Saving Error",response.statusText);
+				if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+					$rootScope.logger("All files processed (F)");
+					$scope.progressFlag=false;
+					$scope.statusFlag=true;
+				}
+		    	
+		    });   
+			
+			$rootScope.logger("iterator at  ",m);
+		   
+		} */
+		
+		$scope.progressFlag=true;
+		var dPath="";
+		var mObj={};
+		$scope.pointer=0;
+		mObj.message=new Date().getTime().toString();
+		mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+		$scope.otherName="Records";
+		$scope.otherPath=$rootScope.uplaodMediaList[0].location;
+		//dPath=$scope.filePath+$scope.otherPath;
+		dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
+		mObj.sha=$rootScope.uplaodMediaList[0].sha;
+		mObj.content=$scope.b64EncodeUnicode(strigifiedData);
+		$scope.request(dPath,mObj);	
+		
+	};
+	
+	
+	$scope.request=function(dPath,mObj){
+		console.log($rootScope.debugLog);
+		$rootScope.logger("Pointer equals ",$scope.pointer);
+		$rootScope.logger("request path ",dPath);
+	 	$rootScope.logger("request Object ",mObj);
+		if($scope.pointer<$rootScope.uplaodMediaList.length){
+			$rootScope.logger("Request returning");
+			return;
+		}
+		
+		$http.put(dPath,mObj,
+				{headers: {
+						'Authorization':'Basic '+ $scope.credits
+						
+					 }
+				}
+		)
+	    .then(function(response) {
+	        $rootScope.logger("Success "+response.data.content.name,response.data);
+	        $scope.pointer++;
+			var statusObj={};
+			statusObj.fileName=response.data.content.name;
+			statusObj.filePath=response.data.content.path;
+			statusObj.fileStatus="S";
+			$scope.statusList.push(statusObj);
+			if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+				$rootScope.logger("All files processed (S)");
+				$scope.progressFlag=false;
+				$scope.statusFlag=true;
+			}else{
+				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
+				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				mObj.content=$rootScope.uplaodMediaList[$scope.pointer].media.split(',')[1];
+				$scope.request(dPath,mObj);	
+			}
+			
+	        
+	    }, function(response) {
+	    	 $scope.pointer++;
+	    	 $rootScope.logger("Error "+$scope.otherName,response);
+			 var statusObj={};
+			 if(m==0){
+				statusObj.fileName=$scope.otherName;
+				statusObj.filePath=$scope.otherPath;
+			 }else{
+				 statusObj.fileName=$scope.otherName;
+				statusObj.filePath=$scope.otherPath; 
+			 }
+			statusObj.fileStatus="F";
+			$scope.statusList.push(statusObj);
+			
+	    	$rootScope.logger("Saving Error",response.statusText);
+			if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+				$rootScope.logger("All files processed (F)");
+				$scope.progressFlag=false;
+				$scope.statusFlag=true;
+			}else{
+				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
+				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				mObj.content=$rootScope.uplaodMediaList[ $scope.pointer].media.split(',')[1];
+				$scope.request(dPath,mObj);	
+			}
+	    	
+	    }); 
+	}
+ 
+	$scope.viewSelected=function(menu,menuIndex){
+		$scope.dynamicModel={};
+		$scope.addedRecord=false;
+		$scope.deletedRecord=false;
+		$scope.editedRecord=false;
+		$scope.selectedMenu=menu;
+		$scope.selectedMenuIndex=menuIndex;
+		$rootScope.logger("selectedMenuIndex ",$scope.selectedMenuIndex);
+		
+		$scope.selectedTab=0;
+		$scope.activeMenu=menu.menuName;
+		$rootScope.menuPath=menu.menuPath;
+		$scope.containList=[];
+	
+		var contain = menu.menuContain;
+		if(contain.length!=0){
+			$scope.enableChip=false;
+			$rootScope.logger("enableChip ",$scope.enableChip);
+			$scope.headerList=[];
+			$scope.fieldList=[];
+			$scope.chipList=[];
+			for(var key in contain[0]){
+				var field=contain[0][key];
+				var fieldType=$scope.detectType(field);
+				$rootScope.logger("fieldType ",fieldType);
+				if(fieldType=='[object Array]'){
+					$scope.enableChip=true;
+					$rootScope.logger("enableChip ",$scope.enableChip);
+					$scope.chipList.push(key);
+				}else{
+					var fieldObj={};
+					fieldObj.fieldName=key;
+					fieldObj.fieldType=fieldType;
+					$scope.fieldList.push(fieldObj);
+				}
+				
+				$scope.headerList.push(key);
+			}
+			$rootScope.logger("chipList ",$scope.chipList);
+			$rootScope.logger("headerList ",$scope.headerList);
+			$rootScope.logger("fieldList ",$scope.fieldList);
+		}
+		for(var i=0;i<contain.length;i++){
+			$rootScope.logger("menuContain ",contain[i]);
+			var tempList=[];
+			for(var j=0;j<$scope.headerList.length;j++){
+				var tempContain=contain[i][$scope.headerList[j]];
+				tempList.push(tempContain);
+			}
+			$rootScope.logger("tempList ",tempList);
+			$scope.containList.push(tempList);
+			 
+		}
+		
+		$rootScope.logger("containList ",$scope.containList);
+	}
+	
+	$scope.detectType=function(element){
+		return Object.prototype.toString.call(element);
+	}
+	
+	$scope.getKeys=function(obj){
+		var keyList=[];
+		for(var key in obj){
+			keyList.push(key);
+			
+		}
+		$rootScope.logger("getKeys ",keyList);
+		return keyList;
+	};
+	
+	$scope.addRecord=function(){
+		console.log($scope.dynamicModel);
+		
+		if((Object.keys($scope.dynamicModel).length === 0 && $scope.dynamicModel.constructor === Object)||$scope.addedRecord){
+			$rootScope.logger("empty dynamicModel or rec added already ");
+			return false;
+		}
+		
+		if($scope.editedRecord){
+			$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.splice($scope.editIndex, 1);
+			
+			$rootScope.logger("Deleted to update ");
+		}
+		
+		for(var i=0;i<$scope.chipList.length;i++){
+			var stringToSplit= $scope.dynamicModel[$scope.chipList[i]];
+			if(stringToSplit.indexOf('\n') !== -1 || stringToSplit.length>0){
+				var arrString=stringToSplit.split('\n');
+				$scope.dynamicModel[$scope.chipList[i]]=arrString;
+			}else {
+				$scope.dynamicModel[$scope.chipList[i]]=[];
+			}
+			
+		}
+		
+		$rootScope.logger("updated dynamicModel", $scope.dynamicModel);
+		
+		$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.push($scope.dynamicModel);
+		$scope.addedRecord=true;
+
+		$rootScope.logger(" added dynamicModel ",$scope.addedRecord);
+		$mdDialog.show(
+			  $mdDialog.alert()
+				.parent(angular.element(document.querySelector('#add')))
+				.clickOutsideToClose(true)
+				.title('Record Added Successfully!!')
+				.textContent('Visit View Record Tab, you might need to refresh records.')
+				.ariaLabel('Add')
+				.ok('Got it!')
+			);
+		$scope.viewSelected($scope.selectedMenu,$scope.selectedMenuIndex);
+	}
+
+	$scope.deleteRecord=function(index){
+		if($scope.deletedRecord){
+			$rootScope.logger(" deletedRecord Already ",$scope.deletedRecord);
+			return false;
+		}
+		var deleteRec = $mdDialog.confirm()
+							  .title('Would you like to delete this record?')
+							  .textContent('')
+							  .ariaLabel('Delete')
+							  .ok('Please do it!')
+							  .cancel('Cancel');
+		 $mdDialog.show(deleteRec).then(function() {
+			 	$rootScope.logger(" selectedMenuIndex ",$scope.selectedMenuIndex);
+				$rootScope.logger(" Deleting ",$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain[index]);
+				
+				$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.splice(index, 1);
+				
+				$rootScope.logger(" Deleted ");
+				$scope.deletedRecord=true;
+				$scope.viewSelected($scope.selectedMenu,$scope.selectedMenuIndex);
+			}, function() {
+				return false;
+			});
+		
+	};
+	
+	$scope.removeMedia=function(index){
+		if(index!=0){
+			$rootScope.uplaodMediaList.splice(index, 1);
+			$rootScope.logger(" Media Removed ",$rootScope.uplaodMediaList[index]);
+		}
+		
+	};
+	
+	$scope.resetMode=function(){
+		$scope.editedRecord=false;
+		$scope.dynamicModel={};
+		$rootScope.logger("Mode Resetted, editFlag ",$scope.editedRecord);
+	};
+	
+	$scope.editRecord=function(index){
+		$scope.editIndex=index;
+		var editObj=$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain[index];
+		for(var n=0;n<$scope.headerList.length;n++){
+			var tempObj=editObj[$scope.headerList[n]];
+			var type=$scope.detectType(tempObj);
+			if(type=='[object Array]'){
+				var tempStr='';
+				for(var m=0;m<tempObj.length;m++){
+					tempStr=tempStr+tempObj[m]+'\n';
+				}
+				tempObj=tempStr;
+			}
+			
+			$scope.dynamicModel[$scope.headerList[n]]=tempObj;
+		}
+		
+		$rootScope.logger("Object loaded to Edit ",$scope.dynamicModel);
+		$scope.selectedTab=1;
+		$scope.editedRecord=true;
+		
+	};
+	
+
+	$scope.resetOnDone=function(){
+		console.log($rootScope.debugLog);
+		$rootScope.uplaodMediaList=[];
+		$scope.statusList=[];
+		 $scope.statusFlag=false;
+		 $rootScope.logger("Reloading, credits are ");
+		$scope.getAccess();
+		
+	};
+	
+	$rootScope.debugLog="";
+	$rootScope.logger=function(msg,obj){
+		if(obj == 'undefined'){
+			$rootScope.debugLog +=new Date().toString()+" ==> \n "+ msg.toString()+" ==> \n\n "
+		}else{
+			$rootScope.debugLog +=new Date().toString()+" ==> \n "+msg.toString()+" ==> "+JSON.stringify(obj)+" \n\n";
+		}
+		
+	};
+
+});
+
+
+</script>
+</body>
+
+</html>
