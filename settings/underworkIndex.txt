@@ -48,6 +48,7 @@ th {
 
 </style>
 <body id="admin" layout="column"   ng-controller="adminCtrl" ng-cloak> 
+
 <section layout="row" flex>
 	<md-sidenav
         class="md-sidenav-left"
@@ -101,12 +102,14 @@ th {
 			      <md-icon ><i class="md-avatar fa fa-search" ng-style="{'font-size':'24px','color':'green'}"></i></md-icon>
 			      <input ng-model="searchKey" type="text">
 			    </md-input-container>
+
 			 	 
 			  </div>
 			  <md-card  >
 					 <md-card-content>
 					
 					   <table>
+					   
 						<tr >
 							<th ng-repeat="header in headerList track by $index">{{header}}</th>
 							<th><i class="md-avatar fa fa-edit " ng-style="{'font-size':'24px'}" ></i></th>
@@ -147,11 +150,15 @@ th {
 			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
 			 	 
 			 	 <input class="ng-hide"  id="mediaUpload" media-Upload multiple type="file"  />
-				<label for="mediaUpload" class="md-button md-fab md-warn"  title="Upload Media">
+				<label for="mediaUpload" class="md-button md-fab  md-primary"  title="Upload Media">
 					{{uplaodMediaList.length-1}}
 					<i class="fa fa-paperclip " ng-style="{'font-size':'24px','color':'white'}" ></i>
 				</label> 
-			 	 
+				
+				<label for="mediaDelete" class="md-button md-fab md-warn"  title="Delete Media" ng-click="deletMedia()">
+					<i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'white'}"  ></i>
+				</label> 
+			 	
 			  </div>
 			 
 					<md-card >
@@ -387,6 +394,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	$scope.filePath="";
 	$scope.statusMessage="";
 	$scope.statusClass="";
+	$scope.fileToDelete="";
 	
 	$scope.toggleLeft = function () {
 		  $mdSidenav('left').toggle()
@@ -484,77 +492,10 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		document.body.appendChild(downloadAnchorNode); // required for firefox
 		downloadAnchorNode.click();
 		downloadAnchorNode.remove();
-		$rootScope.logger("Downloaded ",dataStr);
+		$rootScope.logger("Downloaded ");
 
 		$rootScope.logger("uplaodMediaList ",$rootScope.uplaodMediaList);
 		$scope.statusList=[];
-		/* for(var m=0;m<$rootScope.uplaodMediaList.length;m++){
-			$scope.progressFlag=true;
-			var dPath="";
-			var mObj={};
-			mObj.message=new Date().getTime().toString();
-			mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
-			if(m == 0){//GGData file 
-				$scope.otherName="Records";
-				$scope.otherPath=$rootScope.uplaodMediaList[0].location;
-				//dPath=$scope.filePath+$scope.otherPath;
-				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
-				mObj.sha=$rootScope.uplaodMediaList[0].sha;
-				mObj.content=$scope.b64EncodeUnicode(strigifiedData);
-			}else{// other media
-				$scope.otherName=$rootScope.uplaodMediaList[m].name;
-				$scope.otherPath=$rootScope.uplaodMediaList[m].location;
-				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
-				mObj.content=$rootScope.uplaodMediaList[m].media.split(',')[1];
-				
-			}
-		 	$rootScope.logger("request Object ",mObj);
-			
-			$http.put(dPath,mObj,
-					{headers: {
-							'Authorization':'Basic '+ $scope.credits
-							
-						 }
-					}
-			)
-		    .then(function(response) {
-		        $rootScope.logger("Success "+response.data.content.name,response.data);
-				var statusObj={};
-				statusObj.fileName=response.data.content.name;
-				statusObj.filePath=response.data.content.path;
-				statusObj.fileStatus="S";
-				$scope.statusList.push(statusObj);
-				if($rootScope.uplaodMediaList.length==$scope.statusList.length){
-					$rootScope.logger("All files processed (S)");
-					$scope.progressFlag=false;
-					$scope.statusFlag=true;
-				}
-		        
-		    }, function(response) {
-		    	 $rootScope.logger("Error "+$scope.otherName,response);
-				 var statusObj={};
-				 if(m==0){
-					statusObj.fileName=$scope.otherName;
-					statusObj.filePath=$scope.otherPath;
-				 }else{
-					 statusObj.fileName=$scope.otherName;
-					statusObj.filePath=$scope.otherPath; 
-				 }
-				statusObj.fileStatus="F";
-				$scope.statusList.push(statusObj);
-				
-		    	$rootScope.logger("Saving Error",response.statusText);
-				if($rootScope.uplaodMediaList.length==$scope.statusList.length){
-					$rootScope.logger("All files processed (F)");
-					$scope.progressFlag=false;
-					$scope.statusFlag=true;
-				}
-		    	
-		    });   
-			
-			$rootScope.logger("iterator at  ",m);
-		   
-		} */
 		
 		$scope.progressFlag=true;
 		var dPath="";
@@ -640,8 +581,91 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			}
 	    	
 	    }); 
-	}
- 
+	};
+	
+	$scope.deletMedia = function() {
+		var confirm = $mdDialog.prompt()
+	      .title('Delete Media')
+	      .textContent('Which file you want to delete?')
+	      .placeholder('Enter file name here')
+	      .ariaLabel('delete')
+	      .initialValue('')
+	      .required(true)
+	      .ok('Delete')
+	      .cancel('Cancel');
+		
+		 $mdDialog.show(confirm).then(function(fileName) {
+			 
+			 var dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$rootScope.menuPath+fileName;
+			 $rootScope.logger("Delete Path ",dPath);
+		    	$http.get(dPath,
+						{headers: {
+								'Authorization':'Basic '+ $scope.credits
+								
+							 }
+						}
+				)
+			    .then(function(response) {
+			    	var reqObj={};
+			    	reqObj.message="delete "+fileName;
+			    	reqObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+			    	reqObj.sha=response.data.sha;
+			    	 $rootScope.logger("Delete Object ",reqObj);
+			    	$http.delete(dPath,reqObj,
+							{headers: {
+									'Authorization':'Basic '+ $scope.credits
+									
+								 }
+							}
+					)
+				    .then(function(response) {
+				    	$mdDialog.show(
+					  			  $mdDialog.alert()
+					  				.parent(angular.element(document.querySelector('#deleteS')))
+					  				.clickOutsideToClose(true)
+					  				.title(response.data.name +' Deleted Successfully!!')
+					  				.textContent('')
+					  				.ariaLabel('Add')
+					  				.ok('Got it!')
+					  			);
+				    }, function(response) {
+				    	
+				    	$mdDialog.show(
+					  			  $mdDialog.alert()
+					  				.parent(angular.element(document.querySelector('#deleteF')))
+					  				.clickOutsideToClose(true)
+					  				.title('Delete failed')
+					  				.textContent('Try again later')
+					  				.ariaLabel('delete')
+					  				.ok('Got it!')
+					  			);
+				    	console.log($rootScope.debugLog);
+				    	
+					 });
+			    	
+			    }, function(response) {
+			    	
+			    	$mdDialog.show(
+				  			  $mdDialog.alert()
+				  				.parent(angular.element(document.querySelector('#deleteF')))
+				  				.clickOutsideToClose(true)
+				  				.title('Delete failed')
+				  				.textContent(fileName+' File does not exist')
+				  				.ariaLabel('delete')
+				  				.ok('Got it!')
+				  			);
+			    	console.log($rootScope.debugLog);
+			    	
+				 });
+			 
+		 }, function() {
+		    	console.log("Cancelled");
+		 });
+		
+	};
+	
+	
+	
 	$scope.viewSelected=function(menu,menuIndex){
 		$scope.dynamicModel={};
 		$scope.addedRecord=false;
