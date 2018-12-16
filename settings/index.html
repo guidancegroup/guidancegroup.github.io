@@ -1,15 +1,16 @@
 
 
 
+
 <!DOCTYPE html>
 <html ng-app="myAdmin">
 <head>
 
-<meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <title>admin</title>
-<link rel="icon" type="image/gif/png" href="">
+<link rel="icon" type="image/gif/png" href="../img/logo.png">
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -47,6 +48,7 @@ th {
 
 </style>
 <body id="admin" layout="column"   ng-controller="adminCtrl" ng-cloak> 
+
 <section layout="row" flex>
 	<md-sidenav
         class="md-sidenav-left"
@@ -54,10 +56,10 @@ th {
         md-is-locked-open="$mdMedia('gt-xs')"
         md-whiteframe="4">
 		
-	<md-toolbar class="" >
+	<md-toolbar class="" md-whiteframe="4">
       <div layout="row" class="inset">
         <md-toolbar-filler layout="row" layout-align="center center">
-          <img ng-src="GGlogo.png" style="border-radius :50px"   alt="logo" />
+          <img ng-src="../img/logo.png" style="border-radius :50px"   alt="logo" />
         </md-toolbar-filler>
         <h2 class="md-toolbar-tools">
           <span>Menu</span>
@@ -86,7 +88,7 @@ th {
     </md-sidenav>
 	
 	<md-content layout="column" layout-xs="row" flex  md-swipe-right="onSwipeRight($event, $target)">
-		<md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab" >
+		<md-tabs md-dynamic-height md-border-bottom md-selected="selectedTab" ng-show="isUserValid" >
 		
 		
 		  <md-tab label="View Records" >
@@ -100,12 +102,14 @@ th {
 			      <md-icon ><i class="md-avatar fa fa-search" ng-style="{'font-size':'24px','color':'green'}"></i></md-icon>
 			      <input ng-model="searchKey" type="text">
 			    </md-input-container>
+
 			 	 
 			  </div>
 			  <md-card  >
 					 <md-card-content>
 					
 					   <table>
+					   
 						<tr >
 							<th ng-repeat="header in headerList track by $index">{{header}}</th>
 							<th><i class="md-avatar fa fa-edit " ng-style="{'font-size':'24px'}" ></i></th>
@@ -146,10 +150,15 @@ th {
 			 	 <h1 class="md-display-2" flex>{{activeMenu}}</h1>
 			 	 
 			 	 <input class="ng-hide"  id="mediaUpload" media-Upload multiple type="file"  />
-				<label for="mediaUpload" class="md-button md-raised md-primary md-block"  >
-					<i class="md-avatar fa fa-paperclip " ng-style="{'font-size':'24px','color':'orange'}" ></i>
-					Upload Media</label> 
-			 	 
+				<label for="mediaUpload" class="md-button md-fab  md-primary"  title="Upload Media">
+					{{uplaodMediaList.length-1}}
+					<i class="fa fa-paperclip " ng-style="{'font-size':'24px','color':'white'}" ></i>
+				</label> 
+				
+				<label for="mediaDelete" class="md-button md-fab md-warn"  title="Delete Media" ng-click="deletMedia()">
+					<i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px','color':'white'}"  ></i>
+				</label> 
+			 	
 			  </div>
 			 
 					<md-card >
@@ -168,7 +177,7 @@ th {
 							
 								<label>{{chip}} </label>
 								<textarea  ng-model="dynamicModel[chip]"  rows="5" md-select-on-focus required></textarea>
-								<p  ng-style="{'color':'orange'}" >Press enter to Separate your input</p>
+								<p  ng-style="{'color':'grey'}" >Press enter to Separate your input</p>
 								
 							</md-input-container >
 							
@@ -179,7 +188,10 @@ th {
 					   
 					 </md-card-content>
 					 <md-card-footer >
-					 <p  ng-style="{'color':'orange'}" >*upload  media if required.(Multiple media supported).</p>
+					 <p  ng-style="{'color':'orange'}" >
+						<i class="fa fa-paperclip "></i>
+						upload  media if required.(multiple selection supported).
+					</p>
 						
 					 </md-card-footer>
 					</md-card>
@@ -187,9 +199,71 @@ th {
 		  </md-tab>
 		  <md-tab label="Save Records" >
 		  	<h1 class="md-display-2 md-padding" layout="row" layout-align="start center">Save Records</h1>
-			<md-content class="md-padding" layout="column" layout-align="center center">
+			<md-content class="md-padding" >
 			  
-					<md-card flex="50" ng-show="!isUserValid"  >
+					<md-card flex  >
+						<md-card-content >
+							<table ng-if="!statusFlag">
+								<tr>
+									<th >File Name</th>
+									<th>File Path</th>
+									<th><i class="md-avatar fa fa-trash " ng-style="{'font-size':'24px'}" ></i></th>
+									
+								 </tr>
+								
+								 <tr ng-repeat="media in uplaodMediaList track by $index">
+									<td >
+										<span ng-if="$index==0">Records</span>
+										<span ng-if="$index>0">{{media.name}}</span>
+									</td>
+									<td>{{media.location}}</td>
+									<td > 
+										<i ng-click="removeMedia($index);" class="md-avatar fa fa-trash " title="remove" ng-style="{'font-size':'24px','color':'red','cursor':'pointer'}" ></i>
+									</td>
+									
+								 </tr>
+								
+							</table>
+							
+							<table ng-if="statusFlag">
+								<tr>
+									<th >File Name</th>
+									<th>File Path</th>
+									<th>Status</th>
+									
+								 </tr>
+								 <tr ng-repeat="file in statusList">
+									<td>{{file.fileName}}</td>
+									<td>{{file.filePath}}</td>
+									<td > 
+										<span ng-if="file.fileStatus=='S'" class="success-message">Saved Successfully.</span>
+										<span ng-if="file.fileStatus=='F'" class="failure-message">Operation Failed.</span>
+									</td>
+									
+								 </tr>
+							</table>
+							
+						</md-card-content>
+						<md-card-actions layout="column" layout-align="space-around">
+						     <md-button ng-if="!statusFlag && !progressFlag" type="submit" class="md-raised md-cornered md-warn" ng-click="saveContain()">Save</md-button>
+							
+						      <md-progress-circular ng-show="progressFlag && !statusFlag" md-mode="indeterminate"></md-progress-circular>
+						   
+						     <md-button ng-if="statusFlag" class="md-raised md-cornered md-warn" ng-click="resetOnDone()">Done</md-button>
+						</md-card-actions>
+					</md-card>
+			 </md-content>
+		  </md-tab>
+		 
+	  </md-tabs>
+		<div class="md-padding" layout="column" layout-align=" center center" ng-show="!isUserValid" >
+
+			<md-card flex=""  >
+			<md-card-title>
+          <md-card-title-text>
+            <span class="md-headline">Sign In</span>
+          </md-card-title-text>
+		  </md-card-title>
 						<md-card-content >
 						<form autocomplete="off"   ng-submit="getAccess();">
 								<md-input-container class="md-icon-float md-block">
@@ -204,7 +278,9 @@ th {
 							      <input ng-model="user.passKey" type="password" required>
 							    </md-input-container>
 							   
-						          <md-button type="submit" class="md-raised md-cornered md-primary">Login</md-button>
+						          <md-button type="submit" class="md-raised md-cornered md-primary">
+									<md-icon><i class="md-avatar fa fa-sign-in" ng-style="{'font-size':'24px'}"></i></md-icon>
+								  </md-button>
 						        
 						</form>
 						
@@ -216,22 +292,7 @@ th {
 					    </div>
 						</md-card-content>
 					</md-card>
-					<md-card flex="50" ng-show="isUserValid"  >
-						<md-card-content >
-							<div  layout="row" layout-sm="column" layout-align="space-around">
-					      		<p class="">Login Successful, Please Save File.</p>
-					    	</div>
-					    	
-						</md-card-content>
-						<md-card-actions layout="column" layout-align="space-around">
-						     <md-button type="submit" class="md-raised md-cornered md-primary" ng-click="saveContain()">Save</md-button>
-						        
-							</md-card-actions>
-					</md-card>
-			 </md-content>
-		  </md-tab>
-		 
-	  </md-tabs>
+				</div>
 		
 	</md-content>
 	 
@@ -271,20 +332,20 @@ admin.directive('mediaUpload', ['$rootScope',function (rootScope) {
 	   
       elem.on('change', function () {
 		scope.selectedFiles=elem[0].files;
-		console.log(scope.selectedFiles);
+		rootScope.logger(" selectedFiles",scope.selectedFiles);
 		scope.idx=0;
 		for(var i=0;i<scope.selectedFiles.length;i++){
 			
 			var reader = new FileReader();
 			reader.onload = function (e) {
 				scope.mediaObj={};
-				console.log("scope.idx "+scope.idx);
 				var isPresent=false;
+				rootScope.logger("file  at ",scope.idx);
 				scope.mediaObj.name=scope.selectedFiles[scope.idx].name;
 				
 				for(var j=0;j<rootScope.uplaodMediaList.length;j++){
 					if(rootScope.uplaodMediaList[j].name==scope.mediaObj.name && rootScope.uplaodMediaList[j].location==rootScope.menuPath){
-						console.log(scope.mediaObj.name +" file ALREADY EXISTS at"+ rootScope.menuPath);
+						rootScope.logger("file ALREADY EXISTS at ",scope.mediaObj.name);
 						isPresent=true;
 						break;
 					}
@@ -293,11 +354,8 @@ admin.directive('mediaUpload', ['$rootScope',function (rootScope) {
 				if(!isPresent){
 					scope.mediaObj.location=rootScope.menuPath;
 					scope.mediaObj.media= e.target.result;
-					console.log("Adding mediaObj ==>");
-					console.log(scope.mediaObj);
 					rootScope.uplaodMediaList.push(scope.mediaObj);
-					console.log("uplaodMediaList ====>");
-					console.log(rootScope.uplaodMediaList);
+					rootScope.logger("uplaodMediaList ",rootScope.uplaodMediaList);
 					isPresent=false;
 				}
 
@@ -328,6 +386,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	$scope.editedRecord=false;
 	$scope.isUserValid=false;
 	$scope.progressFlag=false;
+	$scope.statusFlag=false;
 	$scope.user={};
 	$scope.dynamicModel={};
 	$scope.selectedTab=0;
@@ -335,24 +394,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	$scope.filePath="";
 	$scope.statusMessage="";
 	$scope.statusClass="";
-	$http.get("../js/GGData.json")
-	    .then(function(response) {
-	        //First function handles success
-	        console.log("get Response ");console.log(response.data);
-	        $scope.data = response.data;
-	        $scope.filePath=$scope.data.filePath.toString();
-	       	$scope.viewSelected($scope.data.adminMenu[0],0);
-	       	console.log("$scope.filePath ");
-	        console.log($scope.filePath); 
-	        console.log("$scope.data ");
-	        console.log($scope.data); 
-	        $scope.statusMessage ="";
-	        $scope.statusClass="";
-	    }, function(response) {
-	        //Second function handles error
-	        $scope.statusMessage = "Something went wrong";
-	        $scope.statusClass="failure-message";
-	    });
+	$scope.fileToDelete="";
 	
 	$scope.toggleLeft = function () {
 		  $mdSidenav('left').toggle()
@@ -371,6 +413,24 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			});
 	};
 	
+	$scope.b64EncodeUnicode= function (str) {
+		// first we use encodeURIComponent to get percent-encoded UTF-8,
+		// then we convert the percent encodings into raw bytes which
+		// can be fed into btoa.
+		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
+			function toSolidBytes(match, p1) {
+				return String.fromCharCode('0x' + p1);
+		}));
+	}
+
+	$scope.b64DecodeUnicode=function (str) {
+		// Going backwards: from bytestream, to percent-encoding, to original string.
+		return decodeURIComponent(atob(str).split('').map(function(c) {
+			return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+		}).join(''));
+	};
+
+	$scope.configObj={};
 	$scope.credits="";
 	$scope.fileProperties={};
 	$scope.getAccess=function(){
@@ -378,52 +438,9 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		$scope.statusMessage="";
 		 $scope.statusClass="";
 	   	$scope.credits=btoa($scope.user.userName+":"+$scope.user.passKey);
-	   	console.log("$scope.credits"+$scope.credits);
-	    $http.get($scope.filePath+'js/GGData.json',
-				{ headers: {
-						'Authorization':'Basic '+ $scope.credits
-					 }
-				}
-		)
-	    .then(function(response) {
-	        console.log(response.data);
-	        $scope.fileProperties.sha=response.data.sha;
-	        $scope.fileProperties.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
-	        console.log("fileProperties");
-	        console.log($scope.fileProperties);
-	        $scope.isUserValid=true;
-	        $scope.progressFlag=false;
-	    }, function(response) {
-	    	 console.log(response);
-	    	 $scope.credits="";
-	    	 $scope.isUserValid=false;
-	    	 $scope.progressFlag=false;
-	    	 $scope.statusClass="failure-message";
-	    	 $scope.statusMessage="Wrong Username or Password";
-	    	 
-	    }); 
-	    
-	};
-	
-
-	
-	$scope.saveContain=function(){
-		$scope.statusMessage="";
-		 $scope.statusClass="";
-		var encodedURIData=encodeURIComponent(JSON.stringify($scope.data));
-		var dataStr = "data:text/json;charset=utf-8," + encodedURIData;
-		var downloadAnchorNode = document.createElement('a');
-		downloadAnchorNode.setAttribute("href", dataStr);
-		downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
-		document.body.appendChild(downloadAnchorNode); // required for firefox
-		downloadAnchorNode.click();
-		downloadAnchorNode.remove();
-		console.log("Downloaded ==>"+encodedURIData);
-		$scope.fileProperties.message=new Date().getTime().toString();
-		 $scope.fileProperties.content=btoa(unescape(encodedURIData));
-		 console.log("fileProperties");
-	     console.log($scope.fileProperties);
-		/* $http.put($scope.filePath+'js/GGData.json',$scope.fileProperties,
+	    $rootScope.logger("credits ",$scope.credits);
+		//'https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/sampleData.json'
+		$http.get('https://api.github.com/repos/guidancegroup/guidancegroup.github.io/contents/js/GGData.json',
 				{headers: {
 						'Authorization':'Basic '+ $scope.credits
 						
@@ -431,86 +448,252 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 				}
 		)
 	    .then(function(response) {
-	        console.log(response.data);
-	        $scope.statusMessage="Successfully Saved";
-	        $scope.statusClass="success-message";
-	        $scope.isUserValid=false;
-	    	$scope.progressFlag=false;
-	    	$scope.user={};
+	    
+	        $rootScope.logger("Success ",response.data);
+			$scope.data=JSON.parse($scope.b64DecodeUnicode(response.data.content));
+	        $scope.filePath=$scope.data.filePath.toString();
+	       	$scope.viewSelected($scope.data.adminMenu[0],0);
+	        $scope.statusMessage ="";
+	        $scope.statusClass="";
+			
+			$scope.configObj.sha=response.data.sha;
+			$scope.configObj.location=response.data.path;
+			$rootScope.uplaodMediaList.push($scope.configObj);
+			$rootScope.logger("uplaodMediaList ",$rootScope.uplaodMediaList);
+			
+			$scope.isUserValid=true;
+	        $scope.progressFlag=false;
 	        
 	    }, function(response) {
-	    	 console.log(response);
-	    	 $scope.statusMessage="Something went wrong, backup file is downloaded.\n Upload manually or try again later";
-	    	 $scope.statusClass="failure-message";
-	    	 $scope.isUserValid=false;
+	    	$rootScope.logger("Error ",response);
+			 $scope.isUserValid=false; //temp make it false
 	    	 $scope.progressFlag=false;
-	    	 $scope.user={};
-	    });  */
-		
-		for(var m=0;m<$rootScope.uplaodMediaList.length;m++){
-			var dPath=$scope.filePath+$rootScope.uplaodMediaList[m].location+$rootScope.uplaodMediaList[m].name;
-			console.log("media path "+dPath);
-			var mObj={};
-			mObj.message=new Date().getTime().toString();
-			mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
-			mObj.content=$rootScope.uplaodMediaList[m].media.split(',')[1];
-			console.log("mObj -->");
-			console.log(mObj);
-			/* $http.put(dPath,mObj,
-					{headers: {
-							'Authorization':'Basic '+ $scope.credits
-							
-						 }
-					}
-			)
-		    .then(function(response) {
-		        console.log(response.data);
-		        $scope.statusMessage="Successfully Saved";
-		        $scope.statusClass="success-message";
-		        
-		    }, function(response) {
-		    	 console.log(response);
-		    	 $scope.statusMessage="Something went wrong, backup file is downloaded.\n Upload manually or try again later";
-		    	 $scope.statusClass="failure-message";
-		    	
-		    });  */
-			
-			console.log("iterator "+m);
-		}
+	    	 $scope.statusFlag=false;
+	    	 $scope.statusClass="failure-message";
+	    	 $scope.statusMessage=response;
+	    	
+	    }); 
+	    
 	};
- 
+	
+
+
+	$scope.otherName="";
+	$scope.otherPath="";
+	$scope.saveContain=function(){
+		$scope.statusMessage="";
+		 $scope.statusClass="";
+		var strigifiedData=JSON.stringify($scope.data);
+		var encodedURIData=encodeURIComponent(strigifiedData);
+		var dataStr = "data:text/json;charset=utf-8," + encodedURIData;
+		var downloadAnchorNode = document.createElement('a');
+		downloadAnchorNode.setAttribute("href", dataStr);
+		downloadAnchorNode.setAttribute("download", 'GGData' + ".json");
+		document.body.appendChild(downloadAnchorNode); // required for firefox
+		downloadAnchorNode.click();
+		downloadAnchorNode.remove();
+		$rootScope.logger("Downloaded ");
+
+		$rootScope.logger("uplaodMediaList ",$rootScope.uplaodMediaList);
+		$scope.statusList=[];
+		
+		$scope.progressFlag=true;
+		var dPath="";
+		var mObj={};
+		$scope.pointer=0;
+		mObj.message=new Date().getTime().toString();
+		mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+		$scope.otherName="Records";
+		$scope.otherPath=$rootScope.uplaodMediaList[0].location;
+		//dPath=$scope.filePath+$scope.otherPath;
+		dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
+		mObj.sha=$rootScope.uplaodMediaList[0].sha;
+		mObj.content=$scope.b64EncodeUnicode(strigifiedData);
+		$scope.request(dPath,mObj);	
+		
+	};
+	
+	
+	$scope.request=function(dPath,mObj){
+		console.log($rootScope.debugLog);
+		$rootScope.logger("Pointer equals ",$scope.pointer);
+		$rootScope.logger("request path ",dPath);
+	 	$rootScope.logger("request Object ",mObj);
+		if($scope.pointer>$rootScope.uplaodMediaList.length){
+			$rootScope.logger("Request returning");
+			console.log($rootScope.debugLog);
+			return;
+		}
+		
+		$http.put(dPath,mObj,
+				{headers: {
+						'Authorization':'Basic '+ $scope.credits
+						
+					 }
+				}
+		)
+	    .then(function(response) {
+	        $rootScope.logger("Success "+response.data.content.name,response.data);
+	        $scope.pointer++;
+			var statusObj={};
+			statusObj.fileName=response.data.content.name;
+			statusObj.filePath=response.data.content.path;
+			statusObj.fileStatus="S";
+			$scope.statusList.push(statusObj);
+			if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+				$rootScope.logger("All files processed (S)");
+				$scope.progressFlag=false;
+				$scope.statusFlag=true;
+			}else{
+				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
+				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				mObj.content=$rootScope.uplaodMediaList[$scope.pointer].media.split(',')[1];
+				$scope.request(dPath,mObj);	
+			}
+			
+	        
+	    }, function(response) {
+	    	 $scope.pointer++;
+	    	 $rootScope.logger("Error "+$scope.otherName,response);
+			 var statusObj={};
+			 if( ($scope.pointer-1)==0){
+				statusObj.fileName=$scope.otherName;
+				statusObj.filePath=$scope.otherPath;
+			 }else{
+				 statusObj.fileName=$scope.otherName;
+				statusObj.filePath=$scope.otherPath; 
+			 }
+			statusObj.fileStatus="F";
+			$scope.statusList.push(statusObj);
+			
+	    	$rootScope.logger("Saving Error",response.statusText);
+			if($rootScope.uplaodMediaList.length==$scope.statusList.length){
+				$rootScope.logger("All files processed (F)");
+				$scope.progressFlag=false;
+				$scope.statusFlag=true;
+			}else{
+				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
+				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
+				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				mObj.content=$rootScope.uplaodMediaList[ $scope.pointer].media.split(',')[1];
+				$scope.request(dPath,mObj);	
+			}
+	    	
+	    }); 
+	};
+	
+	$scope.deletMedia = function() {
+		var confirm = $mdDialog.prompt()
+	      .title('Delete Media')
+	      .textContent('Which file you want to delete?')
+	      .placeholder('Enter file name here')
+	      .ariaLabel('delete')
+	      .initialValue('')
+	      .required(true)
+	      .ok('Delete')
+	      .cancel('Cancel');
+		
+		 $mdDialog.show(confirm).then(function(fileName) {
+			 
+			 var dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$rootScope.menuPath+fileName;
+			 $rootScope.logger("Delete Path ",dPath);
+		    	$http.get(dPath,
+						{headers: {
+								'Authorization':'Basic '+ $scope.credits
+								
+							 }
+						}
+				)
+			    .then(function(response) {
+			    	var reqObj={};
+			    	reqObj.message="delete "+fileName;
+			    	reqObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
+			    	reqObj.sha=response.data.sha;
+			    	 $rootScope.logger("Delete Object ",reqObj);
+			    	$http.delete(dPath,reqObj,
+							{headers: {
+									'Authorization':'Basic '+ $scope.credits
+									
+								 }
+							}
+					)
+				    .then(function(response) {
+				    	$mdDialog.show(
+					  			  $mdDialog.alert()
+					  				.parent(angular.element(document.querySelector('#deleteS')))
+					  				.clickOutsideToClose(true)
+					  				.title(response.data.name +' Deleted Successfully!!')
+					  				.textContent('')
+					  				.ariaLabel('Add')
+					  				.ok('Got it!')
+					  			);
+				    }, function(response) {
+				    	
+				    	$mdDialog.show(
+					  			  $mdDialog.alert()
+					  				.parent(angular.element(document.querySelector('#deleteF')))
+					  				.clickOutsideToClose(true)
+					  				.title('Delete failed')
+					  				.textContent('Try again later')
+					  				.ariaLabel('delete')
+					  				.ok('Got it!')
+					  			);
+				    	console.log($rootScope.debugLog);
+				    	
+					 });
+			    	
+			    }, function(response) {
+			    	
+			    	$mdDialog.show(
+				  			  $mdDialog.alert()
+				  				.parent(angular.element(document.querySelector('#deleteF')))
+				  				.clickOutsideToClose(true)
+				  				.title('Delete failed')
+				  				.textContent(fileName+' File does not exist')
+				  				.ariaLabel('delete')
+				  				.ok('Got it!')
+				  			);
+			    	console.log($rootScope.debugLog);
+			    	
+				 });
+			 
+		 }, function() {
+		    	console.log("Cancelled");
+		 });
+		
+	};
+	
+	
+	
 	$scope.viewSelected=function(menu,menuIndex){
 		$scope.dynamicModel={};
 		$scope.addedRecord=false;
 		$scope.deletedRecord=false;
 		$scope.editedRecord=false;
-		console.log("editedRecord "+$scope.editedRecord);
-		console.log("addedRecord "+$scope.addedRecord);
-		console.log("deletedRecord "+$scope.deletedRecord);
-		console.log("dynamicModel "+$scope.dynamicModel);
 		$scope.selectedMenu=menu;
 		$scope.selectedMenuIndex=menuIndex;
-		console.log("selectedMenuIndex "+$scope.selectedMenuIndex);
+		$rootScope.logger("selectedMenuIndex ",$scope.selectedMenuIndex);
+		
 		$scope.selectedTab=0;
 		$scope.activeMenu=menu.menuName;
 		$rootScope.menuPath=menu.menuPath;
 		$scope.containList=[];
 	
 		var contain = menu.menuContain;
-		console.log("enableChip "+$scope.enableChip);
 		if(contain.length!=0){
 			$scope.enableChip=false;
-			console.log("enableChip "+$scope.enableChip);
+			$rootScope.logger("enableChip ",$scope.enableChip);
 			$scope.headerList=[];
 			$scope.fieldList=[];
 			$scope.chipList=[];
 			for(var key in contain[0]){
 				var field=contain[0][key];
 				var fieldType=$scope.detectType(field);
-				console.log("fieldType "+fieldType);
+				$rootScope.logger("fieldType ",fieldType);
 				if(fieldType=='[object Array]'){
 					$scope.enableChip=true;
-					console.log("enableChip "+$scope.enableChip);
+					$rootScope.logger("enableChip ",$scope.enableChip);
 					$scope.chipList.push(key);
 				}else{
 					var fieldObj={};
@@ -521,22 +704,23 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 				
 				$scope.headerList.push(key);
 			}
-			console.log("chipList "+$scope.chipList);
-			console.log("headerList "+$scope.headerList);
-			console.log("fieldList "+$scope.fieldList);
+			$rootScope.logger("chipList ",$scope.chipList);
+			$rootScope.logger("headerList ",$scope.headerList);
+			$rootScope.logger("fieldList ",$scope.fieldList);
 		}
 		for(var i=0;i<contain.length;i++){
-			console.log("menuContain "+contain[i]);
+			$rootScope.logger("menuContain ",contain[i]);
 			var tempList=[];
 			for(var j=0;j<$scope.headerList.length;j++){
 				var tempContain=contain[i][$scope.headerList[j]];
 				tempList.push(tempContain);
 			}
-			console.log(tempList);
+			$rootScope.logger("tempList ",tempList);
 			$scope.containList.push(tempList);
 			 
 		}
-		console.log($scope.containList);
+		
+		$rootScope.logger("containList ",$scope.containList);
 	}
 	
 	$scope.detectType=function(element){
@@ -547,8 +731,9 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		var keyList=[];
 		for(var key in obj){
 			keyList.push(key);
-			console.log(key);
+			
 		}
+		$rootScope.logger("getKeys ",keyList);
 		return keyList;
 	};
 	
@@ -556,13 +741,14 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		console.log($scope.dynamicModel);
 		
 		if((Object.keys($scope.dynamicModel).length === 0 && $scope.dynamicModel.constructor === Object)||$scope.addedRecord){
-			console.log("empty dynamicModel or rec added already");
+			$rootScope.logger("empty dynamicModel or rec added already ");
 			return false;
 		}
 		
 		if($scope.editedRecord){
 			$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.splice($scope.editIndex, 1);
-			console.log("Deleted to update ");
+			
+			$rootScope.logger("Deleted to update ");
 		}
 		
 		for(var i=0;i<$scope.chipList.length;i++){
@@ -576,11 +762,12 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			
 		}
 		
-		console.log("updated dynamicModel"+$scope.dynamicModel);
+		$rootScope.logger("updated dynamicModel", $scope.dynamicModel);
 		
 		$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.push($scope.dynamicModel);
 		$scope.addedRecord=true;
-		console.log("added dynamicModel "+$scope.addedRecord);
+
+		$rootScope.logger(" added dynamicModel ",$scope.addedRecord);
 		$mdDialog.show(
 			  $mdDialog.alert()
 				.parent(angular.element(document.querySelector('#add')))
@@ -595,7 +782,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 
 	$scope.deleteRecord=function(index){
 		if($scope.deletedRecord){
-			console.log("deletedRecord "+$scope.deletedRecord);
+			$rootScope.logger(" deletedRecord Already ",$scope.deletedRecord);
 			return false;
 		}
 		var deleteRec = $mdDialog.confirm()
@@ -605,12 +792,12 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 							  .ok('Please do it!')
 							  .cancel('Cancel');
 		 $mdDialog.show(deleteRec).then(function() {
-				console.log("Delete present at "+index);
-				console.log("selectedMenuIndex "+$scope.selectedMenuIndex);
-				console.log($scope.data.adminMenu[$scope.selectedMenuIndex].menuContain[index] );
+			 	$rootScope.logger(" selectedMenuIndex ",$scope.selectedMenuIndex);
+				$rootScope.logger(" Deleting ",$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain[index]);
 				
 				$scope.data.adminMenu[$scope.selectedMenuIndex].menuContain.splice(index, 1);
-				console.log("Deleted ");
+				
+				$rootScope.logger(" Deleted ");
 				$scope.deletedRecord=true;
 				$scope.viewSelected($scope.selectedMenu,$scope.selectedMenuIndex);
 			}, function() {
@@ -619,11 +806,18 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		
 	};
 	
+	$scope.removeMedia=function(index){
+		if(index!=0){
+			$rootScope.uplaodMediaList.splice(index, 1);
+			$rootScope.logger(" Media Removed ",$rootScope.uplaodMediaList[index]);
+		}
+		
+	};
+	
 	$scope.resetMode=function(){
 		$scope.editedRecord=false;
 		$scope.dynamicModel={};
-		console.log('Mode Resetted '+$scope.editedRecord);
-		console.log($scope.dynamicModel);
+		$rootScope.logger("Mode Resetted, editFlag ",$scope.editedRecord);
 	};
 	
 	$scope.editRecord=function(index){
@@ -642,16 +836,34 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			
 			$scope.dynamicModel[$scope.headerList[n]]=tempObj;
 		}
-		console.log("Object loaded to Edit ");
-		console.log($scope.dynamicModel);
+		
+		$rootScope.logger("Object loaded to Edit ",$scope.dynamicModel);
 		$scope.selectedTab=1;
 		$scope.editedRecord=true;
 		
 	};
 	
 
-
-
+	$scope.resetOnDone=function(){
+		$rootScope.uplaodMediaList=[];
+		$scope.statusList=[];
+		 $scope.statusFlag=false;
+		 $rootScope.logger("Reloading, credits are ");
+		 console.log($rootScope.debugLog);
+		 $rootScope.debugLog="";
+		$scope.getAccess();
+		
+	};
+	
+	$rootScope.debugLog="";
+	$rootScope.logger=function(msg,obj){
+		if(obj == 'undefined'){
+			$rootScope.debugLog +=new Date().toString()+" ==> \n "+ msg.toString()+" ==> \n\n "
+		}else{
+			$rootScope.debugLog +=new Date().toString()+" ==> \n "+msg.toString()+" ==> "+JSON.stringify(obj)+" \n\n";
+		}
+		
+	};
 
 });
 
