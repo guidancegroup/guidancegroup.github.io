@@ -414,9 +414,6 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	};
 	
 	$scope.b64EncodeUnicode= function (str) {
-		// first we use encodeURIComponent to get percent-encoded UTF-8,
-		// then we convert the percent encodings into raw bytes which
-		// can be fed into btoa.
 		return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g,
 			function toSolidBytes(match, p1) {
 				return String.fromCharCode('0x' + p1);
@@ -505,8 +502,8 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		mObj.committer={name:"guidancegroup",email: "guidanceeducon@gmail.com"};
 		$scope.otherName="Records";
 		$scope.otherPath=$rootScope.uplaodMediaList[0].location;
-		//dPath=$scope.filePath+$scope.otherPath;
-		dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
+		dPath=$scope.filePath+$scope.otherPath;
+		//dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath; //testing
 		mObj.sha=$rootScope.uplaodMediaList[0].sha;
 		mObj.content=$scope.b64EncodeUnicode(strigifiedData);
 		$scope.request(dPath,mObj);	
@@ -547,7 +544,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			}else{
 				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
 				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
-				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				dPath=$scope.filePath+$scope.otherPath+$scope.otherName;
 				mObj.content=$rootScope.uplaodMediaList[$scope.pointer].media.split(',')[1];
 				$scope.request(dPath,mObj);	
 			}
@@ -575,7 +572,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 			}else{
 				$scope.otherName=$rootScope.uplaodMediaList[ $scope.pointer].name;
 				$scope.otherPath=$rootScope.uplaodMediaList[ $scope.pointer].location;
-				dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$scope.otherPath+$scope.otherName;
+				dPath=$scope.filePath+$scope.otherPath+$scope.otherName;
 				mObj.content=$rootScope.uplaodMediaList[ $scope.pointer].media.split(',')[1];
 				$scope.request(dPath,mObj);	
 			}
@@ -596,7 +593,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 		
 		 $mdDialog.show(confirm).then(function(fileName) {
 			 
-			 var dPath='https://api.github.com/repos/nikhildinpure/nikhildinpure.github.io/contents/'+$rootScope.menuPath+fileName;
+			 var dPath=$scope.filePath+$rootScope.menuPath+fileName;
 			 $rootScope.logger("Delete Path ",dPath);
 		    	$http.get(dPath,
 						{headers: {
@@ -845,6 +842,7 @@ admin.controller('adminCtrl',function($rootScope,$scope,$http,$timeout, $mdSiden
 	
 
 	$scope.resetOnDone=function(){
+		$scope.pointer=0;
 		$rootScope.uplaodMediaList=[];
 		$scope.statusList=[];
 		 $scope.statusFlag=false;
