@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="description" content="guidanceGroup.co.in">
+<meta name="keywords"
+	content="MPSC,UPSC,GUIDANCE,GROUP,MENTOR,CONTACT,Youtube">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Blogs -Guidance Group</title>
+<link rel="icon" type="image/gif/png" href="img/GGlogo.jpg">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+
+<script type="text/javascript" src="js/blog.js"></script>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.navbar {
+      margin-bottom: 0;
+      background-color: #f4511e;
+      z-index: 9999;
+      border: 0;
+      font-size: 12px !important;
+      line-height: 1.5 !important;
+      letter-spacing: 4px;
+      border-radius: 0;
+      font-family: Montserrat, sans-serif;
+  }
+  .navbar li a, .navbar .navbar-brand {
+      color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+      color: orange !important;
+      background-color: #fff !important;
+  }
+  .navbar-expand-md .navbar-toggler {
+      border-color: transparent;
+      color: #fff !important;
+  }
+  
+.nav-item{
+margin-right:20px;
+}
+.shadow{
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+#blogHeader{
+	background: no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+</style>
+</head>
+<body ng-app="myBlog" ng-controller="blogControl" >
+	<div id="fb-root"></div>
+	<script>
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id))
+				return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = 'https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.12';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	
+	<nav class="navbar sticky-top navbar-expand-md  navbar-dark bg-dark ">
+			<a class="navbar-brand" href="#"><img src="img/GGlogo.png"
+				width="30" height="30" class="d-inline-block align-top" alt="logo">Guidance
+				Group</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto ">
+					<li class="nav-item "><a class="nav-link" href="http://guidancegroup.co.in/">HOME
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">CURRENT
+							AFFAIRS</a></li>
+					<li class="nav-item"><a class="nav-link" href="#/blogs">BLOGS
+							<span class="sr-only">(current)</span>
+					</a></li>
+				</ul>
+			</div>
+		</nav>
+	
+	
+	<div class="container-fluid">
+		<br>
+		<div id="views" ng-view></div>
+
+		<hr>
+		<div id="fbcomments" class="row  " style="background-color:;">
+			<div class="col-md-3 "></div>
+			<div class="col-md-6 ">
+				<div class="fb-comments"
+					data-href="http://blog.guidancegroup.co.in/" data-numposts="5"></div>
+			</div>
+			<div class="col-md-3 "></div>
+		</div>
+		<hr>
+		<div id="fbpage" class="row " style="background-color:;">
+			<div class="col-md-3 "></div>
+			<div class="col-md-6 text-center">
+				<div class="fb-page"
+					data-href="https://www.facebook.com/guidancegroup1/"
+					data-width="340" data-height="500" data-small-header="false"
+					data-adapt-container-width="true" data-hide-cover="false"
+					data-show-facepile="true">
+					<blockquote cite="https://www.facebook.com/guidancegroup1/"
+						class="fb-xfbml-parse-ignore">
+						<a href="https://www.facebook.com/guidancegroup1/">Guidance
+							Group</a>
+					</blockquote>
+				</div>
+			</div>
+			<div class="col-md-3 "></div>
+		</div>
+		<div class="row text-justify">
+			<div class="col-lg-6">© 2018 Guidance Group | All Rights
+				Reserved.</div>
+			<div class="col-lg-6 ">
+				Developed and maintained By <a
+					href="https://nikhildinpure.github.io" title="Developer">
+					Guidance Group Pvt.Ltd. </a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
