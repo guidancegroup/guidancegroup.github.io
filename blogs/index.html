@@ -8,7 +8,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Blogs -Guidance Group</title>
-<link rel="icon" type="image/gif/png" href="img/GGlogo.jpg">
+<link rel="icon" type="image/gif/png" href="../img/logo.png">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -24,8 +24,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
-
-<script type="text/javascript" src="js/blog.js"></script>
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -156,5 +154,56 @@ margin-right:20px;
 			</div>
 		</div>
 	</div>
+	<script>
+		var blog = angular.module('myBlog', [ 'ngRoute']);
+//========================================================================================================================================
+
+blog.config([ '$routeProvider', function($routeProvider) {
+	
+	$routeProvider.when('/read', {
+		templateUrl : 'blogs/blog.html',
+	}).when('/blogs', {
+		templateUrl : 'blogs/BlogsList.html',
+		controller:'blogControl'
+	})
+	.otherwise({
+		redirectTo : '/blogs'
+	});
+} ]);
+
+blog.filter('trustUrl', function ($sce) {
+    return function(url) {
+    	url='blogs/'+url+'.txt';
+        return $sce.trustAsResourceUrl(url);
+      };
+   });
+
+blog.controller('blogControl', function($rootScope,$scope) {
+	
+	$scope.readBlog=function(blog){
+		$rootScope.currentBlog=blog;
+	}
+	//Blog Entry
+	$rootScope.blogsData={
+			"blogs":[
+				{
+					"name":"sample",
+					"summary":"this  is a sample blog for guidance group awesome its working",
+					"fileName":"sample",
+					"publishDate":"12/4/2018",
+					"blogImage":"sample"
+				},
+				{
+					"name":"sample2",
+					"summary":"this  is a SECOND sample  blog for guidance group awesome its working",
+					"fileName":"sample2",
+					"publishDate":"16/4/2018",
+					"blogImage":"sample"
+				}
+			]
+	};
+	
+});
+	</script>
 </body>
 </html>
